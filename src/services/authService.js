@@ -1,8 +1,25 @@
-// src/services/authService.js
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-const BACKEND_URL = "http://localhost:3000"; // this is our Express API url
+const signout = () => {
+  window.localStorage.removeItem("token");
+};
 
-const Signup = async (formData) => {
+const getUser = () => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) return null;
+
+    const rawPayload = token.split(".")[1];
+    const jsonPayload = window.atob(rawPayload);
+
+    const user = JSON.parse(jsonPayload);
+    return user;
+  } catch (err) {
+    return null;
+  }
+};
+
+const signup = async (formData) => {
   try {
     const res = await fetch(`${BACKEND_URL}/users/signup`, {
       method: "POST",
@@ -19,7 +36,6 @@ const Signup = async (formData) => {
     throw err;
   }
 };
-// src/services/authService.js
 
 const signin = async (user) => {
   try {
@@ -28,32 +44,32 @@ const signin = async (user) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
     });
+
     const json = await res.json();
 
-    if (json.token) {
-      localStorage.setItem("token", json.token); // add this line to store the JWT token in localStorage
-
-      const user = JSON.parse(atob(json.token.split(".")[1]));
-
-      return user;
+    if (json.error) {
+      throw new Error(json.error);
     }
-    if (json.err) {
-      throw new Error(json.err);
+
+    if (json.token) {
+      // save it to local storage
+      window.localStorage.setItem("token", json.token);
+
+      const rawPayload = json.token.split(".")[1];
+      const jsonPayload = window.atob(rawPayload);
+
+      const user = JSON.parse(jsonPayload);
+      return user;
     }
   } catch (err) {
     console.log(err);
     throw err;
   }
 };
-const getUser = () => {
-  const token = localStorage.getItem("token");
-  if (!token) return null;
-  const user = JSON.parse(atob(token.split(".")[1]));
-  return user;
-};
 
-const signout = () => {
-  localStorage.removeItem("token");
+export default {
+  signup,
+  signin,
+  getUser,
+  signout,
 };
-
-export { Signup, signin, getUser, signout };

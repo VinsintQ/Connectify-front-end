@@ -1,5 +1,5 @@
 // SignupForm.jsx
-import * as authService from "../../services/authService";
+import authService from "../../services/authService";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 

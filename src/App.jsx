@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import * as authService from "./services/authService";
+import authService from "./services/authService";
 import userServices from "./services/userServices";
 import ChatPage from "./components/ChatPage/ChatPage";
 import NavBar from "./components/NavBar/NavBar";
@@ -19,10 +19,10 @@ function App() {
   const [userData, setuserData] = useState(null);
 
   useEffect(() => {
-    if (user && user.id) {
+    if (user && user._id) {
       const fetchUser = async () => {
         try {
-          const userData = await userServices.show(user.id);
+          const userData = await userServices.show(user._id);
           setuserData(userData);
         } catch (error) {
           console.error("Failed to fetch user data:", error);
@@ -33,20 +33,20 @@ function App() {
   }, [user]);
 
   useEffect(() => {
-    if (userData && users.length > 0) {
-      const same = users.filter((u) => u.occupation === userData.occupation);
-
-      setSameOccupation(same);
-    }
-  }, [userData, users]);
-
-  useEffect(() => {
     const fetchData = async () => {
       const data = await userServices.index();
       setUsers(data);
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (userData && users.length > 0) {
+      const same = users.filter((u) => u.occupation === userData.occupation);
+
+      setSameOccupation(same);
+    }
+  }, [userData, users]);
 
   useEffect(() => {
     if (sameOccupation.length > 0) {

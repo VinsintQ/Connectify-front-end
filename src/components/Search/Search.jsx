@@ -7,7 +7,7 @@ const Search = ({ randomNumArr, users, user, sameOccupation, userData }) => {
 
   const handleAddUser = async (username) => {
     try {
-      const newUser = await userServices.create(username, user.id);
+      const newUser = await userServices.create(username, user._id);
     } catch (error) {
       console.error("Failed to add user:", error);
       alert("An error occurred while adding the friend.");
@@ -17,9 +17,7 @@ const Search = ({ randomNumArr, users, user, sameOccupation, userData }) => {
   const handleChange = (event) => {
     const search = event.target.value.toLowerCase();
     if (search) {
-      const filtered = users.filter((user) =>
-        user.username.toLowerCase().includes(search)
-      );
+      const filtered = users.filter((user) => user.username?.includes(search));
       setFilteredUsers(filtered);
     } else {
       setFilteredUsers([]);
