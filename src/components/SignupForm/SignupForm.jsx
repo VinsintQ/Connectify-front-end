@@ -13,6 +13,7 @@ const SignupForm = (props) => {
     email: "",
     phone: "",
     passwordConf: "",
+    occupation: "",
   });
 
   const updateMessage = (msg) => {
@@ -44,7 +45,8 @@ const SignupForm = (props) => {
     }
   };
 
-  const { username, password, passwordConf, name, phone, email } = formData;
+  const { username, password, passwordConf, name, phone, email, occupation } =
+    formData;
 
   const isFormInvalid = () => {
     return !(username && password && password === passwordConf);
@@ -96,6 +98,16 @@ const SignupForm = (props) => {
             value={phone}
             name="phone"
             required
+            onChange={handleChange}
+          />
+        </div>
+        <div className="signup-form-group">
+          <label htmlFor="occupation">Occupation</label>
+          <input
+            type="text"
+            id="occupation"
+            value={occupation}
+            name="occupation"
             onChange={handleChange}
           />
         </div>

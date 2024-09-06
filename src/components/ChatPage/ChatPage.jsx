@@ -6,7 +6,7 @@ import followersServices from "../../services/followers";
 import conversationServices from "../../services/conversationServices";
 import messagesServices from "../../services/messagesServices";
 import Conversation from "../ConversationComp/Conversation";
-import Massege from "../Massege/Massege";
+import Messages from "../Message/Message";
 
 const ChatPage = ({ user, userData, setuserData }) => {
   const [conversation, setConversation] = useState([]);
@@ -143,7 +143,7 @@ const ChatPage = ({ user, userData, setuserData }) => {
               <div className="chatBoxTop">
                 <div className="chatBoxTop">
                   {ChatMessages?.map((msg, index) => (
-                    <Massege
+                    <Messages
                       key={index}
                       ChatMessages={msg}
                       AllChatMessages={ChatMessages}

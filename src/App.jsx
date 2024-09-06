@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import authService from "./services/authService";
+import * as authService from "./services/authService";
 import userServices from "./services/userServices";
 import ChatPage from "./components/ChatPage/ChatPage";
 import NavBar from "./components/NavBar/NavBar";
@@ -10,8 +10,6 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import SignupForm from "./components/SignupForm/SignupForm";
 import SigninForm from "./components/SigninForm/SigninForm";
 import Search from "./components/Search/Search";
-
-import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [user, setUser] = useState(authService.getUser());
