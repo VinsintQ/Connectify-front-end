@@ -10,7 +10,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import SignupForm from "./components/SignupForm/SignupForm";
 import SigninForm from "./components/SigninForm/SigninForm";
 import Search from "./components/Search/Search";
-
+import Profile from "./components/Profile/Profile";
 function App() {
   const [user, setUser] = useState(authService.getUser());
   const [randomNumArr, setRandomNumArr] = useState([]);
@@ -74,6 +74,7 @@ function App() {
         {user ? (
           <>
             <Route path="/" element={<Dashboard user={user} />} />
+            <Route path="/profile" element={<Profile user={user} />} />
             <Route
               path="/chat"
               element={

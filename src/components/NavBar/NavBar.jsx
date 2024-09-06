@@ -12,6 +12,9 @@ const NavBar = ({ user, handleSignout }) => {
               <Link to="/">Home</Link>
             </li>
             <li>
+              <Link to="profile">Profile</Link>
+            </li>
+            <li>
               <Link to="chat">Chat</Link>
             </li>
             <li>
