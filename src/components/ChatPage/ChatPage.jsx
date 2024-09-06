@@ -31,7 +31,7 @@ const ChatPage = ({ user, userData, setuserData }) => {
       });
     });
 
-    socket.current.emit("addUser", user.id);
+    socket.current.emit("addUser", user._id);
 
     socket.current.on("getUsers", (users) => {
       setUsers(users);
@@ -51,22 +51,22 @@ const ChatPage = ({ user, userData, setuserData }) => {
   useEffect(() => {
     const getConv = async () => {
       try {
-        const data = await conversationServices.index(user.id);
+        const data = await conversationServices.index(user._id);
         setConversation(data);
       } catch (error) {
         console.error("Failed to get conversations:", error);
       }
     };
     getConv();
-  }, [user.id]);
+  }, [user._id]);
 
   useEffect(() => {
     const fetchFollowers = async () => {
-      const data = await followersServices.index(user.id);
+      const data = await followersServices.index(user._id);
       setFollowers(data);
     };
     fetchFollowers();
-  }, [user.id]);
+  }, [user._id]);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -88,15 +88,15 @@ const ChatPage = ({ user, userData, setuserData }) => {
 
     const messageObj = {
       conversationId: Chat._id,
-      sender: user.id,
+      sender: user._id,
       text: message,
     };
 
-    const receiverId = Chat.members.find((member) => member !== user.id);
+    const receiverId = Chat.members.find((member) => member !== user._id);
 
     if (socket.current) {
       socket.current.emit("sendData", {
-        senderId: user.id,
+        senderId: user._id,
         receiverId,
         text: message,
       });

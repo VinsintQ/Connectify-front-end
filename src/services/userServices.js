@@ -1,4 +1,5 @@
 const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/users`;
+
 const index = async () => {
   try {
     const res = await fetch(BASE_URL, {

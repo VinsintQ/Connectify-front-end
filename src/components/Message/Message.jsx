@@ -8,7 +8,7 @@ const Message = ({
   AllChatMessages,
   temp,
 }) => {
-  const isMine = ChatMessages.sender === currentUser.id;
+  const isMine = ChatMessages.sender === currentUser._id;
 
   // const handelDeleteForMe = async () => {
   //   await messagesServices.DeleteMasseges(ChatMessages._id);
