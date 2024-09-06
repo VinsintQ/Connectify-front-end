@@ -1,18 +1,18 @@
 // SignupForm.jsx
-import * as authService from '../../services/authService'
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import * as authService from "../../services/authService";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignupForm = (props) => {
   const navigate = useNavigate();
-  const [message, setMessage] = useState(['']);
+  const [message, setMessage] = useState([""]);
   const [formData, setFormData] = useState({
-    name: '',
-    username: '',
-    password: '',
-    email:'',
-    phone:'',
-    passwordConf: '',
+    name: "",
+    username: "",
+    password: "",
+    email: "",
+    phone: "",
+    passwordConf: "",
   });
 
   const updateMessage = (msg) => {
@@ -24,17 +24,27 @@ const SignupForm = (props) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const newUserResponse = await authService.Signup(formData);
-      props.setUser(newUserResponse.user);
-      navigate('/')
+      if (
+        formData.name.trim() !== "" &&
+        formData.username.trim() !== "" &&
+        formData.password.trim() !== "" &&
+        formData.email.trim() !== "" &&
+        formData.phone.trim() !== ""
+      ) {
+        const newUserResponse = await authService.Signup(formData);
+        props.setUser(newUserResponse.user);
+        navigate("/");
+      } else {
+        console.log("Please fill all the fields");
+      }
     } catch (err) {
-      updateMessage(err.message)
+      updateMessage(err.message);
     }
-  }
+  };
 
-  const { username, password, passwordConf,name,phone,email } = formData;
+  const { username, password, passwordConf, name, phone, email } = formData;
 
   const isFormInvalid = () => {
     return !(username && password && password === passwordConf);
