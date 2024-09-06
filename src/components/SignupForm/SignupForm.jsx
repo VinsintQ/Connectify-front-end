@@ -49,6 +49,7 @@ const SignupForm = (props) => {
           <label htmlFor="username">Username:</label>
           <input
             type="text"
+            required
             id="name"
             value={username}
             name="username"
@@ -62,6 +63,7 @@ const SignupForm = (props) => {
             id="name"
             value={name}
             name="name"
+            required
             onChange={handleChange}
           />
         </div>
@@ -72,16 +74,18 @@ const SignupForm = (props) => {
             id="email"
             value={email}
             name="email"
+            required
             onChange={handleChange}
           />
         </div>
         <div>
           <label htmlFor="phone"> phone:</label>
           <input
-            type="phone"
+            type="number"
             id="phone"
             value={phone}
             name="phone"
+            required
             onChange={handleChange}
           />
         </div>
@@ -92,6 +96,7 @@ const SignupForm = (props) => {
             id="password"
             value={password}
             name="password"
+            required
             onChange={handleChange}
           />
         </div>
@@ -102,6 +107,7 @@ const SignupForm = (props) => {
             id="confirm"
             value={passwordConf}
             name="passwordConf"
+            required
             onChange={handleChange}
           />
         </div>
