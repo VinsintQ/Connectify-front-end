@@ -2,6 +2,7 @@
 import authService from "../../services/authService";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./Signup.css";
 
 const SignupForm = (props) => {
   const navigate = useNavigate();
