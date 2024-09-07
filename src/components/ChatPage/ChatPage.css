@@ -4,20 +4,15 @@
 }
 
 .chatList {
-  flex: 3.5;
+  flex: 4;
 }
 
 .chatBox {
-  flex: 5.5;
-}
-
-.chatStatus {
-  flex: 3;
+  flex: 8;
 }
 
 .chatListWrapper,
-.chatBoxWrapper,
-.chatStatusWrapper {
+.chatBoxWrapper {
   padding: 10px;
   height: 100%;
 }
@@ -42,6 +37,7 @@
   padding: 10px;
   cursor: pointer;
   margin-top: 20px;
+  position: relative;
 }
 
 img {
@@ -60,52 +56,62 @@ img {
   background-color: rgb(222, 221, 221);
 }
 
+.chatOnlineBadge {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #4caf50;
+  border-radius: 50%;
+  top: 2px;
+  right: 5px;
+}
+
 .message {
   display: flex;
   flex-direction: column;
-  margin-top: 10px; /* Spacing between messages */
+  margin-top: 10px;
 }
 
 .messageTop {
-  padding: 10px; /* Increased padding for better readability */
-  border-radius: 15px; /* Rounded corners */
-  max-width: 400px; /* Maximum width for the message bubble */
-  word-wrap: break-word; /* Ensure text wraps to the next line */
-  overflow-wrap: break-word; /* Break long words if needed */
+  padding: 10px;
+  border-radius: 15px;
+  max-width: 400px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .msgMine {
   align-items: flex-start;
-  margin-left: auto; /* Aligns sent messages to the right */
+  margin-left: auto;
 }
 
 .msgOther {
   align-items: flex-end;
-  margin-right: auto; /* Aligns received messages to the left */
+  margin-right: auto;
 }
 
 .msgMine .messageTop {
-  background-color: #007bff; /* Blue background for sent messages */
-  color: #fff; /* White text for sent messages */
-  text-align: right; /* Aligns text to the right */
+  background-color: #007bff;
+  color: #fff;
+  text-align: right;
 }
 
 .msgOther .messageTop {
-  background-color: #e0e0e0; /* Light gray background for received messages */
-  color: #000; /* Black text for received messages */
-  text-align: left; /* Aligns text to the left */
+  background-color: #e0e0e0;
+  color: #000;
+  text-align: left;
 }
 
 .messageText {
-  font-size: 14px; /* Adjusted font size for readability */
-  padding: 8px; /* Added padding for a better look */
+  font-size: 14px;
+  padding: 8px;
 }
 
 .messageBottom {
-  font-size: 12px; /* Adjusted font size for the timestamp */
-  margin-top: 4px; /* Spacing between message text and timestamp */
-  text-align: right; /* Align timestamp to the right for both sent and received messages */
-  color: #888; /* Lighter color for the timestamp */
+  font-size: 12px;
+  margin-top: 4px;
+  text-align: right;
+  color: #888;
 }
 
 .chatBoxBottom {
@@ -117,94 +123,17 @@ img {
 
 .chatText {
   width: 80%;
-  height: 80px;
+  height: 90px;
   padding: 10px;
-  border: 2px solid black;
-  border-radius: 20px;
-  outline: none;
 }
 
 .sendButton {
   width: 70px;
   height: 40px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
-  background-color: rgb(6, 155, 6);
-  color: white;
-}
-
-.chatBoxTop {
-  height: 100%;
-  overflow-y: auto; /* Allow scrolling if messages exceed container height */
-  padding-right: 10px;
-}
-
-.chatOnlineFriends {
-  display: flex;
-  align-items: center;
-  font-weight: 500;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.chatOnlineImg {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid white;
-}
-
-.chatOnlineImgContainer {
-  position: relative;
-  margin-right: 10px;
-}
-
-.chatOnlineBadge {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #4caf50;
-  border-radius: 50%;
-  top: 2px;
-  right: 15px;
-}
-
-.noChatText {
-  position: absolute;
-  top: 10%;
-  font-size: 30px; /* Corrected font size property */
-  color: lightgray;
-  cursor: default;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.dropdown-content p {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  cursor: pointer;
-}
-
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
+  font-size: 16px;
 }

@@ -11,16 +11,16 @@ const index = async (userId) => {
   }
 };
 
-const create = async (username, userId) => {
+const create = async (senderId, receiverId) => {
   const options = {
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ username, userId }),
+    body: JSON.stringify({ senderId, receiverId }),
   };
-  const res = await fetch(`${BASE_URL}/add-follower`, options);
+  const res = await fetch(`${BASE_URL}`, options);
 
   return res.json();
 };
