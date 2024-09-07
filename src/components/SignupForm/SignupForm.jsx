@@ -35,9 +35,9 @@ const SignupForm = (props) => {
         formData.email.trim() !== "" &&
         formData.phone.trim() !== ""
       ) {
-        const newUserResponse = await authService.Signup(formData);
+        const newUserResponse = await authService.signup(formData);
         props.setUser(newUserResponse.user);
-        navigate("/");
+        navigate("/signin");
       } else {
         console.log("Please fill all the fields");
       }
@@ -63,7 +63,7 @@ const SignupForm = (props) => {
           <input
             type="text"
             required
-            id="name"
+            id="username"
             value={username}
             name="username"
             onChange={handleChange}
