@@ -11,13 +11,12 @@ const getUserIdFromToken = () => {
 
 const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/users`;
 
-const allposts = async () => {
+const allposts = async (userId) => {
   try {
     const userId = getUserIdFromToken();
     if (!userId) {
       throw new Error("User ID not found in token");
     }
-
     const res = await fetch(`${BASE_URL}/${userId}/allposts`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });

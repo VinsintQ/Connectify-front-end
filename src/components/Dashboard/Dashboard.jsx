@@ -7,28 +7,29 @@ const Dashboard = ({ user }) => {
  const [allpost,setallpost] =  useState([])
 
  useEffect(() => {
-  if (user && user._id) {
-    const fetchposts = async () => {
+  
+    const fetchposts = async ({user}) => {
       try {
-        const userData = await postService.allposts();
+        const userData = await postService.allposts({user});
         setallpost(userData);
       } catch (error) {
         console.error("Failed to fetch user data:", error);
       }
     };
-    fetchposts();
-  }
-}, [user]);
+    fetchposts({user});
+  
+}, []);
 
     return (
       <main>
-        <h1>Welcome, {user.username}</h1>
-        {allpost.map((post) => (
-          <div key={post._id}>
-            <h3>{post.content}</h3>
-            <p></p>
+        <h1>Welcome,{user.username}</h1>
+
+        {allpost?.map((post) => {
+        return  <div key={post._id}>
+            <h2>{post.content}</h2>
+            
           </div>
-        ))}
+       } )}
       </main>
     );
   };
