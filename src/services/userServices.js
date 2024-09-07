@@ -39,6 +39,17 @@ const AddFriend = async (username, userId) => {
   return res.json();
 };
 
+const allFriends = async (userId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}/friends`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const show = async (userId) => {
   try {
     const res = await fetch(`${BASE_URL}/${userId}`, {
@@ -56,4 +67,5 @@ export default {
   create,
   show,
   AddFriend,
+  allFriends,
 };

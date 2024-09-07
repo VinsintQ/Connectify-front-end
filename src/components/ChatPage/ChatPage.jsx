@@ -15,6 +15,8 @@ const ChatPage = ({ user, userData, setuserData }) => {
   const [message, setMessage] = useState("");
   const [Arrmessage, setArrMessage] = useState(null);
   const [users, setUsers] = useState([]);
+  const [onlineUsers, setOnlineusers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [followers, setFollowers] = useState([]);
   const [temp, setTemp] = useState(0);
 
@@ -35,6 +37,7 @@ const ChatPage = ({ user, userData, setuserData }) => {
 
     socket.current.on("getUsers", (users) => {
       setUsers(users);
+      setOnlineusers(users.map((user) => user.userId));
     });
 
     return () => {
@@ -113,6 +116,37 @@ const ChatPage = ({ user, userData, setuserData }) => {
 
   const handleChange = (event) => {
     const search = event.target.value.toLowerCase();
+    if (search) {
+      const filtered = followers.filter((follower) =>
+        follower.username?.toLowerCase().includes(search)
+      );
+      setFilteredUsers(filtered);
+    } else {
+      setFilteredUsers([]);
+    }
+  };
+
+  const handleAddtoConvlist = async (follower) => {
+    const existingConversation = conversation.find((conv) =>
+      conv.members.includes(follower._id)
+    );
+
+    if (!existingConversation) {
+      try {
+        const savedConversation = await conversationServices.create(
+          user._id,
+          follower._id
+        );
+        setConversation([conversation, savedConversation]);
+        setChat(savedConversation);
+      } catch (error) {
+        console.error("Failed to create conversation:", error);
+      }
+    } else {
+      setChat(existingConversation);
+    }
+
+    setFilteredUsers([]);
   };
 
   if (!userData) {
@@ -129,9 +163,22 @@ const ChatPage = ({ user, userData, setuserData }) => {
             className="SearchInput"
             onChange={handleChange}
           />
+          {filteredUsers.length > 0 && (
+            <ul className="dropdown">
+              {filteredUsers.map((follower, index) => (
+                <li key={index} onClick={() => handleAddtoConvlist(follower)}>
+                  {follower.username}
+                </li>
+              ))}
+            </ul>
+          )}
           {conversation.map((conv, index) => (
             <div key={index} onClick={() => setChat(conv)}>
-              <Conversation conversation={conv} currentUser={user} />
+              <Conversation
+                conversation={conv}
+                currentUser={user}
+                onlineUsers={onlineUsers}
+              />
             </div>
           ))}
         </div>
@@ -171,21 +218,6 @@ const ChatPage = ({ user, userData, setuserData }) => {
               Click on one of your friends to start a chat
             </span>
           )}
-        </div>
-      </div>
-      <div className="chatStatus">
-        <div className="chatStatusWrapper">
-          <div className="chatOnline">
-            {userData.Friends.map((friend, index) => (
-              <div key={index} className="chatOnlineFriends">
-                <div className="chatOnlineImgContainer">
-                  <img className="chatOnlineImg" src="icon.png" alt="" />
-                  <div className="chatOnlineBadge"></div>
-                </div>
-                <span className="chatOnlineName">{friend.username}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
