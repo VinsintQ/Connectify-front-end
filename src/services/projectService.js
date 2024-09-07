@@ -3,10 +3,7 @@ const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/users`;
 const show = async ({ user }) => {
   try {
     const userId = user._id;
-    if (!userId) {
-      throw new Error("User ID not found in token");
-    }
-    const res = await fetch(`${BASE_URL}/${userId}/expierience`, {
+    const res = await fetch(`${BASE_URL}/${userId}/project`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
 

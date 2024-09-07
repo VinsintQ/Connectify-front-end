@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import profileService from "../../services/profileService";
 import experienceService from "../../services/experienceService";
 import educationService from "../../services/educationService";
+import projectService from "../../services/projectService";
 const Profile = ({user})=>{
+const [projects, setProjects] = useState([]);    
 const [experiences, setExperiences] = useState([]);
 const [profile, setProfile] = useState();
 const [educations, setEducations] = useState([]);
@@ -18,7 +20,7 @@ useEffect(()=>{
 //get user experiences
 useEffect(()=>{
     const fetchexp = async()=>{
-        const exp = await experienceService.show();
+        const exp = await experienceService.show({user});
         setExperiences(exp.exp);
     }
     fetchexp();
@@ -32,6 +34,13 @@ useEffect(()=>{
     fetchedu();
 },[user]);
 
+useEffect(()=>{
+    const fetchpro = async()=>{
+        const pro = await projectService.show({user});
+        setProjects(pro);
+    }
+    fetchpro();
+},[user]);
     return(
         <div>
             <h1>Profile</h1>
@@ -72,8 +81,19 @@ useEffect(()=>{
                  <p>End Date : {edu.endDate ? new Date(edu.endDate).toLocaleDateString() : 'Present'}</p>
                  
               </div></div>))}   
+            <h3>Projects</h3>
+            {projects?.map((pro) => ( <div key={pro._id}>
+                <br />
+                <div key={pro?._id}>
+                 <p>Project Name : {pro?.name}</p>
+                 <p>Project Description : {pro?.description}</p>
+                 <p>Tools : {pro?.tools?.map((tool)=>(
+                    <li key={tool._id}>{tool.tool}</li>
 
-
+                 ))}</p>
+                 
+                 
+              </div></div>))}
         </div>
     )
 }
