@@ -37,7 +37,7 @@ const SignupForm = (props) => {
       ) {
         const newUserResponse = await authService.signup(formData);
         props.setUser(newUserResponse.user);
-        navigate("/signin");
+        navigate("/");
       } else {
         console.log("Please fill all the fields");
       }

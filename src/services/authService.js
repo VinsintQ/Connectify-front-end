@@ -26,14 +26,33 @@ const signup = async (formData) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
+
     const json = await res.json();
-    if (json.err) {
-      throw new Error(json.err);
+    if (json.error) {
+      throw new Error(json.error);
     }
-    return json;
+    if (json.token) {
+      localStorage.setItem("token", json.token);
+    }
+    const user = parseToken(json.token);
+    return { user };
   } catch (err) {
     console.log(err);
     throw err;
+  }
+};
+
+const parseToken = (token) => {
+  if (!token) return null;
+
+  try {
+    const rawPayload = token.split(".")[1];
+    const jsonPayload = window.atob(rawPayload);
+
+    const payload = JSON.parse(jsonPayload);
+    return payload;
+  } catch (error) {
+    return null;
   }
 };
 

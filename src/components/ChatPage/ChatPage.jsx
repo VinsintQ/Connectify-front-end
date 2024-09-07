@@ -21,7 +21,7 @@ const ChatPage = ({ user, userData, setuserData }) => {
   const [temp, setTemp] = useState(0);
 
   const socket = useRef();
-
+  console.log(users)
   useEffect(() => {
     socket.current = io("http://localhost:3000");
 
