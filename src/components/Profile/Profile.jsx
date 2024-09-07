@@ -39,12 +39,13 @@ useEffect(()=>{
             {experiences.map((exp) => ( <div key={exp._id}>
                 <br />
                 <div key={exp._id}>
-                    <p>Role : {exp.role}</p>
-                    <p>Company : {exp.company}</p>
-                    <p>Start Date : {exp.startDate}</p>
-                    <p>End Date : {exp.endDate}</p>
-                    <p>Description : {exp.description}</p>
-                </div>
+                 <p>Role : {exp.isCurrentRole ? 'Current Role' : 'Not Current Role'}</p>
+                 <p>Company : {exp.company}</p>
+                 <p>Start Date : {new Date(exp.startDate).toLocaleDateString()}</p>
+                 <p>End Date : {exp.endDate ? new Date(exp.endDate).toLocaleDateString() : 'Present'}</p>
+                 <p>Description : {exp.description}</p>
+            </div> 
+              
             </div>
             ))}     
         </div>
