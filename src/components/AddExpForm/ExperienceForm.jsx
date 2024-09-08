@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 //Services 
 import experienceService from "../../services/experienceService";
 
-const ResForm = () => {
+const ExpForm = () => {
   const {resId} = useParams();
  
   useEffect(() => {
@@ -107,4 +107,4 @@ const ResForm = () => {
   );
 };
 
-export default ResForm;
+export default ExpForm;
