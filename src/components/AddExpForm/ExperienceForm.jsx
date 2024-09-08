@@ -1,105 +1,107 @@
 //restaurant form
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 
 //Services 
-import experienceService from "../../services/experienceService";
 
-const ExpForm = () => {
-  const {resId} = useParams();
+
+const ExpForm = ({handleAddExp}) => {
+  const {expId} = useParams();
  
-  useEffect(() => {
-    const fetchRes = async () => {
-      const bookData = await resService.show(resId)
+ 
+
+
+
+//   useEffect(() => {
+//     const fetchRes = async () => {
+//       const bookData = await resService.show(resId)
       
       
-      setRestrData(bookData);
-    };
-    if (resId) fetchRes();
-  }, [resId]);
+//       setRestrData(bookData);
+//     };
+//     if (resId) fetchRes();
+//   }, [expId]);
   
 
 
-  const [resData, setRestrData] = useState({
-    name: "",
-    location: "",
-    category: "",
-    operatingHours: "",
-    resimage: "",
+  const [expData, setExpData] = useState({
+    company: "",
+    position: "",
+    // isCurrentRole: "",
+    StartDate: "",
+    EndDate: "",
+    Description: "",
   });
 
   const handleChange = (e) => {
-    setRestrData({ ...resData, [e.target.name]: e.target.value });
+    setExpData({ ...expData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(resId){
-     
-    handleUpdateRes(resId,resData);
-    } else {
-      handleAddRestaurant(resData);
-    }
+    handleAddExp(expData);
+    
     
   };
 
   return (
-    <main className="newRestrCont">
-      <h1>New Restaurant</h1>
+    <main className="">
+      <h1>New Experience</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name:</label>
+      <div>
+          <label htmlFor="company">compnay:</label>
           <input
             type="text"
-            id="name"
-            value={resData.name}
-            name="name"
+            id="company"
+            value={expData.company}
+            name="company"
             onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="location">location:</label>
+          <label htmlFor="position">position:</label>
           <input
             type="text"
-            id="location"
-            value={resData.location}
-            name="location"
+            id="position"
+            value={expData.position}
+            name="position"
+            onChange={handleChange}
+          />
+        </div>
+        
+        <div>
+          <label htmlFor="StartDate">StartDate:</label>
+          <input
+            type="date"
+            id="StartDate"
+            value={expData.StartDate}
+            name="StartDate"
             onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="category">Category:</label>
+          <label htmlFor="EndDate">EndDate : </label>
           <input
-            type="text"
-            id="category"
-            value={resData.category}
-            name="category"
+            type="date"
+            id="EndDate"
+            value={expData.EndDate}
+            name="EndDate"
             onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="operatingHours">operatingHours:</label>
+          <label htmlFor="Description">Description:</label>
           <input
             type="text"
-            id="operatingHours"
-            value={resData.operatingHours}
-            name="operatingHours"
+            id="Description"
+            value={expData.Description}
+            name="Description"
             onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="resimage">Restaurant Picture:</label>
-          <input
-            type="text"
-            id="resimage"
-            value={resData.resimage}
-            name="resimage"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <button type="submit" className="btn1">
-           {resId ? <>Update</>:<>Create Restaurant</>} 
+          <button type="submit" >
+           {expId ? <>Update</>:<>Add Experience</>} 
           </button>
         </div>
       </form>
