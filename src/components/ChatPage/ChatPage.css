@@ -1,71 +1,159 @@
+/* General chat container styling */
 .chat {
-  height: calc(100vh - 70px);
   display: flex;
+  height: calc(100vh - 70px); /* Adjust based on navbar height */
 }
 
+/* Chat list styling */
 .chatList {
   flex: 4;
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
-.chatBox {
-  flex: 8;
-}
-
-.chatListWrapper,
-.chatBoxWrapper {
-  padding: 10px;
+.chatListWrapper {
+  padding: 15px;
   height: 100%;
+  background-color: #f4f4f9; /* Light background for better readability */
 }
 
-.chatBoxWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+/* Search input styling */
+.SearchInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* Search container styling */
+.searchContainer {
   position: relative;
 }
 
-.SearchInput {
-  width: 100%;
-  padding: 10px 0;
-  border: none;
-  border-bottom: 1px solid gray;
+/* Dropdown list styling */
+.dropdown {
+  position: absolute;
+  width: 100%; /* Set to a percentage of the search input width */
+  max-width: 300px; /* Adjust to your desired maximum width */
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-top: 5px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1;
+  left: 0; /* Align with the left edge of the search input */
 }
 
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown li {
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #333;
+  font-size: 14px;
+}
+
+.dropdown li:hover {
+  background-color: #f1f1f1; /* Light grey background on hover */
+}
+
+/* Individual conversation styling */
 .conversation {
   display: flex;
   align-items: center;
-  padding: 10px;
-  cursor: pointer;
-  margin-top: 20px;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #ffffff; /* White background for each conversation */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
   position: relative;
+  cursor: pointer;
 }
 
-img {
-  width: 30px;
-  height: 30px;
+/* Hover effect for conversation items */
+.conversation:hover {
+  background-color: #e0e0e0; /* Light grey background on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover */
+}
+
+/* Image styling within conversations */
+.conversation img {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 20px;
+  margin-right: 15px;
 }
 
+/* User name styling */
 .friendName {
+  font-size: 16px;
   font-weight: 500;
+  color: #333; /* Dark grey text color */
+  margin-right: auto; /* Pushes the name to the left */
 }
 
-.conversation:hover {
-  background-color: rgb(222, 221, 221);
-}
-
+/* Online status indicator */
 .chatOnlineBadge {
-  position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   background-color: #4caf50;
   border-radius: 50%;
-  top: 2px;
-  right: 5px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
+/* Delete button styling */
+.deleteButton {
+  background: none;
+  border: none;
+  color: #ff0000; /* Red color for the delete icon */
+  font-size: 24px; /* Adjust size as needed */
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Delete button hover effect */
+.deleteButton:hover {
+  color: #cc0000; /* Darker red on hover */
+}
+
+/* Chat box styling */
+.chatBox {
+  flex: 8;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatBoxWrapper {
+  padding: 15px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-left: 1px solid #e0e0e0; /* Divider between chat list and chat box */
+}
+
+/* Chat messages container */
+.chatBoxTop {
+  flex: 1;
+  overflow-y: auto; /* Enable scrolling within chat box */
+}
+
+/* Chat messages styling */
 .message {
   display: flex;
   flex-direction: column;
@@ -114,6 +202,7 @@ img {
   color: #888;
 }
 
+/* Input area styling */
 .chatBoxBottom {
   margin-top: 5px;
   display: flex;
@@ -125,6 +214,9 @@ img {
   width: 80%;
   height: 90px;
   padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .sendButton {
@@ -136,38 +228,18 @@ img {
   border: none;
   border-radius: 5px;
   font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
+/* Send button hover effect */
+.sendButton:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
 }
 
-.dropdown button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 24px; /* Adjust size as needed */
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: white;
-  min-width: 120px; /* Adjust width as needed */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown-content p {
-  padding: 12px 16px;
-  cursor: pointer;
-}
-
-.dropdown-content p:hover {
-  background-color: #f1f1f1; /* Change background on hover */
+/* No chat text styling */
+.noChatText {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  margin-top: 20px;
 }

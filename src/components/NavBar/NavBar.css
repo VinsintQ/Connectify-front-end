@@ -1,0 +1,91 @@
+/* Reset margin and padding for all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fixed positioning for the navbar */
+.nav {
+  position: fixed; /* Fixed position to stay at the top */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width of the page */
+  height: 70px; /* Height of the navbar */
+  background-color: #fff; /* Initial background color */
+  display: flex;
+  justify-content: space-between; /* Space between left and right sections */
+  align-items: center;
+  border-bottom: 1px solid #ddd; /* Optional bottom border */
+  z-index: 1000; /* Ensure it stays on top of other content */
+  padding: 0 10px; /* Reduced padding on the left and right sides */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+/* Adjust margin for the body content */
+body {
+  padding-top: 70px; /* Space for the fixed navbar */
+}
+
+/* NavBar list styling */
+.nav ul {
+  display: flex;
+  list-style: none;
+  opacity: 0; /* Initial state for sliding animation */
+  transform: translateX(-100%); /* Slide in from the left */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+}
+
+/* Show navbar items */
+.nav.visible ul {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Style for left side links */
+.nav-left {
+  display: flex;
+  flex-grow: 1; /* Grow to fill available space */
+  margin-right: auto; /* Pushes the nav-left items to the left */
+}
+
+/* Style for right side links */
+.nav-right {
+  display: flex;
+}
+
+/* General list item styling */
+.nav ul li {
+  position: relative;
+  list-style: none;
+}
+
+.nav ul li a {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px; /* Space around the links */
+  text-decoration: none;
+  color: #222; /* Text color */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth color and scale transition */
+}
+
+.nav ul li a:hover {
+  color: #007bff; /* Color on hover */
+  transform: scale(1.1); /* Slightly increase the size on hover */
+}
+
+/* Styling for icons */
+.nav ul li a .icon {
+  font-size: 1.5em; /* Icon size */
+  margin-right: 8px; /* Space between icon and text */
+}
+
+/* Add space for each item */
+.nav ul li:not(:last-child) {
+  margin-right: 20px; /* Space between nav items */
+}
+
+/* Change background color on scroll */
+.nav.scrolled {
+  background-color: #f8f9fa; /* Background color when scrolled */
+}
