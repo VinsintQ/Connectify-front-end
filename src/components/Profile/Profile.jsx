@@ -88,6 +88,9 @@ useEffect(()=>{
                  
               </div></div>))}   
             <h3>Projects</h3>
+            <button >
+              <Link to="/addproject">Add</Link>
+            </button>
             {projects?.map((pro) => ( <div key={pro._id}>
                 <br />
                 <div key={pro?._id}>

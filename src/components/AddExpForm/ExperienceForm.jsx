@@ -1,4 +1,4 @@
-//restaurant form
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -8,19 +8,11 @@ import { useParams } from "react-router-dom";
 const ExpForm = ({ handleAddExp }) => {
   const { expId } = useParams();
 
-  //   useEffect(() => {
-  //     const fetchRes = async () => {
-  //       const bookData = await resService.show(resId)
-
-  //       setRestrData(bookData);
-  //     };
-  //     if (resId) fetchRes();
-  //   }, [expId]);
 
   const [expData, setExpData] = useState({
     company: "",
     position: "",
-    // isCurrentRole: "",
+   
     StartDate: "",
     EndDate: "",
     Description: "",

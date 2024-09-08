@@ -14,6 +14,8 @@ import Profile from "./components/Profile/Profile";
 import MyCompanies from "./components/myCompanies/myCompanies";
 import experienceService from "./services/experienceService";
 import ExpForm from "./components/AddExpForm/ExperienceForm";
+import ProjectForm from "./components/AddProForm/ProjectForm";
+import projectService from "./services/projectService";
 function App() {
   const navigate = useNavigate();
 
@@ -75,8 +77,16 @@ function App() {
     const newExp = await experienceService.add({ formData: expData, user });
     navigate("/profile");
 
-    // setExpData(newExp);
+    
   }
+  const handleAddPro = async (proData) => {
+    const newPro = await projectService.add({ formData: proData, user });
+    navigate("/profile");
+
+    
+  }
+
+
   return (
     <>
       <NavBar user={user} handleSignout={handleSignout} />
@@ -88,6 +98,7 @@ function App() {
            <Route path="/company/" element={<MyCompanies user={user}/>} />
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/profile" element={<Profile user={user} />} />
+            <Route path="/addproject" element={<ProjectForm user={user} handleAddPro={handleAddPro}/>} />
             <Route path="/addExp" element={<ExpForm user={user} handleAddExp={handleAddExp}/>} />
             <Route
               path="/chat"
