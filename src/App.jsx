@@ -16,6 +16,8 @@ import experienceService from "./services/experienceService";
 import ExpForm from "./components/AddExpForm/ExperienceForm";
 import ProjectForm from "./components/AddProForm/ProjectForm";
 import projectService from "./services/projectService";
+import EducationForm from "./components/addEducationForm/educationForm";
+import educationService from "./services/educationService";
 function App() {
   const navigate = useNavigate();
 
@@ -76,16 +78,15 @@ function App() {
   const handleAddExp = async (expData) => {
     const newExp = await experienceService.add({ formData: expData, user });
     navigate("/profile");
-
-    
-  }
+  };
+  // const handleAddEducation = async (educationData) => {
+  //   const newEducation = await educationService.create({ formData: educationData });
+  //   navigate("/profile");
+  // };
   const handleAddPro = async (proData) => {
     const newPro = await projectService.add({ formData: proData, user });
     navigate("/profile");
-
-    
-  }
-
+  };
 
   return (
     <>
@@ -94,12 +95,29 @@ function App() {
       <Routes>
         {user ? (
           <>
-           <Route path="/company/:companyId" element={<SignupForm setUser={setUser} />} />
-           <Route path="/company/" element={<MyCompanies user={user}/>} />
+            <Route
+              path="/company/:companyId"
+              element={<SignupForm setUser={setUser} />}
+            />
+            <Route path="/company/" element={<MyCompanies user={user} />} />
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/profile" element={<Profile user={user} />} />
-            <Route path="/addproject" element={<ProjectForm user={user} handleAddPro={handleAddPro}/>} />
-            <Route path="/addExp" element={<ExpForm user={user} handleAddExp={handleAddExp}/>} />
+            <Route
+              path="/addproject"
+              element={<ProjectForm user={user} handleAddPro={handleAddPro} />}
+            />
+            <Route
+              path="/addExp"
+              element={<ExpForm user={user} handleAddExp={handleAddExp} />}
+            />
+            <Route
+              path="/addEducation"
+              element={
+                <EducationForm
+                  user={user}
+                />
+              }
+            />
             <Route
               path="/chat"
               element={

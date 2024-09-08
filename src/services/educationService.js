@@ -27,4 +27,29 @@ const show = async (userId) => {
   }
 };
 
-export default { show };
+const create = async ({ formData, userId }) => {
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  };
+  const res = await fetch(`${BASE_URL}/${userId}/education`, options);
+
+  return res.json();
+};
+
+const index = async (userId, eduId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}/education/${eduId}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export default { show, create, index };
