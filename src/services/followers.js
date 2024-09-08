@@ -11,7 +11,7 @@ const index = async (userId) => {
   }
 };
 
-const create = async (username, userId) => {
+const AddFollower = async (username, userId) => {
   const options = {
     method: "POST",
     headers: {
@@ -20,7 +20,23 @@ const create = async (username, userId) => {
     },
     body: JSON.stringify({ username, userId }),
   };
-  const res = await fetch(`${BASE_URL}/add-friend`, options);
+  const res = await fetch(`${BASE_URL}/add-follower`, options);
+
+  return res.json();
+};
+
+const DeleteFollower = async (userId, followerId) => {
+  const options = {
+    method: "Delete",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+  };
+  const res = await fetch(
+    `${BASE_URL}/${userId}/follower/${followerId}`,
+    options
+  );
 
   return res.json();
 };
@@ -39,6 +55,7 @@ const show = async (userId) => {
 
 export default {
   index,
-  create,
+  AddFollower,
   show,
+  DeleteFollower,
 };

@@ -25,7 +25,21 @@ const create = async (senderId, receiverId) => {
   return res.json();
 };
 
+const Delete = async (conversationId) => {
+  const options = {
+    method: "Delete",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+  };
+  const res = await fetch(`${BASE_URL}/${conversationId}`, options);
+
+  return res.json();
+};
+
 export default {
   index,
   create,
+  Delete,
 };
