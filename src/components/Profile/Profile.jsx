@@ -45,7 +45,7 @@ useEffect(()=>{
 
 useEffect(()=>{
     const fetchpro = async()=>{
-        const pro = await projectService.show({user});
+        const pro = await projectService.index({user});
         setProjects(pro);
     }
     fetchpro();
@@ -122,14 +122,10 @@ useEffect(()=>{
         <div key={pro._id}>
           <br />
           <div>
+            <Link to={`/project/${pro._id}`}>
             <p>Project Name: {pro?.name}</p>
-            <p>Project Description: {pro?.description}</p>
-            <p>Tools:</p>
-            <ul>
-              {pro?.tools?.map((tool) => (
-                <li key={tool._id}>{tool.tool}</li>
-              ))}
-            </ul>
+            </Link>
+           
           </div>
         </div>
       ))}

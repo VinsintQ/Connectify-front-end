@@ -1,6 +1,6 @@
 const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/users`;
 
-const show = async ({ user }) => {
+const index = async ({ user }) => {
   try {
     const userId = user._id;
     const res = await fetch(`${BASE_URL}/${userId}/project`, {
@@ -26,5 +26,34 @@ const add = async ({ formData, user }) => {
 
   return res.json();
 };
+const show = async ({ user, proId }) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${user._id}/project/${proId}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-export default { show, add };
+const update = async ({ formData, user, proId }) => {
+  try {
+    const options = {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    };
+    const res = await fetch(
+      `${BASE_URL}/${user._id}/project/${proId}`,
+      options
+    );
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+export default { index, add, show, update };

@@ -13,12 +13,13 @@ import Search from "./components/Search/Search";
 import Profile from "./components/Profile/Profile";
 import MyCompanies from "./components/myCompanies/myCompanies";
 import experienceService from "./services/experienceService";
-import ExpForm from "./components/AddExpForm/ExperienceForm";
-import ProjectForm from "./components/AddProForm/ProjectForm";
+import ExpForm from "./components/Experience/ExperienceForm";
+import ProjectForm from "./components/Projects/ProjectForm";
 import projectService from "./services/projectService";
-import EducationForm from "./components/addEducationForm/educationForm";
+import EducationForm from "./components/Education/educationForm";
 import educationService from "./services/educationService";
-import ExperienceDetails from "./components/ExperienceDetails/ExperienceDetails";
+import ExperienceDetails from "./components/Experience/ExperienceDetails";
+import ProjectDetails from "./components/Projects/PeojectDetails";
 function App() {
   const navigate = useNavigate();
 
@@ -93,6 +94,11 @@ function App() {
     navigate(`/experience/${expId}`);
   };
 
+  const handleUpdatePro = async ({proId,proData}) => {
+    const updated = await projectService.update({ proId,formData: proData, user });
+    navigate(`/project/${proId}`);
+  }
+
   return (
     <>
       <NavBar user={user} handleSignout={handleSignout} />
@@ -108,9 +114,19 @@ function App() {
             <Route path="/company/" element={<MyCompanies user={user} />} />
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/profile" element={<Profile user={user} />} />
+              {/*view project details  */}
+            
+            <Route
+              path="/project/:proId"
+              element={<ProjectDetails user={user} />}
+            />
             <Route
               path="/addproject"
               element={<ProjectForm user={user} handleAddPro={handleAddPro} />}
+            />
+            <Route
+              path="/project/:proId/update"
+              element={<ProjectForm user={user} handleUpdatePro={handleUpdatePro} />}
             />
             <Route
               path="/addExp"
@@ -134,6 +150,7 @@ function App() {
                 />
               }
             />
+            
             <Route
               path="/chat"
               element={
