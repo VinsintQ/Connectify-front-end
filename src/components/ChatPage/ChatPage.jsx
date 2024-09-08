@@ -21,7 +21,7 @@ const ChatPage = ({ user, userData, setuserData }) => {
   const [temp, setTemp] = useState(0);
 
   const socket = useRef();
-  console.log(users)
+
   useEffect(() => {
     socket.current = io("http://localhost:3000");
 
@@ -137,7 +137,8 @@ const ChatPage = ({ user, userData, setuserData }) => {
           user._id,
           follower._id
         );
-        setConversation([conversation, savedConversation]);
+
+        setConversation([...conversation, savedConversation]);
         setChat(savedConversation);
       } catch (error) {
         console.error("Failed to create conversation:", error);
@@ -178,6 +179,8 @@ const ChatPage = ({ user, userData, setuserData }) => {
                 conversation={conv}
                 currentUser={user}
                 onlineUsers={onlineUsers}
+                allConversations={conversation}
+                setAllConversations={setConversation}
               />
             </div>
           ))}

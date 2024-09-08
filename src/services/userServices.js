@@ -11,45 +11,6 @@ const index = async () => {
   }
 };
 
-const create = async (username, userId) => {
-  const options = {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username, userId }),
-  };
-  const res = await fetch(`${BASE_URL}/add-follower`, options);
-
-  return res.json();
-};
-
-const AddFriend = async (username, userId) => {
-  const options = {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username, userId }),
-  };
-  const res = await fetch(`${BASE_URL}/add-friend`, options);
-
-  return res.json();
-};
-
-const allFriends = async (userId) => {
-  try {
-    const res = await fetch(`${BASE_URL}/${userId}/friends`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    });
-    return res.json();
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 const show = async (userId) => {
   try {
     const res = await fetch(`${BASE_URL}/${userId}`, {
@@ -64,8 +25,5 @@ const show = async (userId) => {
 
 export default {
   index,
-  create,
   show,
-  AddFriend,
-  allFriends,
 };

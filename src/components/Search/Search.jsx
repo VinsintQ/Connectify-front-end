@@ -1,23 +1,52 @@
 import "./Search.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import userServices from "../../services/userServices";
+import followersServices from "../../services/followers";
 
-const Search = ({ randomNumArr, users, user, sameOccupation, userData }) => {
+const Search = ({ randomNumArr, users, user, sameOccupation }) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const [followers, setFollowers] = useState([]);
+
+  useEffect(() => {
+    const fetchFollowers = async () => {
+      try {
+        const data = await followersServices.index(user._id);
+        setFollowers(data.map((follower) => follower._id));
+      } catch (error) {
+        console.error("Failed to fetch followers:", error);
+      }
+    };
+    fetchFollowers();
+  }, [user._id]);
 
   const handleAddUser = async (username) => {
     try {
-      const newUser = await userServices.create(username, user._id);
+      await followersServices.AddFollower(username, user._id);
+      setFollowers((prevFollowers) => [...prevFollowers, username]);
     } catch (error) {
       console.error("Failed to add user:", error);
       alert("An error occurred while adding the friend.");
     }
   };
 
+  const handleUnfollow = async (followerId) => {
+    try {
+      await followersServices.DeleteFollower(user._id, followerId);
+      setFollowers((prevFollowers) =>
+        prevFollowers.filter((id) => id !== followerId)
+      );
+    } catch (error) {
+      console.error("Failed to unfollow user:", error);
+      alert("An error occurred while unfollowing the user.");
+    }
+  };
+
   const handleChange = (event) => {
     const search = event.target.value.toLowerCase();
     if (search) {
-      const filtered = users.filter((user) => user.username?.includes(search));
+      const filtered = users.filter((user) =>
+        user.username?.toLowerCase().includes(search)
+      );
       setFilteredUsers(filtered);
     } else {
       setFilteredUsers([]);
@@ -40,36 +69,64 @@ const Search = ({ randomNumArr, users, user, sameOccupation, userData }) => {
 
       <ul className="user-list">
         {filteredUsers.length > 0
-          ? filteredUsers.map((user, index) => (
-              <li key={index} className="user-item">
+          ? filteredUsers.map((user) => (
+              <li key={user._id} className="user-item">
                 <div className="user-info">
-                  <button
-                    className="follow-button"
-                    onClick={() => handleAddUser(user.username)}
-                  >
-                    Follow
-                  </button>
+                  {followers.includes(user._id) ? (
+                    <button
+                      className="follow-button"
+                      onClick={() => handleUnfollow(user._id)}
+                    >
+                      Unfollow
+                    </button>
+                  ) : (
+                    <button
+                      className="follow-button"
+                      onClick={() => {
+                        handleAddUser(user.username);
+                        setFollowers((prevFollowers) => [
+                          ...prevFollowers,
+                          user._id,
+                        ]);
+                      }}
+                    >
+                      Follow
+                    </button>
+                  )}
                   <span className="username">{user.username}</span>
                   <span>{user.occupation}</span>
                 </div>
               </li>
             ))
-          : randomNumArr.map((num, index) => {
+          : randomNumArr.map((num) => {
               const userFromArr = users[num];
               const occupationFromArr = sameOccupation[num];
 
               if (userFromArr && occupationFromArr) {
                 return (
-                  <li key={index} className="user-item">
+                  <li key={occupationFromArr._id} className="user-item">
                     <div className="user-info">
-                      <button
-                        className="follow-button"
-                        onClick={() =>
-                          handleAddUser(occupationFromArr.username)
-                        }
-                      >
-                        Follow
-                      </button>
+                      {followers.includes(occupationFromArr._id) ? (
+                        <button
+                          className="follow-button"
+                          onClick={() => handleUnfollow(occupationFromArr._id)}
+                        >
+                          Unfollow
+                        </button>
+                      ) : (
+                        <button
+                          className="follow-button"
+                          onClick={() => {
+                            handleAddUser(occupationFromArr.username);
+                            setFollowers((prevFollowers) => [
+                              ...prevFollowers,
+                              occupationFromArr._id,
+                            ]);
+                          }}
+                        >
+                          Follow
+                        </button>
+                      )}
                       <span className="username">
                         {occupationFromArr.username}
                       </span>
