@@ -12,6 +12,7 @@ import SigninForm from "./components/SigninForm/SigninForm";
 import Search from "./components/Search/Search";
 import Profile from "./components/Profile/Profile";
 import MyCompanies from "./components/myCompanies/myCompanies";
+import experienceService from "./services/experienceService";
 function App() {
   const [user, setUser] = useState(authService.getUser());
   const [randomNumArr, setRandomNumArr] = useState([]);
@@ -67,6 +68,10 @@ function App() {
     setUser(null);
   };
 
+  const handleAddExp = async (expData) => {
+    const newExp = await experienceService.add({ formData: expData, user });
+    // setExpData(newExp);
+  }
   return (
     <>
       <NavBar user={user} handleSignout={handleSignout} />
@@ -78,6 +83,7 @@ function App() {
            <Route path="/company/" element={<MyCompanies user={user}/>} />
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/profile" element={<Profile user={user} />} />
+            <Route path="/addExp" element={<ExpForm user={user} handleAddExp={handleAddExp}/>} />
             <Route
               path="/chat"
               element={
