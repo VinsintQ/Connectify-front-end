@@ -54,7 +54,7 @@ useEffect(()=>{
                     <p>Username : {profile.username}</p>
                     <p>PhoneNum : {profile.phone}</p>
                     <p>Occupation : {profile.occupation}</p>
-                    <p>Followers : {profile.Follwers}</p>
+                    <p>Followers : {profile.Followers?.length}</p>
                 </div>
             )}
             <h3>Experiences</h3>
@@ -67,8 +67,8 @@ useEffect(()=>{
                  <p>Position : {exp.position}</p>
                  {/* <p>Role : {exp.isCurrentRole ? 'Current Role' : 'Not Current Role'}</p> */}
                  <p>Company : {exp.company}</p>
-                 <p>Start Date : {new Date(exp.startDate).toLocaleDateString()}</p>
-                 <p>End Date : {exp.endDate ? new Date(exp.endDate).toLocaleDateString() : 'Present'}</p>
+                <p> Start Date: {new Date(exp.StartDate).toLocaleDateString()} {/* Converts to readable date */}</p>
+                 <p>End Date : {exp.EndDate && exp.EndDate ? new Date(exp.EndDate).toLocaleDateString() : "Present"}</p>
                  {/* if there is a description show it */}
                  {exp.description && <p>Description: {exp.description}</p>}
             </div> 
@@ -86,8 +86,8 @@ useEffect(()=>{
                  <p>Degree : {edu.Degree}</p>
                  
                  <p>School : {edu.School}</p>
-                 <p>Start Date : {new Date(edu.startDate).toLocaleDateString()}</p>
-                 <p>End Date : {edu.endDate ? new Date(edu.endDate).toLocaleDateString() : 'Present'}</p>
+                 <p>Start Date : {new Date(edu.StartDate).toLocaleDateString()}</p>
+                 <p>End Date : {edu.EndDate ? new Date(edu.EndDate).toLocaleDateString() : 'Present'}</p>
                  
               </div></div>))}   
             <h3>Projects</h3>
