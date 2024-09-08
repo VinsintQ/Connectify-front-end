@@ -9,8 +9,14 @@ import { useParams } from "react-router-dom";
 const Profile = ({user})=>{
 const [projects, setProjects] = useState([]);    
 const [experiences, setExperiences] = useState([]);
+const [showAll, setShowAll] = useState(false);
+const [showAllEdu, setShowAllEdu] = useState(false);
+const [showAllProjects, setShowAllProjects] = useState(false);
 const [profile, setProfile] = useState();
 const [educations, setEducations] = useState([]);
+const projectsToShow = showAllProjects ? projects : projects.slice(0, 2);
+const educationsToShow = showAllEdu ? educations : educations.slice(0, 2);
+const experiencesToShow = showAll ? experiences : experiences.slice(0, 2);
 //get user profile
 useEffect(()=>{
     const fetchProfile = async()=>{
@@ -57,52 +63,84 @@ useEffect(()=>{
                     <p>Followers : {profile.Followers?.length}</p>
                 </div>
             )}
-            <h3>Experiences</h3>
-            <button >
-              <Link to="/addExp">Add</Link>
-            </button>
-            {experiences.map((exp,index) => ( <div key={exp._id}>
-                <br />
-                <div key={exp._id}>
-                    <Link to={`/experience/${exp._id}`}><p>Position : {exp.position} Company : {exp.company}</p></Link>
-                 
-                 
-            </div> 
-              
-            </div>
-            ))}   
+    <div>
+      <h3>Experiences</h3>
+      <button>
+        <Link to="/addExp">Add</Link>
+      </button>
 
-            <h3>Education</h3>  
-            <button >
-              <Link to="/addEducation">Add</Link>
-            </button>
-            {educations.map((edu) => ( <div key={edu._id}>
-                <br />
-                <div key={edu._id}>
-                 <p>Degree : {edu.Degree}</p>
-                 
-                 <p>School : {edu.School}</p>
-                 <p>Start Date : {new Date(edu.StartDate).toLocaleDateString()}</p>
-                 <p>End Date : {edu.EndDate ? new Date(edu.EndDate).toLocaleDateString() : 'Present'}</p>
-                 
-              </div></div>))}   
-            <h3>Projects</h3>
-            <button >
-              <Link to="/addproject">Add</Link>
-            </button>
-            {projects?.map((pro) => ( <div key={pro._id}>
-                <br />
-                <div key={pro?._id}>
-                 <p>Project Name : {pro?.name}</p>
-                 <p>Project Description : {pro?.description}</p>
-                 <p>Tools : {pro?.tools?.map((tool)=>(
-                    <li key={tool._id}>{tool.tool}</li>
-
-                 ))}</p>
-                 
-                 
-              </div></div>))}
+      {experiencesToShow.map((exp, index) => (
+        <div key={exp._id}>
+          <br />
+          <div>
+            <Link to={`/experience/${exp._id}`}>
+              <p>Position: {exp.position} Company: {exp.company}</p>
+            </Link>
+          </div>
         </div>
+      ))}
+
+      {experiences.length > 2 && (
+        <button onClick={() => setShowAll(!showAll)}>
+          {showAll ? "Show Less" : "Show More"}
+        </button>
+      )}
+    </div>
+  
+
+    <div>
+      <h3>Education</h3>
+      <button>
+        <Link to="/addEducation">Add</Link>
+      </button>
+      
+      {educationsToShow.map((edu) => (
+        <div key={edu._id}>
+          <br />
+          <div>
+            <p>Degree: {edu.Degree}</p>
+            <p>School: {edu.School}</p>
+            <p>Start Date: {new Date(edu.StartDate).toLocaleDateString()}</p>
+            <p>End Date: {edu.EndDate ? new Date(edu.EndDate).toLocaleDateString() : 'Present'}</p>
+          </div>
+        </div>
+      ))}
+
+      {educations.length > 2 && (
+        <button onClick={() => setShowAllEdu(!showAllEdu)}>
+          {showAllEdu ? "Show Less" : "Show More"}
+        </button>
+      )}
+    </div>
+    <div>
+      <h3>Projects</h3>
+      <button>
+        <Link to="/addproject">Add</Link>
+      </button>
+
+      {projectsToShow?.map((pro) => (
+        <div key={pro._id}>
+          <br />
+          <div>
+            <p>Project Name: {pro?.name}</p>
+            <p>Project Description: {pro?.description}</p>
+            <p>Tools:</p>
+            <ul>
+              {pro?.tools?.map((tool) => (
+                <li key={tool._id}>{tool.tool}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+
+      {projects.length > 2 && (
+        <button onClick={() => setShowAllProjects(!showAllProjects)}>
+          {showAllProjects ? "Show Less" : "Show More"}
+        </button>
+      )}
+    </div>
+    </div>
     )
 }
 
