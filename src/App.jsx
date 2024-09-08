@@ -11,7 +11,7 @@ import SignupForm from "./components/SignupForm/SignupForm";
 import SigninForm from "./components/SigninForm/SigninForm";
 import Search from "./components/Search/Search";
 import Profile from "./components/Profile/Profile";
-import ExpForm from "./components/AddExpForm/ExperienceForm";
+import MyCompanies from "./components/myCompanies/myCompanies";
 function App() {
   const [user, setUser] = useState(authService.getUser());
   const [randomNumArr, setRandomNumArr] = useState([]);
@@ -74,9 +74,10 @@ function App() {
       <Routes>
         {user ? (
           <>
+           <Route path="/company/:companyId" element={<SignupForm setUser={setUser} />} />
+           <Route path="/company/" element={<MyCompanies user={user}/>} />
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/profile" element={<Profile user={user} />} />
-            <Route path="/addExp" element={<ExpForm user={user}/>} />
             <Route
               path="/chat"
               element={
