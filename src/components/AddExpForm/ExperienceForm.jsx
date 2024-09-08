@@ -1,13 +1,37 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import experienceService from "../../services/experienceService";
 
 //Services
 
-const ExpForm = ({ handleAddExp }) => {
+const ExpForm = ({ handleAddExp,handleUpdateExp,user }) => {
   const { expId } = useParams();
 
+  useEffect(() => {
+    const fetchexper = async () => {
+      const experData = await experienceService.show({ expId, user });
+  
+      
+      if (experData) {
+        if (experData.StartDate) {
+          const startDate = new Date(experData.StartDate);
+          experData.StartDate = startDate.toISOString().split('T')[0]; 
+        }
+  
+        if (experData.EndDate) {
+          const endDate = new Date(experData.EndDate);
+          experData.EndDate = endDate.toISOString().split('T')[0]; 
+        }
+      }
+  
+      setExpData(experData);
+    };
+  
+    if (expId) fetchexper();
+  }, [expId]);
+  
+  
 
   const [expData, setExpData] = useState({
     company: "",
@@ -24,12 +48,17 @@ const ExpForm = ({ handleAddExp }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    handleAddExp(expData);
+    if (expId) {
+      handleUpdateExp({ expId,expData});
+    }else {
+      handleAddExp(expData);
+    }
+    
   };
 
   return (
     <main className="">
-      <h1>New Experience</h1>
+      <h1>{expId ? <>Update Experience</> : <>New Experience</>}</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="company">compnay:</label>

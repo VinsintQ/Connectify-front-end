@@ -18,6 +18,7 @@ import ProjectForm from "./components/AddProForm/ProjectForm";
 import projectService from "./services/projectService";
 import EducationForm from "./components/addEducationForm/educationForm";
 import educationService from "./services/educationService";
+import ExperienceDetails from "./components/ExperienceDetails/ExperienceDetails";
 function App() {
   const navigate = useNavigate();
 
@@ -87,6 +88,10 @@ function App() {
     const newPro = await projectService.add({ formData: proData, user });
     navigate("/profile");
   };
+  const handleUpdateExp = async ({expId,expData}) => {
+     const updated = await experienceService.update({ expId,formData: expData, user });
+    navigate(`/experience/${expId}`);
+  };
 
   return (
     <>
@@ -99,6 +104,7 @@ function App() {
               path="/company/:companyId"
               element={<SignupForm setUser={setUser} />}
             />
+            
             <Route path="/company/" element={<MyCompanies user={user} />} />
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/profile" element={<Profile user={user} />} />
@@ -109,6 +115,16 @@ function App() {
             <Route
               path="/addExp"
               element={<ExpForm user={user} handleAddExp={handleAddExp} />}
+            />
+            {/* view experience Details*/}
+            <Route
+              path="/experience/:expId"
+              element={<ExperienceDetails user={user} />}
+            />
+            {/* update experience*/}
+            <Route
+              path="/experience/:expId/update"
+              element={<ExpForm user={user} handleUpdateExp={handleUpdateExp} />}
             />
             <Route
               path="/addEducation"

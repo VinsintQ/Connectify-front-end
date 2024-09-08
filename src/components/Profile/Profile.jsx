@@ -23,7 +23,7 @@ useEffect(()=>{
 //get user experiences
 useEffect(()=>{
     const fetchexp = async()=>{
-        const exp = await experienceService.show({user});
+        const exp = await experienceService.index({user});
         setExperiences(exp.exp);
     }
     fetchexp();
@@ -61,16 +61,12 @@ useEffect(()=>{
             <button >
               <Link to="/addExp">Add</Link>
             </button>
-            {experiences.map((exp) => ( <div key={exp._id}>
+            {experiences.map((exp,index) => ( <div key={exp._id}>
                 <br />
                 <div key={exp._id}>
-                 <p>Position : {exp.position}</p>
-                 {/* <p>Role : {exp.isCurrentRole ? 'Current Role' : 'Not Current Role'}</p> */}
-                 <p>Company : {exp.company}</p>
-                <p> Start Date: {new Date(exp.StartDate).toLocaleDateString()} {/* Converts to readable date */}</p>
-                 <p>End Date : {exp.EndDate && exp.EndDate ? new Date(exp.EndDate).toLocaleDateString() : "Present"}</p>
-                 {/* if there is a description show it */}
-                 {exp.description && <p>Description: {exp.description}</p>}
+                    <Link to={`/experience/${exp._id}`}><p>Position : {exp.position} Company : {exp.company}</p></Link>
+                 
+                 
             </div> 
               
             </div>
