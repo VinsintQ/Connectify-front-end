@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import profileService from "../../services/profileService";
 import experienceService from "../../services/experienceService";
 import educationService from "../../services/educationService";
 import projectService from "../../services/projectService";
+import { useParams } from "react-router-dom";
+
 const Profile = ({user})=>{
 const [projects, setProjects] = useState([]);    
 const [experiences, setExperiences] = useState([]);
@@ -55,6 +58,9 @@ useEffect(()=>{
                 </div>
             )}
             <h3>Experiences</h3>
+            <button >
+              <Link to="/addExp">Add</Link>
+            </button>
             {experiences.map((exp) => ( <div key={exp._id}>
                 <br />
                 <div key={exp._id}>

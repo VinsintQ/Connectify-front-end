@@ -16,4 +16,18 @@ const show = async ({ user }) => {
   }
 };
 
-export default { show };
+const add = async ({ formData, user }) => {
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  };
+  const res = await fetch(`${BASE_URL}/${user._id}/experience`, options);
+
+  return res.json();
+};
+
+export default { show, add };
