@@ -13,7 +13,10 @@ import Search from "./components/Search/Search";
 import Profile from "./components/Profile/Profile";
 import MyCompanies from "./components/myCompanies/myCompanies";
 import experienceService from "./services/experienceService";
+import ExpForm from "./components/AddExpForm/ExperienceForm";
 function App() {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState(authService.getUser());
   const [randomNumArr, setRandomNumArr] = useState([]);
   const [users, setUsers] = useState([]);
@@ -70,6 +73,8 @@ function App() {
 
   const handleAddExp = async (expData) => {
     const newExp = await experienceService.add({ formData: expData, user });
+    navigate("/profile");
+
     // setExpData(newExp);
   }
   return (

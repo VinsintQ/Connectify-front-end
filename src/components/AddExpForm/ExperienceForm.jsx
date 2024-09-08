@@ -1,28 +1,21 @@
 //restaurant form
 import { useEffect, useState } from "react";
-import {  useParams } from "react-router-dom";
-
-//Services 
+import { useParams } from "react-router-dom";
 
 
-const ExpForm = ({handleAddExp}) => {
-  const {expId} = useParams();
- 
- 
+//Services
 
+const ExpForm = ({ handleAddExp }) => {
+  const { expId } = useParams();
 
+  //   useEffect(() => {
+  //     const fetchRes = async () => {
+  //       const bookData = await resService.show(resId)
 
-//   useEffect(() => {
-//     const fetchRes = async () => {
-//       const bookData = await resService.show(resId)
-      
-      
-//       setRestrData(bookData);
-//     };
-//     if (resId) fetchRes();
-//   }, [expId]);
-  
-
+  //       setRestrData(bookData);
+  //     };
+  //     if (resId) fetchRes();
+  //   }, [expId]);
 
   const [expData, setExpData] = useState({
     company: "",
@@ -40,15 +33,13 @@ const ExpForm = ({handleAddExp}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     handleAddExp(expData);
-    
-    
   };
 
   return (
     <main className="">
       <h1>New Experience</h1>
       <form onSubmit={handleSubmit}>
-      <div>
+        <div>
           <label htmlFor="company">compnay:</label>
           <input
             type="text"
@@ -68,7 +59,7 @@ const ExpForm = ({handleAddExp}) => {
             onChange={handleChange}
           />
         </div>
-        
+
         <div>
           <label htmlFor="StartDate">StartDate:</label>
           <input
@@ -100,8 +91,8 @@ const ExpForm = ({handleAddExp}) => {
           />
         </div>
         <div>
-          <button type="submit" >
-           {expId ? <>Update</>:<>Add Experience</>} 
+          <button type="submit">
+            {expId ? <>Update</> : <>Add Experience</>}
           </button>
         </div>
       </form>
