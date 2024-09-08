@@ -77,6 +77,9 @@ useEffect(()=>{
             ))}   
 
             <h3>Education</h3>  
+            <button >
+              <Link to="/addEducation">Add</Link>
+            </button>
             {educations.map((edu) => ( <div key={edu._id}>
                 <br />
                 <div key={edu._id}>
