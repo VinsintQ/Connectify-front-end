@@ -8,7 +8,7 @@ import userServices from "../../services/userServices";
 import { useParams } from "react-router-dom";
 
 const Profile = ({ user }) => {
-  const {userId} = useParams();
+  const { userId } = useParams();
   const [projects, setProjects] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [showAll, setShowAll] = useState(false);
@@ -16,7 +16,6 @@ const Profile = ({ user }) => {
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [profile, setProfile] = useState();
   const [educations, setEducations] = useState([]);
-  
 
   const educationsToShow = showAllEdu ? educations : educations.slice(0, 2);
 
@@ -60,6 +59,7 @@ const Profile = ({ user }) => {
       <h1>Profile</h1>
       {profile && (
         <div>
+          <img src={profile?.image} alt="profile image" />
           <p>Name : {profile.name}</p>
           <p>Email : {profile.email}</p>
           <p>Username : {profile.username}</p>
@@ -70,7 +70,6 @@ const Profile = ({ user }) => {
       )}
       <div>
         <h3>Experiences</h3>
-        
 
         {experiencesToShow.map((exp, index) => (
           <div key={exp._id}>
@@ -94,7 +93,6 @@ const Profile = ({ user }) => {
 
       <div>
         <h3>Education</h3>
-        
 
         {educationsToShow.map((edu) => (
           <div key={edu._id}>
@@ -115,7 +113,6 @@ const Profile = ({ user }) => {
       </div>
       <div>
         <h3>Projects</h3>
-        
 
         {projectsToShow?.map((pro) => (
           <div key={pro._id}>

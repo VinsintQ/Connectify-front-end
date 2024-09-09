@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import userServices from "../../services/userServices";
 import conversationServices from "../../services/conversationServices";
+import { Link } from "react-router-dom";
 
 const Conversation = ({
   conversation,
@@ -43,9 +44,16 @@ const Conversation = ({
 
   return (
     <div className="conversation">
-      <img src="icon.png" alt="" />
+      <Link to={`/profile/${ConvUser?._id}`}>
+        <img src={ConvUser?.image} alt="" />
+      </Link>
+
       {isOnline && <span className="chatOnlineBadge"></span>}
-      <span className="friendName">{ConvUser?.username}</span>
+
+      <Link to={`/profile/${ConvUser?._id}`}>
+        <span className="friendName">{ConvUser?.username}</span>
+      </Link>
+
       <button className="deleteButton" onClick={handleDelete}>
         <ion-icon name="close-circle-outline"></ion-icon>
       </button>
