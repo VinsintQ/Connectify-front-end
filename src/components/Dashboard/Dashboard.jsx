@@ -1,5 +1,5 @@
 // src/components/Dashboard.jsx
-
+import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
 import postService from "../../services/postService";
 
@@ -23,7 +23,8 @@ const Dashboard = ({ user }) => {
     return (
       <main>
         <h1>Welcome,{user.username}</h1>
-
+        <h2>Posts</h2>
+        <Link to='/addPost'>Add new post</Link>
         {allpost?.map((post) => {
         return  <div key={post._id}>
             <h2>{post.content}</h2>

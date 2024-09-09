@@ -18,7 +18,7 @@ const owned = async (userId) => {
     });
 
     let ownedCompanies = await res.json();
-   
+
     return ownedCompanies.filter((company) => company.owner === userId);
     // return res.json();
   } catch (error) {
@@ -26,14 +26,14 @@ const owned = async (userId) => {
   }
 };
 
-const create = async (username, userId) => {
+const create = async ({ formData }) => {
   const options = {
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ username, userId }),
+    body: JSON.stringify(formData),
   };
   const res = await fetch(`${BASE_URL}`, options);
 

@@ -27,6 +27,41 @@ const allposts = async (userId) => {
   }
 };
 
+const add = async ({ formData, userId }) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}/post`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(formData),
+    });
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const update = async ({ postId, formData, userId }) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}/post/${postId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(formData),
+    });
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
 export default {
   allposts,
+  add,
+  update,
 };

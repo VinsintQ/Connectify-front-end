@@ -59,6 +59,14 @@ const NavBar = ({ user, handleSignout }) => {
                 <span className="text">Search</span>
               </Link>
             </li>
+            <li className="list">
+              <Link to="/Mycompany">
+                <span className="icon">
+                <ion-icon name="briefcase-outline"></ion-icon>
+                </span>
+                <span className="text">My Comapany</span>
+              </Link>
+            </li>
           </>
         ) : (
           <>

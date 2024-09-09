@@ -23,7 +23,9 @@ import ExperienceDetails from "./components/Experience/ExperienceDetails";
 import ProjectDetails from "./components/Projects/PeojectDetails";
 import EducationDetails from "./components/Education/educationDetails";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import PostForm from "./components/Posts/PostForm";
+import CompanyDetails from "./components/myCompanies/CompnayDetails";
+import AddCompanyForm from "./components/myCompanies/AddCompanyForm";
 function App() {
   const navigate = useNavigate();
 
@@ -85,10 +87,7 @@ function App() {
     const newExp = await experienceService.add({ formData: expData, user });
     navigate("/profile");
   };
-  // const handleAddEducation = async (educationData) => {
-  //   const newEducation = await educationService.create({ formData: educationData });
-  //   navigate("/profile");
-  // };
+ 
   const handleAddPro = async (proData) => {
     const newPro = await projectService.add({ formData: proData, user });
     navigate("/profile");
@@ -125,12 +124,17 @@ function App() {
       <Routes>
         {user ? (
           <>
-            <Route
+            {/* <Route
               path="/company/:companyId"
               element={<SignupForm setUser={setUser} />}
+            /> */}
+            {/* view company Details*/}
+            <Route
+              path="Mycompany/company/:compId"
+              element={<CompanyDetails user={user} />}
             />
-
-            <Route path="/company/" element={<MyCompanies user={user} />} />
+            <Route path="/Mycompany" element={<MyCompanies user={user} />} />
+            <Route path="/AddCompany" element={<AddCompanyForm user={user} />} />
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/profile" element={<Profile user={user} />} />
 
@@ -157,6 +161,10 @@ function App() {
             <Route
               path="/addExp"
               element={<ExpForm user={user} handleAddExp={handleAddExp} />}
+            />{/*Add post*/}
+            <Route
+              path="/addPost"
+              element={<PostForm user={user} />}
             />
             {/* view experience Details*/}
             <Route

@@ -1,5 +1,5 @@
 // src/components/Dashboard.jsx
-
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import companyService from "../../services/companyService";
 
@@ -26,9 +26,10 @@ const myCompanies = ({ user }) => {
       
       <main>
         <h1>these companies are owned by you,{user.username}</h1>
+        <button><Link to="/AddCompany">Add new company</Link></button>
         {allCompanies.map((company) => (
          <div key={company._id}>
-            <h2>{company.name}</h2>
+          <Link to={`company/${company._id}`}><h2>{company.name}</h2></Link>  
           </div>
         ))}
        
