@@ -22,6 +22,8 @@ import educationService from "./services/educationService";
 import ExperienceDetails from "./components/Experience/ExperienceDetails";
 import ProjectDetails from "./components/Projects/PeojectDetails";
 import EducationDetails from "./components/Education/educationDetails";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 function App() {
   const navigate = useNavigate();
 
@@ -91,19 +93,31 @@ function App() {
     const newPro = await projectService.add({ formData: proData, user });
     navigate("/profile");
   };
-  const handleUpdateExp = async ({expId,expData}) => {
-     const updated = await experienceService.update({ expId,formData: expData, user });
+  const handleUpdateExp = async ({ expId, expData }) => {
+    const updated = await experienceService.update({
+      expId,
+      formData: expData,
+      user,
+    });
     navigate(`/experience/${expId}`);
   };
 
-  const handleUpdatePro = async ({proId,proData}) => {
-    const updated = await projectService.update({ proId,formData: proData, user });
+  const handleUpdatePro = async ({ proId, proData }) => {
+    const updated = await projectService.update({
+      proId,
+      formData: proData,
+      user,
+    });
     navigate(`/project/${proId}`);
-  }
-  const handleUpdateEducation = async ({eduId,educationData}) => {
-    const updated = await educationService.update({ eduId,formData: educationData, user });
+  };
+  const handleUpdateEducation = async ({ eduId, educationData }) => {
+    const updated = await educationService.update({
+      eduId,
+      formData: educationData,
+      user,
+    });
     navigate(`/education/${eduId}`);
-  }
+  };
   return (
     <>
       <NavBar user={user} handleSignout={handleSignout} />
@@ -115,13 +129,17 @@ function App() {
               path="/company/:companyId"
               element={<SignupForm setUser={setUser} />}
             />
-            
+
             <Route path="/company/" element={<MyCompanies user={user} />} />
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/profile" element={<Profile user={user} />} />
+
             <Route path="/profile/:userId" element={<OtherProfile user={user} />} />
               {/*view project details  */}
             
+            {/*view project details  */}
+
+
             <Route
               path="/project/:proId"
               element={<ProjectDetails user={user} />}
@@ -132,7 +150,9 @@ function App() {
             />
             <Route
               path="/project/:proId/update"
-              element={<ProjectForm user={user} handleUpdatePro={handleUpdatePro} />}
+              element={
+                <ProjectForm user={user} handleUpdatePro={handleUpdatePro} />
+              }
             />
             <Route
               path="/addExp"
@@ -146,24 +166,18 @@ function App() {
             {/* update experience*/}
             <Route
               path="/experience/:expId/update"
-              element={<ExpForm user={user} handleUpdateExp={handleUpdateExp} />}
+              element={
+                <ExpForm user={user} handleUpdateExp={handleUpdateExp} />
+              }
             />
             <Route
               path="/addEducation"
-              element={
-                <EducationForm
-                  user={user}
-                />
-              }
+              element={<EducationForm user={user} />}
             />
             {/* view education details */}
             <Route
               path="/education/:eduId"
-              element={
-                <EducationDetails
-                  user={user}
-                />
-              }
+              element={<EducationDetails user={user} />}
             />
             {/* update education */}
             <Route
