@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 
 import projectService from "../../services/projectService";
 const ProjectDetails = ({user}) => {
+
+  const deletePro = async () => {
+    await projectService.deleter(proId,user);
+    window.location.replace("/profile");
+  }
     
   const { proId } = useParams();
   const [project, setproject] = useState();
@@ -45,6 +50,8 @@ const ProjectDetails = ({user}) => {
 
               {<Link to={`/project/${project._id}/update`}>Edit</Link>}
             </button>
+
+            <button onClick={deletePro}>delete</button>
         </div>
     )
 }

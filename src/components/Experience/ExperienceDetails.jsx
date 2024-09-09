@@ -9,6 +9,11 @@ const ExperienceDetails = ({user}) => {
   const { expId } = useParams();
   const [experience, setExperience] = useState();
 
+  const deleteExp = async () => {
+    await experienceService.deleter(expId,user._id);
+    window.location.replace("/profile");
+  }
+
   useEffect(() => {
     async function getExp() {
       const expData = await experienceService.show({user,expId});
@@ -36,6 +41,7 @@ const ExperienceDetails = ({user}) => {
 
               <Link to={`/experience/${experience._id}/update`}>Edit</Link>
             </button>
+            <button onClick={deleteExp}>delete</button>
         </div>
     )
 }
