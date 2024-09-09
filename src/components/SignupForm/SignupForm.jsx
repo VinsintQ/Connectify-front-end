@@ -3,10 +3,14 @@ import authService from "../../services/authService";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
+import axios from "axios";
 
 const SignupForm = (props) => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState("");
   const [message, setMessage] = useState([""]);
+
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -15,6 +19,8 @@ const SignupForm = (props) => {
     phone: "",
     passwordConf: "",
     occupation: "",
+    image:
+      "https://res.cloudinary.com/dqqmgoftf/image/upload/v1725897781/u06hkxs8jf4waa1jn5t0.jpg",
   });
 
   const updateMessage = (msg) => {
@@ -46,11 +52,52 @@ const SignupForm = (props) => {
     }
   };
 
-  const { username, password, passwordConf, name, phone, email, occupation } =
-    formData;
+  const {
+    username,
+    password,
+    passwordConf,
+    name,
+    phone,
+    email,
+    occupation,
+    image,
+  } = formData;
 
   const isFormInvalid = () => {
     return !(username && password && password === passwordConf);
+  };
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  const uploadImage = async (event) => {
+    const files = event.target.files[0];
+    if (!files) return;
+    const base64 = await convertBase64(files);
+    setLoading(true);
+    axios
+      .post("http://localhost:3000/upload", { image: base64 })
+      .then((res) => {
+        setUrl(res.data.url);
+        setFormData({ ...formData, image: res.data.url });
+        alert("Image uploaded successfully");
+      })
+      .then(() => {
+        setLoading(false);
+      })
+      .catch(console.log);
   };
 
   return (
@@ -133,6 +180,10 @@ const SignupForm = (props) => {
             required
             onChange={handleChange}
           />
+        </div>
+        <div>
+          <label htmlFor="confirm">Profile Image:</label>
+          <input type="file" id="image" name="image" onChange={uploadImage} />
         </div>
         <div>
           <button disabled={isFormInvalid()}>Sign Up</button>

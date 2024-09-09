@@ -55,6 +55,7 @@ const Profile = ({ user }) => {
       <h1>Profile</h1>
       {profile && (
         <div>
+          <img src={profile?.image} alt="Profile image" />
           <p>Name : {profile.name}</p>
           <p>Email : {profile.email}</p>
           <p>Username : {profile.username}</p>
