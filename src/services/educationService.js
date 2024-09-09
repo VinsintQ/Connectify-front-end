@@ -27,6 +27,23 @@ const index = async (userId) => {
   }
 };
 
+const indexc = async ( userId ) => {
+  try {
+    if (!userId) {
+      throw new Error("User ID not found in token");
+    }
+    const res = await fetch(`${BASE_URL}/${userId}/education`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+
 const create = async ({ formData, userId }) => {
   const options = {
     method: "POST",
@@ -79,4 +96,4 @@ const deleter = async ( eduId, userId ) => {
   return res.json();
 }
 
-export default { show, create, index, update,deleter };
+export default { show, create, index, update,deleter,indexc };

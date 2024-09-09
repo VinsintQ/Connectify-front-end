@@ -17,6 +17,7 @@ import ExpForm from "./components/Experience/ExperienceForm";
 import ProjectForm from "./components/Projects/ProjectForm";
 import projectService from "./services/projectService";
 import EducationForm from "./components/Education/educationForm";
+import OtherProfile from "./components/otherProfile/otherProfile";
 import educationService from "./services/educationService";
 import ExperienceDetails from "./components/Experience/ExperienceDetails";
 import ProjectDetails from "./components/Projects/PeojectDetails";
@@ -132,7 +133,12 @@ function App() {
             <Route path="/company/" element={<MyCompanies user={user} />} />
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/profile" element={<Profile user={user} />} />
+
+            <Route path="/profile/:userId" element={<OtherProfile user={user} />} />
+              {/*view project details  */}
+            
             {/*view project details  */}
+
 
             <Route
               path="/project/:proId"

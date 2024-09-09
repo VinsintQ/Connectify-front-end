@@ -16,6 +16,21 @@ const index = async ({ user }) => {
   }
 };
 
+const indexc = async ( userId ) => {
+  try {
+    if (!userId) {
+      throw new Error("User ID not found in token");
+    }
+    const res = await fetch(`${BASE_URL}/${userId}/experience`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const add = async ({ formData, user }) => {
   const options = {
     method: "POST",
@@ -68,4 +83,4 @@ const deleter = async ( expId, userId ) => {
 
   return res.json();
 }
-export default { index, add, show, update , deleter};
+export default { index, add, show, update , deleter,indexc};
