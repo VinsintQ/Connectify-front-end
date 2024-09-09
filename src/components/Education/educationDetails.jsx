@@ -32,7 +32,10 @@ const educationDetails =({user})=> {
         <p>Degree : {education.Degree}</p>
         <p>Start Date: {new Date(education.StartDate).toLocaleDateString()}</p>
         <p>End Date: {education.EndDate ? new Date(education.EndDate).toLocaleDateString() : 'Present'}</p>
-
+        
+         <button>
+          <Link to={`update`}>Edit</Link>
+         </button>
 
 
         

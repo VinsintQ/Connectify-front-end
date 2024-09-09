@@ -99,7 +99,10 @@ function App() {
     const updated = await projectService.update({ proId,formData: proData, user });
     navigate(`/project/${proId}`);
   }
-
+  const handleUpdateEducation = async ({eduId,educationData}) => {
+    const updated = await educationService.update({ eduId,formData: educationData, user });
+    navigate(`/education/${eduId}`);
+  }
   return (
     <>
       <NavBar user={user} handleSignout={handleSignout} />
@@ -157,6 +160,16 @@ function App() {
               element={
                 <EducationDetails
                   user={user}
+                />
+              }
+            />
+            {/* update education */}
+            <Route
+              path="/education/:eduId/update"
+              element={
+                <EducationForm
+                  user={user}
+                  handleUpdateEducation={handleUpdateEducation}
                 />
               }
             />

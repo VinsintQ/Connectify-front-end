@@ -101,10 +101,7 @@ useEffect(()=>{
           <Link to={`/education/${edu._id}`}>
             <p>School : {edu?.School}</p>
             </Link>
-            {/* <p>Degree: {edu.Degree}</p>
-            <p>School: {edu.School}</p>
-            <p>Start Date: {new Date(edu.StartDate).toLocaleDateString()}</p>
-            <p>End Date: {edu.EndDate ? new Date(edu.EndDate).toLocaleDateString() : 'Present'}</p> */}
+           
           </div>
         </div>
       ))}

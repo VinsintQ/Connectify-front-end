@@ -52,4 +52,17 @@ const show = async ({ user, eduId }) => {
   }
 };
 
-export default { show, create, index };
+const update = async ({ eduId, formData, userId }) => {
+  const options = {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  };
+  const res = await fetch(`${BASE_URL}/${userId}/education/${eduId}`, options);
+
+  return res.json();
+};
+export default { show, create, index, update };
