@@ -57,12 +57,14 @@ const EducationDetails = ({ user }) => {
           : "Present"}
       </p>
 
-      <button>
-        <Link to={`update`}>Edit</Link>
-      </button>
-
-      <button onClick={handleDeleteClick}>Delete</button>
-
+      {education.UserId === user._id && (
+        <>
+          <button>
+            <Link to={`update`}>Edit</Link>
+          </button>
+          <button onClick={handleDeleteClick}>Delete</button>
+        </>
+      )}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>

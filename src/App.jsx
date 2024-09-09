@@ -135,7 +135,7 @@ function App() {
             <Route path="/profile" element={<Profile user={user} />} />
 
             <Route path="/profile/:userId" element={<OtherProfile user={user} />} />
-              {/*view project details  */}
+              
             
             {/*view project details  */}
 

@@ -13,7 +13,7 @@ const index = async ({ user }) => {
   }
 };
 
-const indexc = async ( userId ) => {
+const indexc = async (userId) => {
   try {
     if (!userId) {
       throw new Error("User ID not found in token");
@@ -72,16 +72,18 @@ const update = async ({ formData, user, proId }) => {
   }
 };
 
-
-const deleter = async ( projectId, userId ) => {
+const deleter = async (projectId, userId) => {
   const options = {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   };
-  const res = await fetch(`${BASE_URL}/${userId}/project/${projectId}`, options);
+  const res = await fetch(
+    `${BASE_URL}/${userId}/project/${projectId}`,
+    options
+  );
 
   return res.json();
-}
-export default { index, add, show, update ,deleter , indexc};
+};
+export default { index, add, show, update, deleter, indexc };

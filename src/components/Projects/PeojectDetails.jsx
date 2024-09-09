@@ -57,13 +57,14 @@ const ProjectDetails = ({ user }) => {
           </ul>
         </>
       )}
-
-      <button>
-        <Link to={`/project/${project._id}/update`}>Edit</Link>
-      </button>
-
-      <button onClick={deletePro}>Delete</button>
-
+   {project.UserId === user._id && (
+        <>
+          <button>
+            <Link to={`/project/${project._id}/update`}>Edit</Link>
+          </button>
+          <button onClick={deletePro}>Delete</button>
+        </>
+      )}
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>

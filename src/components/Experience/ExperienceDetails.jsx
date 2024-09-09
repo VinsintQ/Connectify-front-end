@@ -55,11 +55,14 @@ const ExperienceDetails = ({ user }) => {
       </p>
       {experience.description && <p>Description: {experience.description}</p>}
 
-      <button>
-        <Link to={`/experience/${experience._id}/update`}>Edit</Link>
-      </button>
-      <button onClick={deleteExp}>Delete</button>
-
+      {experience.UserId === user._id && (
+        <>
+          <button>
+            <Link to={`/experience/${experience._id}/update`}>Edit</Link>
+          </button>
+          <button onClick={deleteExp}>Delete</button>
+        </>
+      )}
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>

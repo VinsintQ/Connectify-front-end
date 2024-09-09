@@ -70,9 +70,7 @@ const Profile = ({ user }) => {
       )}
       <div>
         <h3>Experiences</h3>
-        <button>
-          <Link to="/addExp">Add</Link>
-        </button>
+        
 
         {experiencesToShow.map((exp, index) => (
           <div key={exp._id}>
@@ -96,9 +94,7 @@ const Profile = ({ user }) => {
 
       <div>
         <h3>Education</h3>
-        <button>
-          <Link to="/addEducation">Add</Link>
-        </button>
+        
 
         {educationsToShow.map((edu) => (
           <div key={edu._id}>
@@ -119,9 +115,7 @@ const Profile = ({ user }) => {
       </div>
       <div>
         <h3>Projects</h3>
-        <button>
-          <Link to="/addproject">Add</Link>
-        </button>
+        
 
         {projectsToShow?.map((pro) => (
           <div key={pro._id}>
