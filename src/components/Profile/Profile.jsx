@@ -34,10 +34,10 @@ useEffect(()=>{
     }
     fetchexp();
 }   ,[user]);
-
+//get user education
 useEffect(()=>{
     const fetchedu = async()=>{
-        const edu = await educationService.show();
+        const edu = await educationService.index();
         setEducations(edu.education);
     }
     fetchedu();
@@ -98,10 +98,13 @@ useEffect(()=>{
         <div key={edu._id}>
           <br />
           <div>
-            <p>Degree: {edu.Degree}</p>
+          <Link to={`/education/${edu._id}`}>
+            <p>Project Name: {edu?.School}</p>
+            </Link>
+            {/* <p>Degree: {edu.Degree}</p>
             <p>School: {edu.School}</p>
             <p>Start Date: {new Date(edu.StartDate).toLocaleDateString()}</p>
-            <p>End Date: {edu.EndDate ? new Date(edu.EndDate).toLocaleDateString() : 'Present'}</p>
+            <p>End Date: {edu.EndDate ? new Date(edu.EndDate).toLocaleDateString() : 'Present'}</p> */}
           </div>
         </div>
       ))}
