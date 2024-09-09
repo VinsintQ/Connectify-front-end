@@ -27,6 +27,19 @@ const show = async (userId) => {
   }
 };
 
+
+
+// const show = async ({ user, eduId }) => {
+//   try {
+//     const res = await fetch(`${BASE_URL}/${user._id}/education/${eduId}`, {
+//       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+//     });
+//     return res.json();
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
 const create = async ({ formData, userId }) => {
   const options = {
     method: "POST",
@@ -52,4 +65,20 @@ const index = async (userId, eduId) => {
   }
 };
 
-export default { show, create, index };
+async function update({ educationId, formData, user }) {
+  try {
+    const res = await fetch(`${BASE_URL}/${user._id}/education/${educationId}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export default { show, create, index,update };

@@ -98,10 +98,9 @@ useEffect(()=>{
         <div key={edu._id}>
           <br />
           <div>
-            <p>Degree: {edu.Degree}</p>
+          <Link to={`/education/${edu._id}`}>
             <p>School: {edu.School}</p>
-            <p>Start Date: {new Date(edu.StartDate).toLocaleDateString()}</p>
-            <p>End Date: {edu.EndDate ? new Date(edu.EndDate).toLocaleDateString() : 'Present'}</p>
+          </Link>
           </div>
         </div>
       ))}

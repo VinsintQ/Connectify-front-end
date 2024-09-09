@@ -6,16 +6,48 @@ import { useNavigate } from "react-router-dom";
 
 //Services
 
-const educationForm = ({ user }) => {
-  const userId = user._id;
-  const { educationId } = useParams();
-  const navigate = useNavigate();
-  const [educationData, setEducationData] = useState({
-    School: "",
-    Degree: "",
-    StartDate: "",
-    EndDate: "",
-  });
+const educationForm = ({ user , handleUpdateEducation }) => {
+
+const navigate = useNavigate();
+const { educationId } = useParams();
+const [userId, setUserId] = useState(user._id);
+const [educationData, setEducationData] = useState({
+  School: "",
+  Degree: "",
+  StartDate: "",
+  EndDate: "",
+});
+
+  useEffect(() => {
+
+    
+
+
+    const fetchEducation = async () => {
+      const eduData = await EducationService.index( userId, educationId );
+  
+      
+      if (eduData) {
+        if (eduData.StartDate) {
+          const startDate = new Date(eduData.StartDate);
+          eduData.StartDate = startDate.toISOString().split('T')[0]; 
+        }
+  
+        if (eduData.EndDate) {
+          const endDate = new Date(eduData.EndDate);
+          eduData.EndDate = endDate.toISOString().split('T')[0]; 
+        }
+      }
+  
+      setEducationData(eduData);
+    };
+  
+    if (educationId) fetchEducation();
+  }, [educationId]);
+
+
+  
+
 
   const handleChange = (e) => {
     setEducationData({ ...educationData, [e.target.name]: e.target.value });
@@ -25,8 +57,18 @@ const educationForm = ({ user }) => {
     e.preventDefault();
 
     if (educationData.School.trim() !== "" && educationData.Degree.trim() !== "") {
-      EducationService.create({ formData: educationData, userId });
+      
+    if (educationId) {
+      handleUpdateEducation({ educationId,educationData});
+    }else {
+      EducationService.create(educationData, userId);
       navigate("/profile");
+    }
+    
+
+
+
+
     }
   };
 
