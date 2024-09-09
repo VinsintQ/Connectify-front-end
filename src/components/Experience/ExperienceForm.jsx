@@ -48,6 +48,14 @@ const ExpForm = ({ handleAddExp,handleUpdateExp,user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+     
+    if (
+      expData.company.trim() !== "" &&
+      expData.position.trim() !== "" &&
+      expData.Description.trim() !== ""
+    ) 
+    
+
     if (expId) {
       handleUpdateExp({ expId,expData});
     }else {
