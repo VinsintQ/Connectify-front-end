@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
-import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import "./NavBar.css";
 
 const NavBar = ({ user, handleSignout }) => {
+  const [activeLink, setActiveLink] = useState(null);
+  const location = useLocation(); // To get the current route path
+
   useEffect(() => {
     // Handle scroll event to add 'scrolled' class
     const handleScroll = () => {
@@ -20,66 +23,75 @@ const NavBar = ({ user, handleSignout }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Set the active link based on the current route
+    setActiveLink(location.pathname);
+  }, [location]);
+
+  const handleLinkClick = (path) => {
+    setActiveLink(path);
+  };
+
   return (
     <div className="nav visible">
-      {" "}
-      {/* Add 'visible' class to show navbar items */}
       <ul className="nav-left">
         {user ? (
           <>
-            <li className="list">
-              <Link to="/">
+            <li className={`list ${activeLink === "/" ? "active" : ""}`}>
+              <Link to="/" onClick={() => handleLinkClick("/")}>
                 <span className="icon">
                   <ion-icon name="home-outline"></ion-icon>
                 </span>
                 <span className="text">Home</span>
               </Link>
             </li>
-            <li className="list">
-              <Link to="/profile">
+            <li className={`list ${activeLink === "/profile" ? "active" : ""}`}>
+              <Link to="/profile" onClick={() => handleLinkClick("/profile")}>
                 <span className="icon">
                   <ion-icon name="person-outline"></ion-icon>
                 </span>
                 <span className="text">Profile</span>
               </Link>
             </li>
-            <li className="list">
-              <Link to="/chat">
+            <li className={`list ${activeLink === "/chat" ? "active" : ""}`}>
+              <Link to="/chat" onClick={() => handleLinkClick("/chat")}>
                 <span className="icon">
                   <ion-icon name="chatbox-ellipses-outline"></ion-icon>
                 </span>
                 <span className="text">Chat</span>
               </Link>
             </li>
-            <li className="list">
-              <Link to="/search">
+            <li className={`list ${activeLink === "/search" ? "active" : ""}`}>
+              <Link to="/search" onClick={() => handleLinkClick("/search")}>
                 <span className="icon">
                   <ion-icon name="search-outline"></ion-icon>
                 </span>
                 <span className="text">Search</span>
               </Link>
             </li>
-            <li className="list">
-              <Link to="/Mycompany">
+            <li
+              className={`list ${activeLink === "/Mycompany" ? "active" : ""}`}
+            >
+              <Link to="/Mycompany" onClick={() => handleLinkClick("/Mycompany")}>
                 <span className="icon">
-                <ion-icon name="briefcase-outline"></ion-icon>
+                  <ion-icon name="briefcase-outline"></ion-icon>
                 </span>
-                <span className="text">My Comapany</span>
+                <span className="text">My Company</span>
               </Link>
             </li>
           </>
         ) : (
           <>
-            <li className="list">
-              <Link to="/signin">
+            <li className={`list ${activeLink === "/signin" ? "active" : ""}`}>
+              <Link to="/signin" onClick={() => handleLinkClick("/signin")}>
                 <span className="icon">
                   <ion-icon name="log-in-outline"></ion-icon>
                 </span>
                 <span className="text">Sign In</span>
               </Link>
             </li>
-            <li className="list">
-              <Link to="/signup">
+            <li className={`list ${activeLink === "/signup" ? "active" : ""}`}>
+              <Link to="/signup" onClick={() => handleLinkClick("/signup")}>
                 <span className="icon">
                   <ion-icon name="add-outline"></ion-icon>
                 </span>

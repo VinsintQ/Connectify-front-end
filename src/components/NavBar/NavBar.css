@@ -4,7 +4,11 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+.nav .list.active {
+  background-color: #007bff;
+  color: rgb(0, 0, 0);
+  border-radius: 10px
+}
 /* Fixed positioning for the navbar */
 .nav {
   position: fixed; /* Fixed position to stay at the top */
@@ -19,6 +23,7 @@
   border-bottom: 1px solid #ddd; /* Optional bottom border */
   z-index: 1000; /* Ensure it stays on top of other content */
   padding: 0 10px; /* Reduced padding on the left and right sides */
+  padding-top: 10px; /* Add padding to the top */
   transition: background-color 0.3s ease; /* Smooth background color transition */
 }
 
@@ -70,7 +75,7 @@ body {
 }
 
 .nav ul li a:hover {
-  color: #007bff; /* Color on hover */
+  color: #000000; /* Color on hover */
   transform: scale(1.1); /* Slightly increase the size on hover */
 }
 
