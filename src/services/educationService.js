@@ -11,7 +11,7 @@ const getUserIdFromToken = () => {
 
 const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/users`;
 
-const show = async (userId) => {
+const index = async (userId) => {
   try {
     const userId = getUserIdFromToken();
     if (!userId) {
@@ -54,9 +54,9 @@ const create = async ({ formData, userId }) => {
   return res.json();
 };
 
-const index = async (userId, eduId) => {
+const show = async ({ user, eduId }) => {
   try {
-    const res = await fetch(`${BASE_URL}/${userId}/education/${eduId}`, {
+    const res = await fetch(`${BASE_URL}/${user._id}/education/${eduId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
     return res.json();

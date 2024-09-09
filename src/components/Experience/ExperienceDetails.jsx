@@ -11,7 +11,7 @@ const ExperienceDetails = ({user}) => {
 
   useEffect(() => {
     async function getExp() {
-      const expData = await experienceService.show({expId,user});
+      const expData = await experienceService.show({user,expId});
       setExperience(expData);
     }
     getExp();

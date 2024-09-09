@@ -34,10 +34,10 @@ useEffect(()=>{
     }
     fetchexp();
 }   ,[user]);
-
+//get user education
 useEffect(()=>{
     const fetchedu = async()=>{
-        const edu = await educationService.show();
+        const edu = await educationService.index();
         setEducations(edu.education);
     }
     fetchedu();

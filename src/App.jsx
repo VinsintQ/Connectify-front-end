@@ -21,6 +21,7 @@ import educationService from "./services/educationService";
 import EducationDetail from "./components/Education/educationDetail";
 import ExperienceDetails from "./components/Experience/ExperienceDetails";
 import ProjectDetails from "./components/Projects/PeojectDetails";
+import EducationDetails from "./components/Education/educationDetails";
 function App() {
   const navigate = useNavigate();
 
@@ -181,7 +182,15 @@ function App() {
                 <EducationForm user={user} handleUpdateEducation={handleUpdateEducation} />
               }
             />
-
+            {/* view education details */}
+            <Route
+              path="/education/:eduId"
+              element={
+                <EducationDetails
+                  user={user}
+                />
+              }
+            />
             <Route
               path="/chat"
               element={
