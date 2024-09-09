@@ -8,6 +8,7 @@ const Conversation = ({
   onlineUsers,
   allConversations,
   setAllConversations,
+  setChat,
 }) => {
   const [ConvUser, setConvUser] = useState(null);
   const [isOnline, setIsOnline] = useState(false);
@@ -34,6 +35,7 @@ const Conversation = ({
       setAllConversations(
         allConversations.filter((conv) => conv._id !== conversation._id)
       );
+      setChat(null);
     } catch (error) {
       console.error("Failed to delete conversation:", error);
     }
