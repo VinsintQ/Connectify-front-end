@@ -1,6 +1,8 @@
 import "./Search.css";
 import { useState, useEffect } from "react";
 import userServices from "../../services/userServices";
+import { Link } from "react-router-dom";
+
 import followersServices from "../../services/followers";
 
 const Search = ({ randomNumArr, users, user, sameOccupation }) => {
@@ -93,8 +95,12 @@ const Search = ({ randomNumArr, users, user, sameOccupation }) => {
                       Follow
                     </button>
                   )}
-                  <span className="username">{user.username}</span>
-                  <span>{user.occupation}</span>
+
+                  <Link to={`/profile/${user._id}`}>
+                    <span className="username">{user.username}</span>
+                  </Link>
+
+                  <span> :{user.occupation}</span>
                 </div>
               </li>
             ))
@@ -128,9 +134,11 @@ const Search = ({ randomNumArr, users, user, sameOccupation }) => {
                         </button>
                       )}
                       <span className="username">
-                        {occupationFromArr.username}
+                        <Link to={`/profile/${occupationFromArr._id}`}>
+                          {occupationFromArr.username}
+                        </Link>
                       </span>
-                      <span>{occupationFromArr.occupation}</span>
+                      <span> :{occupationFromArr.occupation}</span>
                     </div>
                   </li>
                 );
