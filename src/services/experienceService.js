@@ -56,4 +56,16 @@ async function update({ expId, formData, user }) {
     console.log(error);
   }
 }
-export default { index, add, show, update };
+
+const deleter = async ( expId, userId ) => {
+  const options = {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+  const res = await fetch(`${BASE_URL}/${userId}/experience/${expId}`, options);
+
+  return res.json();
+}
+export default { index, add, show, update , deleter};
