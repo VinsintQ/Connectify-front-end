@@ -99,7 +99,7 @@ useEffect(()=>{
           <br />
           <div>
           <Link to={`/education/${edu._id}`}>
-            <p>Project Name: {edu?.School}</p>
+            <p>School : {edu?.School}</p>
             </Link>
             {/* <p>Degree: {edu.Degree}</p>
             <p>School: {edu.School}</p>
