@@ -65,4 +65,18 @@ const update = async ({ eduId, formData, userId }) => {
 
   return res.json();
 };
-export default { show, create, index, update };
+
+
+const deleter = async ( eduId, userId ) => {
+  const options = {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+  const res = await fetch(`${BASE_URL}/${userId}/education/${eduId}`, options);
+
+  return res.json();
+}
+
+export default { show, create, index, update,deleter };

@@ -1,12 +1,23 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 import educationService from "../../services/educationService";
 const educationDetails =({user})=> {
 
+  const navigate = useNavigate();
     const { eduId } = useParams();
     const [education, setEducation] = useState();
+
+
+
+
+    const deleteEdu = async () => { 
+        await educationService.deleter(eduId,user._id);
+        navigate("/profile");
+
+    }
 
     useEffect(() => {
         async function getEdu() {
@@ -36,6 +47,9 @@ const educationDetails =({user})=> {
          <button>
           <Link to={`update`}>Edit</Link>
          </button>
+         
+
+         <button onClick={deleteEdu}>delete</button>
 
 
         
