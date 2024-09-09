@@ -181,6 +181,7 @@ const ChatPage = ({ user, userData, setuserData }) => {
                 onlineUsers={onlineUsers}
                 allConversations={conversation}
                 setAllConversations={setConversation}
+                setChat={setChat}
               />
             </div>
           ))}
