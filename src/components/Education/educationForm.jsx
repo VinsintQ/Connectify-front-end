@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 //Services
 
 const educationForm = ({ user }) => {
-  const userId = user._id 
-const { educationId } = useParams();
-const navigate = useNavigate();
+  const userId = user._id;
+  const { educationId } = useParams();
+  const navigate = useNavigate();
   const [educationData, setEducationData] = useState({
     School: "",
     Degree: "",
@@ -24,9 +24,10 @@ const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    EducationService.create({ formData: educationData, userId });
-    navigate("/profile");
-
+    if (educationData.School.trim() !== "" && educationData.Degree.trim() !== "") {
+      EducationService.create({ formData: educationData, userId });
+      navigate("/profile");
+    }
   };
 
   return (
@@ -74,7 +75,7 @@ const navigate = useNavigate();
             onChange={handleChange}
           />
         </div>
-        
+
         <div>
           <button type="submit">
             {educationId ? <>Update</> : <>Add education</>}

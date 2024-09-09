@@ -1,18 +1,15 @@
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
- import projectService from "../../services/projectService";
+import projectService from "../../services/projectService";
 
 //Services
 
-const ProjectForm = ({ handleAddPro,user ,handleUpdatePro}) => {
-    const { proId } = useParams();
-
-
+const ProjectForm = ({ handleAddPro, user, handleUpdatePro }) => {
+  const { proId } = useParams();
 
   const [proData, setproData] = useState({
     name: "",
-    description: ""
+    description: "",
   });
 
   useEffect(() => {
@@ -22,8 +19,7 @@ const ProjectForm = ({ handleAddPro,user ,handleUpdatePro}) => {
     };
 
     if (proId) fetchPro();
-  }
-  , [proId]);
+  }, [proId]);
 
   const handleChange = (e) => {
     setproData({ ...proData, [e.target.name]: e.target.value });
@@ -31,12 +27,13 @@ const ProjectForm = ({ handleAddPro,user ,handleUpdatePro}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (proId) {
-      handleUpdatePro({ proId,proData});
-    }
-    else {
-    
-    handleAddPro(proData);
+
+    if (proData.name.trim() !== "" && proData.description.trim() !== "") {
+      if (proId) {
+        handleUpdatePro({ proId, proData });
+      } else {
+        handleAddPro(proData);
+      }
     }
   };
 
@@ -49,13 +46,13 @@ const ProjectForm = ({ handleAddPro,user ,handleUpdatePro}) => {
           <input
             type="text"
             id="name"
-          value={proData.name}
+            value={proData.name}
             name="name"
             onChange={handleChange}
           />
         </div>
 
-       <div>
+        <div>
           <label htmlFor="description">Description:</label>
           <input
             type="text"
