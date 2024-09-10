@@ -30,6 +30,8 @@ const postDetails = ({ user }) => {
     window.location.replace("/");
   };
 
+ 
+
   useEffect(() => {
     async function getPost() {
       const postData = await postService.indexc( userId, postId );
@@ -86,7 +88,7 @@ const postDetails = ({ user }) => {
             <div key={comment._id} className="comment">
               <form action="" id={comment._id}>
                 <p>
-                  username : {comment.message}
+                  {comment.userid.username} : {comment.message}
                 </p>
 
                 {comment.userid === user.id ? (
