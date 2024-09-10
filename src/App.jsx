@@ -25,8 +25,10 @@ import EducationDetails from "./components/Education/educationDetails";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import PostForm from "./components/Posts/PostForm";
+import PostDetails from "./components/Posts/postDetail";
 import CompanyDetails from "./components/myCompanies/CompnayDetails";
 import AddCompanyForm from "./components/myCompanies/AddCompanyForm";
+import postService from "./services/postService";
 function App() {
   const navigate = useNavigate();
 
@@ -102,6 +104,15 @@ function App() {
     navigate(`/experience/${expId}`);
   };
 
+  const handleUpdatePost = async ({ postId, postData }) => {
+    const updated = await postService.update({
+      postId,
+      formData: postData,
+      user,
+    });
+    navigate(`/post/${postId}`);
+  };
+
   const handleUpdatePro = async ({ proId, proData }) => {
     const updated = await projectService.update({
       proId,
@@ -129,109 +140,119 @@ function App() {
               path="/company/:companyId"
               element={<SignupForm setUser={setUser} />}
             /> */}
-              {/* view company Details*/}
-              <Route
-                path="Mycompany/company/:compId"
-                element={<CompanyDetails user={user} />}
-              />
-              <Route path="/Mycompany" element={<MyCompanies user={user} />} />
-              <Route
-                path="/AddCompany"
-                element={<AddCompanyForm user={user} />}
-              />
-              <Route path="/" element={<Dashboard user={user} />} />
-              <Route path="/profile" element={<Profile user={user} />} />
 
-              <Route
-                path="/profile/:userId"
-                element={<OtherProfile user={user} />}
-              />
+            {/* view company Details*/}
+            <Route
+              path="Mycompany/company/:compId"
+              element={<CompanyDetails user={user} />}
+            />
+            <Route path="/Mycompany" element={<MyCompanies user={user} />} />
+            <Route
+              path="/AddCompany"
+              element={<AddCompanyForm user={user} />}
+            />
+            <Route path="/" element={<Dashboard user={user} />} />
+            <Route path="/profile" element={<Profile user={user} />} />
 
-              {/*view project details  */}
+            <Route
+              path="/profile/:userId"
+              element={<OtherProfile user={user} />}
+            />
 
-              <Route
-                path="/project/:proId"
-                element={<ProjectDetails user={user} />}
-              />
-              <Route
-                path="/addproject"
-                element={
-                  <ProjectForm user={user} handleAddPro={handleAddPro} />
-                }
-              />
-              <Route
-                path="/project/:proId/update"
-                element={
-                  <ProjectForm user={user} handleUpdatePro={handleUpdatePro} />
-                }
-              />
-              <Route
-                path="/addExp"
-                element={<ExpForm user={user} handleAddExp={handleAddExp} />}
-              />
-              {/*Add post*/}
-              <Route path="/addPost" element={<PostForm user={user} />} />
-              {/* view experience Details*/}
-              <Route
-                path="/experience/:expId"
-                element={<ExperienceDetails user={user} />}
-              />
-              {/* update experience*/}
-              <Route
-                path="/experience/:expId/update"
-                element={
-                  <ExpForm user={user} handleUpdateExp={handleUpdateExp} />
-                }
-              />
-              <Route
-                path="/addEducation"
-                element={<EducationForm user={user} />}
-              />
-              {/* view education details */}
-              <Route
-                path="/education/:eduId"
-                element={<EducationDetails user={user} />}
-              />
-              {/* update education */}
-              <Route
-                path="/education/:eduId/update"
-                element={
-                  <EducationForm
-                    user={user}
-                    handleUpdateEducation={handleUpdateEducation}
-                  />
-                }
-              />
-              <Route
-                path="/chat"
-                element={
-                  <ChatPage
-                    user={user}
-                    userData={userData}
-                    setuserData={setuserData}
-                  />
-                }
-              />
-              <Route
-                path="/search"
-                element={
-                  <Search
-                    randomNumArr={randomNumArr}
-                    users={users}
-                    user={user}
-                    sameOccupation={sameOccupation}
-                    userData={userData}
-                  />
-                }
-              />
-            </>
-          ) : (
-            <Route path="/" element={<Landing />} />
-          )}
-          <Route path="/signup" element={<SignupForm setUser={setUser} />} />
-          <Route path="/signin" element={<SigninForm setUser={setUser} />} />
-        </Routes>
-      </div>
+            {/*view project details  */}
+
+            <Route
+              path="/project/:proId"
+              element={<ProjectDetails user={user} />}
+            />
+            <Route
+              path="/addproject"
+              element={<ProjectForm user={user} handleAddPro={handleAddPro} />}
+            />
+            <Route
+              path="/project/:proId/update"
+              element={
+                <ProjectForm user={user} handleUpdatePro={handleUpdatePro} />
+              }
+            />
+            <Route
+              path="/addExp"
+              element={<ExpForm user={user} handleAddExp={handleAddExp} />}
+            />
+            {/*Add post*/}
+            <Route path="/addPost" element={<PostForm user={user} />} />
+            {/* view experience Details*/}
+            <Route
+              path="/experience/:expId"
+              element={<ExperienceDetails user={user} />}
+            />
+            {/* update experience*/}
+            <Route
+              path="/experience/:expId/update"
+              element={
+                <ExpForm user={user} handleUpdateExp={handleUpdateExp} />
+              }
+            />
+            <Route
+              path="/addEducation"
+              element={<EducationForm user={user} />}
+            />
+            {/* view education details */}
+            <Route
+              path="/education/:eduId"
+              element={<EducationDetails user={user} />}
+            />
+            {/* update education */}
+            <Route
+              path="/education/:eduId/update"
+              element={
+                <EducationForm
+                  user={user}
+                  handleUpdateEducation={handleUpdateEducation}
+                />
+              }
+            />
+
+            <Route path="/post/:postId" element={<PostDetails user={user} />} />
+            {/* update education */}
+            <Route
+              path="/post/:postId/update"
+              element={
+                <PostForm
+                  user={user}
+                  handleUpdatePost={handleUpdatePost}
+                />
+              }
+            />
+            <Route
+              path="/chat"
+              element={
+                <ChatPage
+                  user={user}
+                  userData={userData}
+                  setuserData={setuserData}
+                />
+              }
+            />
+            <Route
+              path="/search"
+              element={
+                <Search
+                  randomNumArr={randomNumArr}
+                  users={users}
+                  user={user}
+                  sameOccupation={sameOccupation}
+                  userData={userData}
+                />
+              }
+            />
+          </>
+        ) : (
+          <Route path="/" element={<Landing />} />
+        )}
+        <Route path="/signup" element={<SignupForm setUser={setUser} />} />
+        <Route path="/signin" element={<SigninForm setUser={setUser} />} />
+      </Routes>
     </>
   );
 }

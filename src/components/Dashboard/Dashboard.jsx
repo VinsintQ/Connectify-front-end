@@ -27,12 +27,14 @@ const Dashboard = ({ user }) => {
       <div className="post-grid">
         {allpost?.map((post) => {
           return (
-            <div key={post._id} className="post-card">
-              <img className="post-image" src={post?.image} alt="Post" />
-              <div className="post-content">
-                <p>{post.content}</p>
+            <Link to={`/post/${post._id}`}>
+              <div key={post._id} className="post-card">
+                <img className="post-image" src={post?.image} alt="Post" />
+                <div className="post-content">
+                  <p>{post.content}</p>
+                </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

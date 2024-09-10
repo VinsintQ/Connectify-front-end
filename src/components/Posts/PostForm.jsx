@@ -7,10 +7,11 @@ import axios from "axios";
 
 //Services
 import postService from "../../services/postService";
-const PostForm = ({ user }) => {
+const PostForm = ({ user, handleUpdatePost }) => {
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
+  const { postId } = useParams();
 
   const userId = user._id;
 
@@ -35,9 +36,14 @@ const PostForm = ({ user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (PostData.content.trim() !== "") {
-      handleAddPost({ formData: PostData, userId });
+    if (postId) {
+      handleUpdatePost({ postId, PostData });
       navigate("/");
+    } else {
+      if (PostData.content.trim() !== "") {
+        handleAddPost({ formData: PostData, userId });
+        navigate("/");
+      }
     }
   };
 
@@ -87,8 +93,10 @@ const PostForm = ({ user }) => {
   };
 
   return (
-    <main className="container">
-      <h1>Add post</h1>
+
+    <main className="">
+      <h1>{postId ? <>Update post</> : <>Add post</>}</h1>
+
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="content">Message : </label>
@@ -105,7 +113,10 @@ const PostForm = ({ user }) => {
           <input type="file" id="image" name="image" onChange={uploadImage} />
         </div>
         <div>
-          <button type="submit">Create Post</button>
+          <button type="submit">
+            {" "}
+            {postId ? <>Update</> : <>Create post</>}
+          </button>
         </div>
       </form>
     </main>
