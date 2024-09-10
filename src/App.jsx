@@ -24,8 +24,10 @@ import ProjectDetails from "./components/Projects/PeojectDetails";
 import EducationDetails from "./components/Education/educationDetails";
 import "bootstrap/dist/css/bootstrap.min.css";
 import PostForm from "./components/Posts/PostForm";
+import PostDetails from "./components/Posts/postDetail";
 import CompanyDetails from "./components/myCompanies/CompnayDetails";
 import AddCompanyForm from "./components/myCompanies/AddCompanyForm";
+import postService from "./services/postService";
 function App() {
   const navigate = useNavigate();
 
@@ -87,7 +89,7 @@ function App() {
     const newExp = await experienceService.add({ formData: expData, user });
     navigate("/profile");
   };
- 
+
   const handleAddPro = async (proData) => {
     const newPro = await projectService.add({ formData: proData, user });
     navigate("/profile");
@@ -99,6 +101,15 @@ function App() {
       user,
     });
     navigate(`/experience/${expId}`);
+  };
+
+  const handleUpdatePost = async ({ postId, postData }) => {
+    const updated = await postService.update({
+      postId,
+      formData: postData,
+      user,
+    });
+    navigate(`/post/${postId}`);
   };
 
   const handleUpdatePro = async ({ proId, proData }) => {
@@ -134,15 +145,19 @@ function App() {
               element={<CompanyDetails user={user} />}
             />
             <Route path="/Mycompany" element={<MyCompanies user={user} />} />
-            <Route path="/AddCompany" element={<AddCompanyForm user={user} />} />
+            <Route
+              path="/AddCompany"
+              element={<AddCompanyForm user={user} />}
+            />
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/profile" element={<Profile user={user} />} />
 
-            <Route path="/profile/:userId" element={<OtherProfile user={user} />} />
-              
-            
-            {/*view project details  */}
+            <Route
+              path="/profile/:userId"
+              element={<OtherProfile user={user} />}
+            />
 
+            {/*view project details  */}
 
             <Route
               path="/project/:proId"
@@ -161,11 +176,9 @@ function App() {
             <Route
               path="/addExp"
               element={<ExpForm user={user} handleAddExp={handleAddExp} />}
-            />{/*Add post*/}
-            <Route
-              path="/addPost"
-              element={<PostForm user={user} />}
             />
+            {/*Add post*/}
+            <Route path="/addPost" element={<PostForm user={user} />} />
             {/* view experience Details*/}
             <Route
               path="/experience/:expId"
@@ -194,6 +207,18 @@ function App() {
                 <EducationForm
                   user={user}
                   handleUpdateEducation={handleUpdateEducation}
+                />
+              }
+            />
+
+            <Route path="/post/:postId" element={<PostDetails user={user} />} />
+            {/* update education */}
+            <Route
+              path="/post/:postId/update"
+              element={
+                <PostForm
+                  user={user}
+                  handleUpdatePost={handleUpdatePost}
                 />
               }
             />

@@ -27,6 +27,22 @@ const allposts = async (userId) => {
   }
 };
 
+
+const indexc = async (userId,postId) => {
+  try {
+    if (!userId) {
+      throw new Error("User ID not found in token");
+    }
+    const res = await fetch(`${BASE_URL}/${userId}/post/${postId}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const add = async ({ formData, userId }) => {
   try {
     const res = await fetch(`${BASE_URL}/${userId}/post`, {
@@ -42,6 +58,21 @@ const add = async ({ formData, userId }) => {
   } catch (error) {
     console.error(error);
   }
+};
+
+const deleter = async (userId,postId) => {
+  const options = {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+  const res = await fetch(
+    `${BASE_URL}/${userId}/post/${postId}`,
+    options
+  );
+
+  return res.json();
 };
 
 const update = async ({ postId, formData, userId }) => {
@@ -63,5 +94,5 @@ const update = async ({ postId, formData, userId }) => {
 export default {
   allposts,
   add,
-  update,
+  update,indexc,deleter
 };
