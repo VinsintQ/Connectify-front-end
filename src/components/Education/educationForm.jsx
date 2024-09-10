@@ -40,11 +40,6 @@ useEffect(() => {
   }, [eduId]);
         
 
-
-
-
-
-
   const handleChange = (e) => {
     setEducationData({ ...educationData, [e.target.name]: e.target.value });
   };

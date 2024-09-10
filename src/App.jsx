@@ -104,10 +104,11 @@ function App() {
     navigate(`/experience/${expId}`);
   };
 
-  const handleUpdatePost = async ({ postId, postData }) => {
+  const handleUpdatePost = async ({ postId, PostData }) => {
+    console.log(PostData);
     const updated = await postService.update({
       postId,
-      formData: postData,
+      PostData,
       user,
     });
     navigate(`/post/${postId}`);
@@ -141,118 +142,120 @@ function App() {
               element={<SignupForm setUser={setUser} />}
             /> */}
 
-            {/* view company Details*/}
-            <Route
-              path="Mycompany/company/:compId"
-              element={<CompanyDetails user={user} />}
-            />
-            <Route path="/Mycompany" element={<MyCompanies user={user} />} />
-            <Route
-              path="/AddCompany"
-              element={<AddCompanyForm user={user} />}
-            />
-            <Route path="/" element={<Dashboard user={user} />} />
-            <Route path="/profile" element={<Profile user={user} />} />
+              {/* view company Details*/}
+              <Route
+                path="Mycompany/company/:compId"
+                element={<CompanyDetails user={user} />}
+              />
+              <Route path="/Mycompany" element={<MyCompanies user={user} />} />
+              <Route
+                path="/AddCompany"
+                element={<AddCompanyForm user={user} />}
+              />
+              <Route path="/" element={<Dashboard user={user} />} />
+              <Route path="/profile" element={<Profile user={user} />} />
 
-            <Route
-              path="/profile/:userId"
-              element={<OtherProfile user={user} />}
-            />
+              <Route
+                path="/profile/:userId"
+                element={<OtherProfile user={user} />}
+              />
 
-            {/*view project details  */}
+              {/*view project details  */}
 
-            <Route
-              path="/project/:proId"
-              element={<ProjectDetails user={user} />}
-            />
-            <Route
-              path="/addproject"
-              element={<ProjectForm user={user} handleAddPro={handleAddPro} />}
-            />
-            <Route
-              path="/project/:proId/update"
-              element={
-                <ProjectForm user={user} handleUpdatePro={handleUpdatePro} />
-              }
-            />
-            <Route
-              path="/addExp"
-              element={<ExpForm user={user} handleAddExp={handleAddExp} />}
-            />
-            {/*Add post*/}
-            <Route path="/addPost" element={<PostForm user={user} />} />
-            {/* view experience Details*/}
-            <Route
-              path="/experience/:expId"
-              element={<ExperienceDetails user={user} />}
-            />
-            {/* update experience*/}
-            <Route
-              path="/experience/:expId/update"
-              element={
-                <ExpForm user={user} handleUpdateExp={handleUpdateExp} />
-              }
-            />
-            <Route
-              path="/addEducation"
-              element={<EducationForm user={user} />}
-            />
-            {/* view education details */}
-            <Route
-              path="/education/:eduId"
-              element={<EducationDetails user={user} />}
-            />
-            {/* update education */}
-            <Route
-              path="/education/:eduId/update"
-              element={
-                <EducationForm
-                  user={user}
-                  handleUpdateEducation={handleUpdateEducation}
-                />
-              }
-            />
+              <Route
+                path="/project/:proId"
+                element={<ProjectDetails user={user} />}
+              />
+              <Route
+                path="/addproject"
+                element={
+                  <ProjectForm user={user} handleAddPro={handleAddPro} />
+                }
+              />
+              <Route
+                path="/project/:proId/update"
+                element={
+                  <ProjectForm user={user} handleUpdatePro={handleUpdatePro} />
+                }
+              />
+              <Route
+                path="/addExp"
+                element={<ExpForm user={user} handleAddExp={handleAddExp} />}
+              />
+              {/*Add post*/}
+              <Route path="/addPost" element={<PostForm user={user} />} />
+              {/* view experience Details*/}
+              <Route
+                path="/experience/:expId"
+                element={<ExperienceDetails user={user} />}
+              />
+              {/* update experience*/}
+              <Route
+                path="/experience/:expId/update"
+                element={
+                  <ExpForm user={user} handleUpdateExp={handleUpdateExp} />
+                }
+              />
+              <Route
+                path="/addEducation"
+                element={<EducationForm user={user} />}
+              />
+              {/* view education details */}
+              <Route
+                path="/education/:eduId"
+                element={<EducationDetails user={user} />}
+              />
+              {/* update education */}
+              <Route
+                path="/education/:eduId/update"
+                element={
+                  <EducationForm
+                    user={user}
+                    handleUpdateEducation={handleUpdateEducation}
+                  />
+                }
+              />
 
-            <Route path="/post/:postId" element={<PostDetails user={user} />} />
-            {/* update education */}
-            <Route
-              path="/post/:postId/update"
-              element={
-                <PostForm
-                  user={user}
-                  handleUpdatePost={handleUpdatePost}
-                />
-              }
-            />
-            <Route
-              path="/chat"
-              element={
-                <ChatPage
-                  user={user}
-                  userData={userData}
-                  setuserData={setuserData}
-                />
-              }
-            />
-            <Route
-              path="/search"
-              element={
-                <Search
-                  randomNumArr={randomNumArr}
-                  users={users}
-                  user={user}
-                  sameOccupation={sameOccupation}
-                  userData={userData}
-                />
-              }
-            />
-          </>
-        ) : (
-          <Route path="/" element={<Landing />} />
-        )}
-        <Route path="/signup" element={<SignupForm setUser={setUser} />} />
-        <Route path="/signin" element={<SigninForm setUser={setUser} />} />
-       </Routes>
+              <Route
+                path="/post/:postId"
+                element={<PostDetails user={user} />}
+              />
+              {/* update education */}
+              <Route
+                path="/post/:postId/update"
+                element={
+                  <PostForm user={user} handleUpdatePost={handleUpdatePost} />
+                }
+              />
+              <Route
+                path="/chat"
+                element={
+                  <ChatPage
+                    user={user}
+                    userData={userData}
+                    setuserData={setuserData}
+                  />
+                }
+              />
+              <Route
+                path="/search"
+                element={
+                  <Search
+                    randomNumArr={randomNumArr}
+                    users={users}
+                    user={user}
+                    sameOccupation={sameOccupation}
+                    userData={userData}
+                  />
+                }
+              />
+            </>
+          ) : (
+            <Route path="/" element={<Landing />} />
+          )}
+          <Route path="/signup" element={<SignupForm setUser={setUser} />} />
+          <Route path="/signin" element={<SigninForm setUser={setUser} />} />
+        </Routes>
       </div>
     </>
   );
