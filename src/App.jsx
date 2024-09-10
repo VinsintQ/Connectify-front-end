@@ -134,13 +134,11 @@ function App() {
   };
   return (
     <>
-      <NavBar user={user} handleSignout={handleSignout} />
+      {user ? <NavBar user={user} handleSignout={handleSignout} /> : <></>}
       <div className="main-content">
         <Routes>
           {user ? (
             <>
-              
-
               {/* view company Details*/}
               <Route
                 path="Mycompany/company/:compId"
@@ -250,10 +248,8 @@ function App() {
               />
             </>
           ) : (
-            <Route path="/" element={<SignForm  setUser={setUser}/>} />
+            <Route path="/" element={<SignForm setUser={setUser} />} />
           )}
-          
-          
         </Routes>
       </div>
     </>

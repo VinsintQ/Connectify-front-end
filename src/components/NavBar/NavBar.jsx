@@ -84,9 +84,7 @@ const NavBar = ({ user, handleSignout }) => {
             </li>
           </>
         ) : (
-          <>
-            
-          </>
+          <></>
         )}
       </ul>
       {user && (

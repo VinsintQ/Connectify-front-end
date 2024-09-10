@@ -1,32 +1,54 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
-import projectService from "../../services/projectService";
-import "bootstrap/dist/css/bootstrap.min.css";
 import postService from "../../services/postService";
 import CommentForm from "../commentForm/commentForm";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const PostDetails = ({ user }) => {
   const { postId } = useParams();
   const [post, setPost] = useState();
-  const [showModal, setShowModal] = useState(false);
-  const [refresh, setRefresh] = useState(false); // new state for refresh
+  const [showPostModal, setShowPostModal] = useState(false);
+  const [showCommentModal, setShowCommentModal] = useState(false);
+  const [commentToDelete, setCommentToDelete] = useState(null);
+  const [refresh, setRefresh] = useState(false);
   const userId = user._id;
 
-  // Handle opening the modal
+  // Open the post deletion modal
   const deletePost = () => {
-    setShowModal(true);
+    setShowPostModal(true);
   };
 
-  // Handle closing the modal
-  const handleClose = () => {
-    setShowModal(false);
+  // Handle closing the post deletion modal
+  const handlePostModalClose = () => {
+    setShowPostModal(false);
   };
 
-  // Handle confirming the deletion
-  const handleConfirmDelete = async () => {
+  // Confirm and delete the post
+  const handleConfirmDeletePost = async () => {
     await postService.deleter(userId, postId);
     window.location.replace("/");
+  };
+
+  // Open the comment deletion modal
+  const deleteComment = (commentId) => {
+    setCommentToDelete(commentId); // Track which comment to delete
+    setShowCommentModal(true);
+  };
+
+  // Handle closing the comment deletion modal
+  const handleCommentModalClose = () => {
+    setShowCommentModal(false);
+    setCommentToDelete(null); // Clear the tracked comment
+  };
+
+  // Confirm and delete the comment
+  const handleConfirmDeleteComment = async () => {
+    if (commentToDelete) {
+      await postService.deleteComment(userId, postId, commentToDelete);
+      setRefresh((prev) => !prev); // Refresh after deleting the comment
+      handleCommentModalClose(); // Close the modal
+    }
   };
 
   // Fetch post details
@@ -36,10 +58,9 @@ const PostDetails = ({ user }) => {
       setPost(postData);
     }
     getPost();
-  }, [postId, refresh]); // Adding refresh as a dependency to refetch
+  }, [postId, refresh]);
 
   const handleCommentAdded = () => {
-    // Trigger the refresh to fetch the updated post and comments
     setRefresh((prev) => !prev);
   };
 
@@ -66,16 +87,16 @@ const PostDetails = ({ user }) => {
         </>
       )}
 
-      <Modal show={showModal} onHide={handleClose} centered>
+      <Modal show={showPostModal} onHide={handlePostModalClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
         <Modal.Body>Are you sure you want to delete this post?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handlePostModalClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleConfirmDelete}>
+          <Button variant="primary" onClick={handleConfirmDeletePost}>
             Confirm
           </Button>
         </Modal.Footer>
@@ -96,22 +117,42 @@ const PostDetails = ({ user }) => {
               <form action="" id={comment._id}>
                 <p>
                   <Link to={`/profile/${comment.userid._id}`}>
-                    {" "}
+                    <img src={comment.userid?.image} alt="User profile photo" />
                     {comment.userid.username}
-                  </Link>{" "}
+                  </Link>
                   : {comment.message}
                 </p>
-
-                {comment.userid === user.id ? (
-                  <button type="submit" className="delete-comment-button">
-                    delete
-                  </button>
+                {comment.userid._id === user._id ? (
+                  <>
+                    <button
+                      type="button"
+                      className="delete-comment-button"
+                      onClick={() => deleteComment(comment._id)}
+                    >
+                      Delete
+                    </button>
+                  </>
                 ) : null}
               </form>
             </div>
           ))
         )}
       </div>
+
+      <Modal show={showCommentModal} onHide={handleCommentModalClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this comment?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCommentModalClose}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleConfirmDeleteComment}>
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
