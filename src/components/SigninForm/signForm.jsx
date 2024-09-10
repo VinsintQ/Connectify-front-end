@@ -99,96 +99,98 @@ const SignForm = (props) => {
   };
 
   return (
-    <div className={`container ${isActive ? "active" : ""}`} id="container">
-      <div className="form-container sign-up">
-        <form onSubmit={handleSubmitSignUp}>
-          <p>{error}</p>
-          <input
-            type="text"
-            placeholder="Name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="Username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="Phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            name="passwordConf"
-            value={formData.passwordConf}
-            onChange={handleChange}
-          />
-          <input type="file" name="image" onChange={uploadImage} />
-          <button type="submit">Sign Up</button>
-        </form>
-      </div>
-      <div className="form-container sign-in">
-        <form autoComplete="off" onSubmit={handleSubmitSignIn}>
-          <h1>Sign In</h1>
-          <p>{message}</p>
-          <input
-            type="text"
-            autoComplete="off"
-            placeholder="Username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            autoComplete="off"
-            placeholder="Password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <button type="submit">Sign In</button>
-        </form>
-      </div>
-      <div className="toggle-container">
-        <div className="toggle">
-          <div className="toggle-panel toggle-left">
-            <h1>Welcome Back!</h1>
-            <p>
-              To keep connected with us, please login with your personal info
-            </p>
-            <button className="hidden" onClick={toggleForm}>
-              Sign In
-            </button>
-          </div>
-          <div className="toggle-panel toggle-right">
-            <h1>Hello, Friend!</h1>
-            <p>Enter your personal details and start your journey with us</p>
-            <button className="hidden" onClick={toggleForm}>
-              Sign Up
-            </button>
+    <div className="big">
+      <div className={`container ${isActive ? "active" : ""}`} id="container">
+        <div className="form-container sign-up">
+          <form onSubmit={handleSubmitSignUp}>
+            <p>{error}</p>
+            <input
+              type="text"
+              placeholder="Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              placeholder="Username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              placeholder="Phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              name="passwordConf"
+              value={formData.passwordConf}
+              onChange={handleChange}
+            />
+            <input type="file" name="image" onChange={uploadImage} />
+            <button type="submit">Sign Up</button>
+          </form>
+        </div>
+        <div className="form-container sign-in">
+          <form autoComplete="off" onSubmit={handleSubmitSignIn}>
+            <h1>Sign In</h1>
+            <p>{message}</p>
+            <input
+              type="text"
+              autoComplete="off"
+              placeholder="Username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+            />
+            <input
+              type="password"
+              autoComplete="off"
+              placeholder="Password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <button type="submit">Sign In</button>
+          </form>
+        </div>
+        <div className="toggle-container">
+          <div className="toggle">
+            <div className="toggle-panel toggle-left">
+              <h1>Welcome Back!</h1>
+              <p>
+                To keep connected with us, please login with your personal info
+              </p>
+              <button className="hidden" onClick={toggleForm}>
+                Sign In
+              </button>
+            </div>
+            <div className="toggle-panel toggle-right">
+              <h1>Hello, Friend!</h1>
+              <p>Enter your personal details and start your journey with us</p>
+              <button className="hidden" onClick={toggleForm}>
+                Sign Up
+              </button>
+            </div>
           </div>
         </div>
       </div>
