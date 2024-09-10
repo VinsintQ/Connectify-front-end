@@ -85,22 +85,7 @@ const NavBar = ({ user, handleSignout }) => {
           </>
         ) : (
           <>
-            <li className={`list ${activeLink === "/signin" ? "active" : ""}`}>
-              <Link to="/signin" onClick={() => handleLinkClick("/signin")}>
-                <span className="icon">
-                  <ion-icon name="log-in-outline"></ion-icon>
-                </span>
-                <span className="text">Sign In</span>
-              </Link>
-            </li>
-            <li className={`list ${activeLink === "/signup" ? "active" : ""}`}>
-              <Link to="/signup" onClick={() => handleLinkClick("/signup")}>
-                <span className="icon">
-                  <ion-icon name="add-outline"></ion-icon>
-                </span>
-                <span className="text">Sign Up</span>
-              </Link>
-            </li>
+            
           </>
         )}
       </ul>

@@ -25,7 +25,7 @@ const CommentForm = ({postId , user,onCommentAdded}) => {
     } catch (error) {
       console.error('Error creating comment:', error);
     } finally {
-      setIsSubmitting(false); // Enable submit button after submission
+      setIsSubmitting(false); 
     }
   };
 

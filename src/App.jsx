@@ -29,6 +29,9 @@ import PostDetails from "./components/Posts/postDetail";
 import CompanyDetails from "./components/myCompanies/CompnayDetails";
 import AddCompanyForm from "./components/myCompanies/AddCompanyForm";
 import postService from "./services/postService";
+
+import SignForm from "./components/SigninForm/signForm";
+
 function App() {
   const navigate = useNavigate();
 
@@ -137,10 +140,7 @@ function App() {
         <Routes>
           {user ? (
             <>
-              {/* <Route
-              path="/company/:companyId"
-              element={<SignupForm setUser={setUser} />}
-            /> */}
+              
 
               {/* view company Details*/}
               <Route
@@ -251,10 +251,10 @@ function App() {
               />
             </>
           ) : (
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={<SignForm  setUser={setUser}/>} />
           )}
-          <Route path="/signup" element={<SignupForm setUser={setUser} />} />
-          <Route path="/signin" element={<SigninForm setUser={setUser} />} />
+          
+          
         </Routes>
       </div>
     </>
