@@ -87,10 +87,55 @@ const update = async ({ postId, PostData, user }) => {
     console.error(error);
   }
 };
+
+const createComment = async (userId, postId, formData) => {
+  try {
+    const data = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/${userId}/post/${postId}/comment`,
+      data
+    );
+
+    return res.json();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const deleteComment = async (userId, postId, commentId) => {
+  try {
+    const data = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/${userId}/post/${postId}/comment/${commentId}`,
+      data
+    );
+
+    return res.json();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export default {
   allposts,
   add,
   update,
   indexc,
   deleter,
+  createComment,
+  deleteComment,
 };
