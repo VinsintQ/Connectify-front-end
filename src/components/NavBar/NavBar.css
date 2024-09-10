@@ -7,7 +7,7 @@
 
 /* Main container for the navbar */
 .nav {
-  position: fixed; /* Fixed position to stay at the top */
+  position: relative; /* Fixed position to stay at the top */
   top: 0;
   left: 0;
   width: 100%; /* Full width of the page */

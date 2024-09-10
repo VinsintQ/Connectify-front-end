@@ -90,7 +90,7 @@ const NavBar = ({ user, handleSignout }) => {
       {user && (
         <ul className="nav-right">
           <li className="list signout">
-            <Link to="#" onClick={handleSignout}>
+            <Link to="/" onClick={handleSignout}>
               <span className="icon">
                 <ion-icon name="log-out-outline"></ion-icon>
               </span>

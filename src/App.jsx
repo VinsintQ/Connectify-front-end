@@ -134,12 +134,11 @@ function App() {
   };
   return (
     <>
-      {user ? <NavBar user={user} handleSignout={handleSignout} /> : <></>}
+      {user && <NavBar user={user} handleSignout={handleSignout} />}
       <div className="main-content">
         <Routes>
           {user ? (
             <>
-              {/* view company Details*/}
               <Route
                 path="Mycompany/company/:compId"
                 element={<CompanyDetails user={user} />}

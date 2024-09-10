@@ -1,7 +1,7 @@
 /* General chat container styling */
 .chat {
   display: flex;
-  height: calc(100vh - 70px); /* Adjust based on navbar height */
+  height: 100vh; /* Full viewport height */
 }
 
 /* Chat list styling */
