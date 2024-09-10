@@ -1,20 +1,32 @@
 import { useState, useEffect } from 'react';
 
 import postService from '../../services/postService';
-const CommentForm = ({postId , user}) => {
+const CommentForm = ({postId , user,onCommentAdded}) => {
   const [formData, setFormData] = useState({ message: '' });
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const handleChange = (evt) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
   };
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
-    // handleAddComment
-    setFormData({ message: '' });
-    // handleAddComment(formData)
 
-    postService.createComment(user._id,postId,formData)
+    setIsSubmitting(true); // Disable submit button while submitting
+
+    try {
+      // Wait for the comment to be created
+      await postService.createComment(user._id, postId, formData);
+
+      // Clear the form
+      setFormData({ message: '' });
+
+      // Trigger the parent callback to refresh the comments
+      onCommentAdded();
+    } catch (error) {
+      console.error('Error creating comment:', error);
+    } finally {
+      setIsSubmitting(false); // Enable submit button after submission
+    }
   };
 
   return (

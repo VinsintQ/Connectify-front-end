@@ -6,13 +6,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import postService from "../../services/postService";
 import CommentForm from "../commentForm/commentForm";
 
-const postDetails = ({ user }) => {
-
+const PostDetails = ({ user }) => {
   const { postId } = useParams();
-  ;
   const [post, setPost] = useState();
   const [showModal, setShowModal] = useState(false);
-  const userId=user._id;
+  const [refresh, setRefresh] = useState(false); // new state for refresh
+  const userId = user._id;
 
   // Handle opening the modal
   const deletePost = () => {
@@ -30,15 +29,19 @@ const postDetails = ({ user }) => {
     window.location.replace("/");
   };
 
- 
-
+  // Fetch post details
   useEffect(() => {
     async function getPost() {
-      const postData = await postService.indexc( userId, postId );
+      const postData = await postService.indexc(userId, postId);
       setPost(postData);
     }
     getPost();
-  }, [postId]);
+  }, [postId, refresh]); // Adding refresh as a dependency to refetch
+
+  const handleCommentAdded = () => {
+    // Trigger the refresh to fetch the updated post and comments
+    setRefresh((prev) => !prev);
+  };
 
   if (!post) {
     return (
@@ -53,8 +56,8 @@ const postDetails = ({ user }) => {
       <h3>Post Details</h3>
       <img src={post?.image} alt="" />
       <p>content: {post?.content}</p>
-      
-   {post.userId === user._id && (
+
+      {post.userId === user._id && (
         <>
           <button>
             <Link to={`/post/${postId}/update`}>Edit</Link>
@@ -62,6 +65,7 @@ const postDetails = ({ user }) => {
           <button onClick={deletePost}>Delete</button>
         </>
       )}
+
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
@@ -77,11 +81,10 @@ const postDetails = ({ user }) => {
         </Modal.Footer>
       </Modal>
 
-
       <div className="comments-section">
-      <CommentForm postId={postId} user={user} />
+        <CommentForm postId={postId} user={user} onCommentAdded={handleCommentAdded} />
 
-      {post.comments.length === 0 ? (
+        {post.comments.length === 0 ? (
           <p>There are no comments.</p>
         ) : (
           post.comments.map((comment) => (
@@ -100,11 +103,9 @@ const postDetails = ({ user }) => {
             </div>
           ))
         )}
-
       </div>
     </div>
-    
   );
 };
 
-export default postDetails;
+export default PostDetails;
