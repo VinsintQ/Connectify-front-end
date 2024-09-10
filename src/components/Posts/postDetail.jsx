@@ -82,7 +82,11 @@ const PostDetails = ({ user }) => {
       </Modal>
 
       <div className="comments-section">
-        <CommentForm postId={postId} user={user} onCommentAdded={handleCommentAdded} />
+        <CommentForm
+          postId={postId}
+          user={user}
+          onCommentAdded={handleCommentAdded}
+        />
 
         {post.comments.length === 0 ? (
           <p>There are no comments.</p>
@@ -91,7 +95,11 @@ const PostDetails = ({ user }) => {
             <div key={comment._id} className="comment">
               <form action="" id={comment._id}>
                 <p>
-                  {comment.userid.username} : {comment.message}
+                  <Link to={`/profile/${user._id}`}>
+                    {" "}
+                    {comment.userid.username}
+                  </Link>{" "}
+                  : {comment.message}
                 </p>
 
                 {comment.userid === user.id ? (
