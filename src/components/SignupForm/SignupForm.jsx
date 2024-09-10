@@ -10,6 +10,7 @@ const SignupForm = (props) => {
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
   const [message, setMessage] = useState([""]);
+  const [error, setError] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -64,7 +65,12 @@ const SignupForm = (props) => {
   } = formData;
 
   const isFormInvalid = () => {
-    return !(username && password && password === passwordConf);
+    return !(
+      username &&
+      password &&
+      password === passwordConf &&
+      loading === false
+    );
   };
 
   const convertBase64 = (file) => {
@@ -85,25 +91,37 @@ const SignupForm = (props) => {
   const uploadImage = async (event) => {
     const files = event.target.files[0];
     if (!files) return;
+
+    setError("");
+
     const base64 = await convertBase64(files);
     setLoading(true);
+
     axios
       .post("http://localhost:3000/upload", { image: base64 })
       .then((res) => {
         setUrl(res.data.url);
         setFormData({ ...formData, image: res.data.url });
-        alert("Image uploaded successfully");
+        setError("");
       })
       .then(() => {
         setLoading(false);
       })
-      .catch(console.log);
+      .catch((err) => {
+        setLoading(false);
+        if (err.response && err.response.status === 413) {
+          setError("The image is too large. Please upload a smaller file.");
+        } else {
+          setError("An error occurred during the upload. Please try again.");
+        }
+        console.log(err);
+      });
   };
 
   return (
     <main>
       <h1>Sign Up</h1>
-      <p>{message}</p>
+      <p>{error}</p>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username:</label>
