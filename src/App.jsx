@@ -22,7 +22,8 @@ import educationService from "./services/educationService";
 import ExperienceDetails from "./components/Experience/ExperienceDetails";
 import ProjectDetails from "./components/Projects/PeojectDetails";
 import EducationDetails from "./components/Education/educationDetails";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+
 import PostForm from "./components/Posts/PostForm";
 import PostDetails from "./components/Posts/postDetail";
 import CompanyDetails from "./components/myCompanies/CompnayDetails";
@@ -131,14 +132,15 @@ function App() {
   return (
     <>
       <NavBar user={user} handleSignout={handleSignout} />
-
-      <Routes>
-        {user ? (
-          <>
-            {/* <Route
+      <div className="main-content">
+        <Routes>
+          {user ? (
+            <>
+              {/* <Route
               path="/company/:companyId"
               element={<SignupForm setUser={setUser} />}
             /> */}
+
             {/* view company Details*/}
             <Route
               path="Mycompany/company/:compId"

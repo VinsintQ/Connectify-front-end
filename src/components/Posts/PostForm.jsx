@@ -93,8 +93,10 @@ const PostForm = ({ user, handleUpdatePost }) => {
   };
 
   return (
+
     <main className="">
       <h1>{postId ? <>Update post</> : <>Add post</>}</h1>
+
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="content">Message : </label>

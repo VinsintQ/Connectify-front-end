@@ -7,7 +7,7 @@ body {
 
 .dashboard-container {
   padding: 2rem;
-  padding-top: 100px;
+
   text-align: center;
 }
 
@@ -26,12 +26,16 @@ h2 {
 .add-post-link {
   display: inline-block;
   margin-bottom: 2rem;
-  padding: 0.7rem 1.5rem;
+  padding-top: 15px;
   background-color: #6366f1;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  color: black;
 }
 
 .add-post-link:hover {
