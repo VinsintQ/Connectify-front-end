@@ -18,7 +18,7 @@ body {
 
 /* Padding top to ensure content doesn't overlap with fixed navbar */
 .main-content {
-  padding-top: 70px; /* Adjust to the height of your navbar */
+  padding-top: 70px;
 }
 
 /* Ensure html and body take full height */
