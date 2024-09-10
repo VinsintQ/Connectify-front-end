@@ -12,15 +12,24 @@ const PostForm = ({ user, handleUpdatePost }) => {
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
   const { postId } = useParams();
-
   const userId = user._id;
-
   const navigate = useNavigate();
-
   const [PostData, setPostData] = useState({
     content: "",
     image: "",
   });
+ 
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      const pData = await postService.indexc(userId, postId);
+
+      setPostData(pData);
+    };
+
+    if (postId) fetchPost();
+  }, [postId]);
+
   const handleAddPost = async ({ formData, userId }) => {
     try {
       const data = await postService.add({ formData, userId });
@@ -38,7 +47,6 @@ const PostForm = ({ user, handleUpdatePost }) => {
     e.preventDefault();
     if (postId) {
       handleUpdatePost({ postId, PostData });
-      navigate("/");
     } else {
       if (PostData.content.trim() !== "") {
         handleAddPost({ formData: PostData, userId });
@@ -93,7 +101,6 @@ const PostForm = ({ user, handleUpdatePost }) => {
   };
 
   return (
-
     <main className="">
       <h1>{postId ? <>Update post</> : <>Add post</>}</h1>
 
