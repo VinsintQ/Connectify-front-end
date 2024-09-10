@@ -4,6 +4,7 @@ import { Modal, Button } from "react-bootstrap";
 import projectService from "../../services/projectService";
 import "bootstrap/dist/css/bootstrap.min.css";
 import postService from "../../services/postService";
+import CommentForm from "../commentForm/commentForm";
 
 const postDetails = ({ user }) => {
 
@@ -73,7 +74,34 @@ const postDetails = ({ user }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+
+      <div className="comments-section">
+      <CommentForm postId={postId} user={user} />
+
+      {post.comments.length === 0 ? (
+          <p>There are no comments.</p>
+        ) : (
+          post.comments.map((comment) => (
+            <div key={comment._id} className="comment">
+              <form action="" id={comment._id}>
+                <p>
+                  username : {comment.message}
+                </p>
+
+                {comment.userid === user.id ? (
+                  <button type="submit" className="delete-comment-button">
+                    delete
+                  </button>
+                ) : null}
+              </form>
+            </div>
+          ))
+        )}
+
+      </div>
     </div>
+    
   );
 };
 
