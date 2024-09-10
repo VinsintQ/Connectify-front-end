@@ -95,7 +95,7 @@ const PostDetails = ({ user }) => {
             <div key={comment._id} className="comment">
               <form action="" id={comment._id}>
                 <p>
-                  <Link to={`/profile/${user._id}`}>
+                  <Link to={`/profile/${comment.userid._id}`}>
                     {" "}
                     {comment.userid.username}
                   </Link>{" "}
