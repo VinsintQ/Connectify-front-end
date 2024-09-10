@@ -87,7 +87,7 @@ const PostForm = ({ user }) => {
   };
 
   return (
-    <main className="">
+    <main className="container">
       <h1>Add post</h1>
       <form onSubmit={handleSubmit}>
         <div>
