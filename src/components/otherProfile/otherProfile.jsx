@@ -6,7 +6,7 @@ import educationService from "../../services/educationService";
 import projectService from "../../services/projectService";
 import userServices from "../../services/userServices";
 import { useParams } from "react-router-dom";
-import "./OtherProfile.css"; // Import the CSS file here
+import "./otherProfile.css"; // Import the CSS file here
 
 const Profile = ({ user }) => {
   const { userId } = useParams();

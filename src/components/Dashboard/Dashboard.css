@@ -78,14 +78,84 @@ h2 {
 .post-content p {
   margin: 0;
   line-height: 1.5;
+  text-decoration: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1440px) {
+  .dashboard-container {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .post-card {
+    max-width: 350px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .post-card {
+    max-width: 320px;
+  }
+
+  .post-grid {
+    gap: 1.5rem;
+  }
+}
+
+/* Media queries for smaller devices like tablets and phones */
+@media screen and (max-width: 1024px) {
   .post-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 
   .post-image {
     height: 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .post-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .post-card {
+    max-width: 250px;
+  }
+
+  .post-image {
+    height: 180px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .post-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .post-card {
+    max-width: 100%;
+  }
+
+  .post-image {
+    height: 150px;
   }
 }

@@ -40,6 +40,17 @@ const NavBar = ({ user, handleSignout }) => {
             <li className={`list ${activeLink === "/" ? "active" : ""}`}>
               <Link to="/" onClick={() => handleLinkClick("/")}>
                 <span className="icon">
+                  <img
+                    className="logo"
+                    src="./NavbarLogo.png"
+                    alt="Nav bar logo"
+                  />
+                </span>
+              </Link>
+            </li>
+            <li className={`list ${activeLink === "/" ? "active" : ""}`}>
+              <Link to="/" onClick={() => handleLinkClick("/")}>
+                <span className="icon">
                   <ion-icon name="home-outline"></ion-icon>
                 </span>
                 <span className="text">Home</span>
