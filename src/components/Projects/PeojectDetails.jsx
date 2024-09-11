@@ -57,7 +57,7 @@ const ProjectDetails = ({ user }) => {
           </ul>
         </>
       )}
-   {project.userId === user._id && (
+      {project.userId === user._id && (
         <>
           <button>
             <Link to={`/project/${project._id}/update`}>Edit</Link>
