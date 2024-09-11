@@ -39,20 +39,16 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
-  
 }
 
 .user-item {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Ensures name is on the left, button on the right */
   padding: 15px;
   border-bottom: 1px solid #e0e0e0;
   transition: background-color 0.3s ease;
   font-size: 18px;
-  border-radius: 5px;
 }
-
 
 .user-item:hover {
   background-color: #f0f0f0;
@@ -62,11 +58,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: space-between;
-  flex-direction: row-reverse; /* Reverses the order of items */
 }
-
-
 
 .follow-button {
   background-color: #007bff;
@@ -76,12 +68,9 @@
   border-radius: 30px;
   cursor: pointer;
   font-size: 16px;
-  margin-left: auto; /* Ensures button stays on the right */
+  margin-right: 15px;
   transition: background-color 0.3s ease;
 }
-
-
-
 
 .follow-button:hover {
   background-color: #0056b3;
@@ -91,7 +80,6 @@
   font-size: 20px;
   color: #333;
   flex-grow: 1;
-  text-align: left; /* Aligns the username to the left */
 }
 
 @keyframes fadeIn {

@@ -54,7 +54,7 @@ const Conversation = ({
         <span className="friendName">{ConvUser?.username}</span>
       </Link>
 
-      <button className="deleteButton" onClick={handleDelete}>
+      <button className="deleteConvButton" onClick={handleDelete}>
         <ion-icon name="close-circle-outline"></ion-icon>
       </button>
     </div>

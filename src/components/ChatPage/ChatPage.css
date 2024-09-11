@@ -1,19 +1,21 @@
 /* General chat container styling */
 .chat {
   display: flex;
-  height: 88vh; /* Full viewport height */
+  height: 89vh; /* Full viewport height */
 }
 
 /* Chat list styling */
 .chatList {
   flex: 4;
-  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-y: auto;
+  background-color: #f4f4f9;
+  height: 100%;
 }
 
 .chatListWrapper {
   padding: 15px;
   height: 100%;
-  background-color: #f4f4f9; /* Light background for better readability */
+  background-color: #f4f4f9;
 }
 
 /* Search input styling */
@@ -113,7 +115,7 @@
 }
 
 /* Delete button styling */
-.deleteButton {
+.deleteConvButton {
   background: none;
   border: none;
   color: #ff0000; /* Red color for the delete icon */
@@ -126,7 +128,7 @@
 }
 
 /* Delete button hover effect */
-.deleteButton:hover {
+.deleteConvButton:hover {
   color: #cc0000; /* Darker red on hover */
 }
 
@@ -135,16 +137,17 @@
   flex: 8;
   display: flex;
   flex-direction: column;
+  height: 89vh;
 }
 
 .chatBoxWrapper {
-  padding: 15px;
+  padding: 0 15px;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #ffffff;
-  border-left: 1px solid #e0e0e0; /* Divider between chat list and chat box */
+  border-left: 1px solid #e0e0e0;
 }
 
 /* Chat messages container */

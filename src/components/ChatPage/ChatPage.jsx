@@ -19,11 +19,11 @@ const ChatPage = ({ user, userData, setuserData }) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [followers, setFollowers] = useState([]);
   const [temp, setTemp] = useState(0);
-
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("http://localhost:3000");
+    socket.current = io(BASE_URL);
 
     socket.current.on("getData", (data) => {
       setArrMessage({
