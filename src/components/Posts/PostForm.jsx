@@ -8,6 +8,8 @@ import axios from "axios";
 //Services
 import postService from "../../services/postService";
 const PostForm = ({ user, handleUpdatePost }) => {
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
@@ -18,7 +20,6 @@ const PostForm = ({ user, handleUpdatePost }) => {
     content: "",
     image: "",
   });
- 
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -80,7 +81,7 @@ const PostForm = ({ user, handleUpdatePost }) => {
     setLoading(true);
 
     axios
-      .post("http://localhost:3000/upload", { image: base64 })
+      .post(`${BASE_URL}/upload`, { image: base64 })
       .then((res) => {
         setUrl(res.data.url);
         setPostData({ ...PostData, image: res.data.url });
