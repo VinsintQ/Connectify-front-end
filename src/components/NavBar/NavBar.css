@@ -54,7 +54,7 @@ body {
 .nav ul li a {
   display: flex;
   align-items: center;
-  padding: 10px 20px; /* Space around the links */
+  padding: 10px 10px; /* Space around the links */
   text-decoration: none;
   color: #333; /* Text color */
   transition: color 0.3s ease, transform 0.3s ease; /* Smooth color and scale transition */
@@ -98,4 +98,9 @@ body {
 .nav.scrolled {
   background-color: #f8f9fa; /* Background color when scrolled */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect when scrolled */
+}
+.logo {
+  width: 40px;
+  height: 30px;
+  margin-bottom: 7px;
 }
