@@ -66,7 +66,8 @@ const ExpForm = ({ handleAddExp,handleUpdateExp,user }) => {
   };
 
   return (
-    <main className="">
+
+    <main className="expForm">
       <h1>{expId ? <>Update Experience</> : <>New Experience</>}</h1>
       <form onSubmit={handleSubmit}>
         <div>

@@ -38,7 +38,7 @@ const ProjectForm = ({ handleAddPro, user, handleUpdatePro }) => {
   };
 
   return (
-    <main className="">
+    <main className="proForm">
       <h1>{proId ? <>Update Project</> : <>New Project</>}</h1>
       <form onSubmit={handleSubmit}>
         <div>

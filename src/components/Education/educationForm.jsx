@@ -58,7 +58,7 @@ useEffect(() => {
   };
 
   return (
-    <main className="">
+    <main className="eduForm">
       <h1>{eduId ? <>Update EDucation</> : <>Add education</>}</h1>
       <form onSubmit={handleSubmit}>
         <div>
