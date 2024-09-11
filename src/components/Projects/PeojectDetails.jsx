@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import projectService from "../../services/projectService";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./projectDetails.css"; // Import the CSS file
 
 const ProjectDetails = ({ user }) => {
   const { proId } = useParams();
@@ -21,7 +22,7 @@ const ProjectDetails = ({ user }) => {
 
   // Handle confirming the deletion
   const handleConfirmDelete = async () => {
-    await projectService.deleter(proId, user);
+    await projectService.deleter(proId, user._id);
     window.location.replace("/profile");
   };
 
@@ -42,14 +43,14 @@ const ProjectDetails = ({ user }) => {
   }
 
   return (
-    <div>
-      <h3>Project Details</h3>
-      <p>Project Name: {project?.name}</p>
-      <p>Description: {project?.description}</p>
+    <div className="container">
+      <h3 className="heading">Project Details</h3>
+      <p className="details">Project Name: {project.name}</p>
+      <p className="details">Description: {project.description}</p>
 
-      {project && project.tools && project.tools.length > 0 && (
+      {project.tools && project.tools.length > 0 && (
         <>
-          <p>Tools:</p>
+          <p className="details">Tools:</p>
           <ul>
             {project.tools.map((tool) => (
               <li key={tool._id}>{tool.tool}</li>
@@ -58,18 +59,22 @@ const ProjectDetails = ({ user }) => {
         </>
       )}
       {project.userId === user._id && (
-        <>
-          <button>
+        <div className="buttons">
+          <button className="button">
             <Link to={`/project/${project._id}/update`}>Edit</Link>
           </button>
-          <button onClick={deletePro}>Delete</button>
-        </>
+          <button className="button" onClick={deletePro}>
+            Delete
+          </button>
+        </div>
       )}
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure you want to delete this project?</Modal.Body>
+        <Modal.Body>
+          Are you sure you want to delete this project?
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cancel

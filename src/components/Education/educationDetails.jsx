@@ -4,6 +4,7 @@ import { Modal, Button } from "react-bootstrap";
 import educationService from "../../services/educationService";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./educationDetails.css";
+
 const EducationDetails = ({ user }) => {
   const navigate = useNavigate();
   const { eduId } = useParams();
@@ -45,12 +46,12 @@ const EducationDetails = ({ user }) => {
   }
 
   return (
-    <div>
-      <h3>Education Details</h3>
-      <p>School : {education.School}</p>
-      <p>Degree : {education.Degree}</p>
-      <p>Start Date: {new Date(education.StartDate).toLocaleDateString()}</p>
-      <p>
+    <div className="container">
+      <h3 className="heading">Education Details</h3>
+      <p className="details">School: {education.School}</p>
+      <p className="details">Degree: {education.Degree}</p>
+      <p className="details">Start Date: {new Date(education.StartDate).toLocaleDateString()}</p>
+      <p className="details">
         End Date:{" "}
         {education.EndDate
           ? new Date(education.EndDate).toLocaleDateString()
@@ -58,18 +59,22 @@ const EducationDetails = ({ user }) => {
       </p>
 
       {education.UserId === user._id && (
-        <>
-          <button>
+        <div className="buttons">
+          <button className="button">
             <Link to={`update`}>Edit</Link>
           </button>
-          <button onClick={handleDeleteClick}>Delete</button>
-        </>
+          <button className="button" onClick={handleDeleteClick}>
+            Delete
+          </button>
+        </div>
       )}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure you want to delete this education?</Modal.Body>
+        <Modal.Body>
+          Are you sure you want to delete this education?
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>
             Cancel

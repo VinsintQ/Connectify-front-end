@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import experienceService from "../../services/experienceService";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./ExperienceDetails.css"; // Import the CSS file
 
 const ExperienceDetails = ({ user }) => {
   const { expId } = useParams();
@@ -42,30 +43,32 @@ const ExperienceDetails = ({ user }) => {
   }
 
   return (
-    <div>
-      <h3>Experience Details</h3>
-      <p>Position: {experience.position}</p>
-      <p>Company: {experience.company}</p>
-      <p>Start Date: {new Date(experience.StartDate).toLocaleDateString()}</p>
-      <p>
+    <div className="container">
+      <h3 className="heading">Experience Details</h3>
+      <p className="details">Position: {experience.position}</p>
+      <p className="details">Company: {experience.company}</p>
+      <p className="details">Start Date: {new Date(experience.StartDate).toLocaleDateString()}</p>
+      <p className="details">
         End Date:{" "}
         {experience.EndDate
           ? new Date(experience.EndDate).toLocaleDateString()
           : "Present"}
       </p>
-      {experience.description && <p>Description: {experience.description}</p>}
+      {experience.description && <p className="details">Description: {experience.description}</p>}
 
       {experience.UserId === user._id && (
-        <>
-          <button>
-            <Link to={`/experience/${experience._id}/update`}>Edit</Link>
-          </button>
-          <button onClick={deleteExp}>Delete</button>
-        </>
+        
+        <div className="buttons">
+          <Link to={`/experience/${experience._id}/update`}>
+          <button className="button">
+            Edit
+          </button></Link>
+          <button className="button" onClick={deleteExp} style={{ height: '40px' , margin: '24px'}}>Delete</button>
+        </div>
       )}
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Delete</Modal.Title>
+          <Modal.Title className="modal-title">Confirm Delete</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           Are you sure you want to delete this experience?
