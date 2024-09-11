@@ -121,10 +121,17 @@ const PostForm = ({ user, handleUpdatePost }) => {
           <input type="file" id="image" name="image" onChange={uploadImage} />
         </div>
         <div>
-          <button type="submit">
-            {" "}
-            {postId ? <>Update</> : <>Create post</>}
-          </button>
+          {postId ? (
+            loading === false ? (
+              <button type="submit"> Update </button>
+            ) : (
+              <p>Loading</p>
+            )
+          ) : loading === false ? (
+            <button type="submit">Create post </button>
+          ) : (
+            <p>Loading</p>
+          )}
         </div>
       </form>
     </main>
