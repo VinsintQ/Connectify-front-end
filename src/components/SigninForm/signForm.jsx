@@ -80,6 +80,7 @@ const SignForm = (props) => {
         setUrl(res.data.url);
         setFormData({ ...formData, image: res.data.url });
         setError("");
+        setLoading(false);
       })
       .catch((err) => {
         setLoading(false);
@@ -149,7 +150,11 @@ const SignForm = (props) => {
               onChange={handleChange}
             />
             <input type="file" name="image" onChange={uploadImage} />
-            <button type="submit">Sign Up</button>
+            {loading === false ? (
+              <button type="submit">Sign Up</button>
+            ) : (
+              <p>Loding</p>
+            )}
           </form>
         </div>
         <div className="form-container sign-in">
@@ -189,6 +194,7 @@ const SignForm = (props) => {
             <div className="toggle-panel toggle-right">
               <h1>Hello, Friend!</h1>
               <p>Enter your personal details and start your journey with us</p>
+
               <button className="hidden" onClick={toggleForm}>
                 Sign Up
               </button>
