@@ -74,7 +74,11 @@ const PostDetails = ({ user }) => {
 
   return (
     <div>
-      <h3>Post Details</h3>
+      <Link to={`/profile/${post.userId._id}`}>
+        <img src={post.userId?.image} alt="User profile photo" />
+        {post.userId.username}
+      </Link>
+
       <img src={post?.image} alt="" />
       <p>content: {post?.content}</p>
 
