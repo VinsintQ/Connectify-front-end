@@ -7,7 +7,6 @@ body {
 
 .dashboard-container {
   padding: 2rem;
-
   text-align: center;
 }
 
@@ -24,22 +23,26 @@ h2 {
 }
 
 .add-post-link {
-  display: inline-block;
-  margin-bottom: 2rem;
-  padding-top: 15px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #6366f1;
   color: #fff;
   text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  color: black;
+  height: 60px;
+  width: 60px;
+  font-size: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .add-post-link:hover {
   background-color: #4f46e5;
+  transform: scale(1.1);
 }
 
 .post-grid {
@@ -60,15 +63,10 @@ h2 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.post-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
 .post-image {
-  width: 100%;
+  width: 400px;
   height: 250px;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .post-content {
