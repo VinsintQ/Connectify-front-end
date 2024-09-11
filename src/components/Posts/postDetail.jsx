@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import postService from "../../services/postService";
 import CommentForm from "../commentForm/commentForm";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./postDetail.css";
 
 const PostDetails = ({ user }) => {
   const { postId } = useParams();
@@ -73,16 +73,18 @@ const PostDetails = ({ user }) => {
   }
 
   return (
-    <div>
-      <Link to={`/profile/${post.userId._id}`}>
-        <img src={post.userId?.image} alt="User profile photo" />
-        {post.userId.username}
-      </Link>
+    <div className="post-details-container">
+      <div className="user-profile">
+        <Link to={`/profile/${post.userId._id}`}>
+          <img src={post.userId?.image} alt="User profile photo" />
+          {post.userId.username}
+        </Link>
+      </div>
 
-      <img src={post?.image} alt="" />
-      <p>content: {post?.content}</p>
+      <img src={post?.image} alt="post image" className="posty-image" />
+      <p className="post-content">Content: {post?.content}</p>
 
-      {post.userId === user._id && (
+      {post.userId._id === user._id && (
         <>
           <button>
             <Link to={`/post/${postId}/update`}>Edit</Link>
@@ -126,17 +128,15 @@ const PostDetails = ({ user }) => {
                   </Link>
                   : {comment.message}
                 </p>
-                {comment.userid._id === user._id ? (
-                  <>
-                    <button
-                      type="button"
-                      className="delete-comment-button"
-                      onClick={() => deleteComment(comment._id)}
-                    >
-                      Delete
-                    </button>
-                  </>
-                ) : null}
+                {comment.userid._id === user._id && (
+                  <button
+                    type="button"
+                    className="delete-comment-button"
+                    onClick={() => deleteComment(comment._id)}
+                  >
+                    Delete
+                  </button>
+                )}
               </form>
             </div>
           ))
