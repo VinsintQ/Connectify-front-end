@@ -19,17 +19,29 @@ feature to add :
 
 - [ ] Admin to manage to website .
 
+## user stories
+
+- as a user i should be able to sign up and sign in to my account
+
+- as a user i want to be able to be able to add information's about myself
+
+- as a user i want to be able to make posts and interact on the posts
+
+- as a user i want to be able to add and interact with people
+
 ## pictures from the app
 
-![Landing Page](./pictures/landing.png)
+![Logo ](https://res.cloudinary.com/dqqmgoftf/image/upload/v1726078144/c3j9xv8ni8hmrevhgtra.png)
 
-![posts page](./pictures/signin.png)
+![Landing Page](./pictures/LandinPage.png)
 
-![user profile](./pictures/showBookings.png)
+![posts page](./pictures/PostPage.png)
 
-![chat page](./pictures/restauratndetails.png)
+![user profile](./pictures/Profile.png)
 
-![search page](./pictures/restauratndetails.png)
+![chat page](./pictures/chat.png)
+
+![search page](./pictures/search.png)
 
 ## technologies used
 
