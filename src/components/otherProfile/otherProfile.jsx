@@ -6,7 +6,7 @@ import educationService from "../../services/educationService";
 import projectService from "../../services/projectService";
 import userServices from "../../services/userServices";
 import { useParams } from "react-router-dom";
-import "./otherProfile.css"; // Import the CSS file here
+import "./otherProfile.css"; 
 
 const Profile = ({ user }) => {
   const { userId } = useParams();
@@ -22,7 +22,7 @@ const Profile = ({ user }) => {
   const projectsToShow = showAllProjects ? projects : projects.slice(0, 2);
   const experiencesToShow = showAll ? experiences : experiences.slice(0, 2);
 
-  // get user profile
+ 
   useEffect(() => {
     const fetchProfile = async () => {
       const profile = await userServices.show(userId);
@@ -31,7 +31,7 @@ const Profile = ({ user }) => {
     fetchProfile();
   }, [userId]);
 
-  // get user experiences
+ 
   useEffect(() => {
     const fetchexp = async () => {
       const exp = await experienceService.indexc(userId);
@@ -40,7 +40,7 @@ const Profile = ({ user }) => {
     fetchexp();
   }, [userId]);
 
-  // get user education
+ 
   useEffect(() => {
     const fetchedu = async () => {
       const edu = await educationService.indexc(userId);
@@ -49,7 +49,7 @@ const Profile = ({ user }) => {
     fetchedu();
   }, [userId]);
 
-  // get user projects
+ 
   useEffect(() => {
     const fetchpro = async () => {
       const pro = await projectService.indexc(userId);

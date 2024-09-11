@@ -1,4 +1,4 @@
-// src/components/Dashboard.jsx
+
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import postService from "../../services/postService";
@@ -27,7 +27,7 @@ const Dashboard = ({ user }) => {
       <div className="post-grid">
         {allpost?.map((post) => {
           return (
-            <Link to={`/post/${post._id}`}>
+            <Link key={post._id} to={`/post/${post._id}`}>
               <div key={post._id} className="post-card">
                 <img className="post-image" src={post?.image} alt="Post" />
                 <div className="post-content">

@@ -14,44 +14,44 @@ const PostDetails = ({ user }) => {
   const [refresh, setRefresh] = useState(false);
   const userId = user._id;
 
-  // Open the post deletion modal
+  
   const deletePost = () => {
     setShowPostModal(true);
   };
 
-  // Handle closing the post deletion modal
+ 
   const handlePostModalClose = () => {
     setShowPostModal(false);
   };
 
-  // Confirm and delete the post
+
   const handleConfirmDeletePost = async () => {
     await postService.deleter(userId, postId);
     window.location.replace("/");
   };
 
-  // Open the comment deletion modal
+  
   const deleteComment = (commentId) => {
-    setCommentToDelete(commentId); // Track which comment to delete
+    setCommentToDelete(commentId); 
     setShowCommentModal(true);
   };
 
-  // Handle closing the comment deletion modal
+
   const handleCommentModalClose = () => {
     setShowCommentModal(false);
-    setCommentToDelete(null); // Clear the tracked comment
+    setCommentToDelete(null); 
   };
 
-  // Confirm and delete the comment
+  
   const handleConfirmDeleteComment = async () => {
     if (commentToDelete) {
       await postService.deleteComment(userId, postId, commentToDelete);
-      setRefresh((prev) => !prev); // Refresh after deleting the comment
-      handleCommentModalClose(); // Close the modal
+      setRefresh((prev) => !prev); 
+      handleCommentModalClose(); 
     }
   };
 
-  // Fetch post details
+ 
   useEffect(() => {
     async function getPost() {
       const postData = await postService.indexc(userId, postId);

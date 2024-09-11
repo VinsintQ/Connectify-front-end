@@ -3,24 +3,24 @@ import { useParams, Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import experienceService from "../../services/experienceService";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./ExperienceDetails.css"; // Import the CSS file
+import "./ExperienceDetails.css"; 
 
 const ExperienceDetails = ({ user }) => {
   const { expId } = useParams();
   const [experience, setExperience] = useState();
   const [showModal, setShowModal] = useState(false);
 
-  // Handle opening the modal
+  
   const deleteExp = () => {
     setShowModal(true);
   };
 
-  // Handle closing the modal
+
   const handleClose = () => {
     setShowModal(false);
   };
 
-  // Handle confirming the deletion
+
   const handleConfirm = async () => {
     await experienceService.deleter(expId, user._id);
     window.location.replace("/profile");
@@ -54,7 +54,7 @@ const ExperienceDetails = ({ user }) => {
           ? new Date(experience.EndDate).toLocaleDateString()
           : "Present"}
       </p>
-      {experience.description && <p className="details">Description: {experience.description}</p>}
+      {experience.Description && <p className="details">Description: {experience.Description}</p>}
 
       {experience.UserId === user._id && (
         

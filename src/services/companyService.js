@@ -20,7 +20,6 @@ const owned = async (userId) => {
     let ownedCompanies = await res.json();
 
     return ownedCompanies.filter((company) => company.owner === userId);
-    // return res.json();
   } catch (error) {
     console.error(error);
   }

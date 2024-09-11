@@ -32,7 +32,7 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: rgba(99, 102, 241, 0.7); /* Use your preferred color */
+  background: rgba(99, 102, 241, 0.7); 
   animation: float 25s infinite ease-in-out;
   z-index: 0;
   opacity: 0.6;

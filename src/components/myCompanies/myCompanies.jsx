@@ -1,4 +1,4 @@
-// src/components/Dashboard.jsx
+
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import companyService from "../../services/companyService";
@@ -13,7 +13,7 @@ const myCompanies = ({ user }) => {
       try {
         const companies = await companyService.owned(userId);
         setallCompanies(companies);
-        console.log(user._id);
+        
       } catch (error) {
         console.error("Failed to companies:", error);
       }

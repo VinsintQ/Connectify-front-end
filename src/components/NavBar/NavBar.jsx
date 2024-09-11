@@ -4,10 +4,10 @@ import "./NavBar.css";
 
 const NavBar = ({ user, handleSignout }) => {
   const [activeLink, setActiveLink] = useState(null);
-  const location = useLocation(); // To get the current route path
+  const location = useLocation(); 
 
   useEffect(() => {
-    // Handle scroll event to add 'scrolled' class
+    
     const handleScroll = () => {
       const nav = document.querySelector(".nav");
       if (window.scrollY > 50) {
@@ -19,12 +19,12 @@ const NavBar = ({ user, handleSignout }) => {
 
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup event listener on component unmount
+    
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    // Set the active link based on the current route
+    
     setActiveLink(location.pathname);
   }, [location]);
 

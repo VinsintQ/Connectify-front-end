@@ -1,42 +1,42 @@
-/* Reset margin and padding for all elements */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Main container for the navbar */
+
 .nav {
-  position: relative; /* Fixed position to stay at the top */
+  position: relative;
   top: 0;
   left: 0;
-  width: 100%; /* Full width of the page */
-  height: 70px; /* Height of the navbar */
-  background-color: #ffffff; /* Initial background color */
+  width: 100%; 
+  height: 70px; 
+  background-color: #ffffff; 
   display: flex;
-  justify-content: space-between; /* Space between left and right sections */
+  justify-content: space-between; 
   align-items: center;
-  border-bottom: 1px solid #ddd; /* Optional bottom border */
-  z-index: 1000; /* Ensure it stays on top of other content */
-  padding: 0 20px; /* Padding for left and right sides */
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  border-bottom: 1px solid #ddd; 
+  z-index: 1000; 
+  padding: 0 20px; 
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
-/* Ensure body content is not overlapped by navbar */
+
 body {
-  padding-top: 70px; /* Space for the fixed navbar */
+  padding-top: 70px; 
 }
 
-/* NavBar list styling */
+
 .nav-left {
   display: flex;
-  flex-grow: 1; /* Grow to fill available space */
-  margin-right: auto; /* Pushes the nav-left items to the left */
+  flex-grow: 1; 
+  margin-right: auto; 
 }
 
 .nav-right {
   display: flex;
-  align-items: center; /* Align items vertically */
+  align-items: center;
 }
 
 .nav ul {
@@ -48,57 +48,55 @@ body {
 
 .nav ul li {
   position: relative;
-  margin-right: 20px; /* Space between nav items */
+  margin-right: 20px;
 }
 
 .nav ul li a {
   display: flex;
   align-items: center;
-  padding: 10px 10px; /* Space around the links */
+  padding: 10px 10px; 
   text-decoration: none;
-  color: #333; /* Text color */
-  transition: color 0.3s ease, transform 0.3s ease; /* Smooth color and scale transition */
+  color: #333;
+  transition: color 0.3s ease, transform 0.3s ease; 
 }
 
 .nav ul li a:hover {
-  color: #007bff; /* Color on hover */
-  transform: scale(1.05); /* Slightly increase the size on hover */
+  color: #007bff;
+  transform: scale(1.05); 
 }
 
 .nav ul li a .icon {
-  font-size: 1.5em; /* Icon size */
-  margin-right: 8px; /*
-/* Space between icon and text */
+  font-size: 1.5em; 
+  margin-right: 8px; 
 }
 
 .nav ul li.active a {
-  color: #007bff; /* Active link color */
-  font-weight: bold; /* Bold text for active link */
+  color: #007bff; 
+  font-weight: bold; 
 }
 
-/* Styling for sign-out button */
+
 .nav-right .signout {
-  margin-left: 20px; /* Space between nav items */
+  margin-left: 20px; 
 }
 
 .nav-right .signout a {
   display: flex;
   align-items: center;
-  padding: 10px 20px; /* Space around the link */
+  padding: 10px 20px; 
   text-decoration: none;
-  color: #dc3545; /* Color for sign-out */
-  transition: color 0.3s ease, transform 0.3s ease; /* Smooth color and scale transition */
+  color: #dc3545;
+  transition: color 0.3s ease, transform 0.3s ease; 
 }
 
 .nav-right .signout a:hover {
-  color: #c82333; /* Darker color on hover */
-  transform: scale(1.05); /* Slightly increase the size on hover */
+  color: #c82333; 
+  transform: scale(1.05); 
 }
 
-/* Add shadow and change background color on scroll */
 .nav.scrolled {
-  background-color: #f8f9fa; /* Background color when scrolled */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect when scrolled */
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .logo {
@@ -107,50 +105,48 @@ body {
   margin-bottom: 7px;
 }
 
-/* Responsive Styles */
 
-/* For tablets and smaller screens */
 @media screen and (max-width: 768px) {
   .nav {
-    flex-direction: column; /* Stack items vertically */
-    height: auto; /* Adjust height for stacked layout */
+    flex-direction: column;
+    height: auto; 
   }
 
   .nav-left {
-    margin-right: 0; /* Remove margin for stacked layout */
+    margin-right: 0; 
   }
 
   .nav-right {
-    margin-top: 10px; /* Add space between nav sections */
+    margin-top: 10px;
   }
 
   .nav ul {
-    flex-direction: column; /* Stack nav items vertically */
+    flex-direction: column; 
   }
 
   .nav ul li {
-    margin-right: 0; /* Remove right margin */
-    margin-bottom: 10px; /* Add space between nav items */
+    margin-right: 0; 
+    margin-bottom: 10px; 
   }
 
   .nav ul li a {
-    padding: 10px; /* Adjust padding for smaller screens */
+    padding: 10px; 
   }
 
   .nav-right .signout {
-    margin-left: 0; /* Remove left margin */
-    margin-top: 10px; /* Add space above sign-out button */
+    margin-left: 0;
+    margin-top: 10px; 
   }
 }
 
-/* For mobile phones */
+
 @media screen and (max-width: 480px) {
   .nav ul li a {
-    font-size: 0.9em; /* Smaller font size for mobile */
+    font-size: 0.9em; 
   }
 
   .logo {
-    width: 30px; /* Smaller logo size for mobile */
+    width: 30px; 
     height: 20px;
   }
 }

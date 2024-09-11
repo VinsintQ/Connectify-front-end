@@ -1,4 +1,4 @@
-//restaurant form
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EducationService from "../../services/educationService";

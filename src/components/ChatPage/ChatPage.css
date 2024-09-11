@@ -1,10 +1,10 @@
-/* General chat container styling */
+
 .chat {
   display: flex;
-  height: 89vh; /* Full viewport height */
+  height: 89vh; 
 }
 
-/* Chat list styling */
+
 .chatList {
   flex: 4;
   overflow-y: auto;
@@ -18,7 +18,7 @@
   background-color: #f4f4f9;
 }
 
-/* Search input styling */
+
 .SearchInput {
   width: 100%;
   padding: 10px;
@@ -29,16 +29,16 @@
   font-size: 14px;
 }
 
-/* Search container styling */
+
 .searchContainer {
   position: relative;
 }
 
-/* Dropdown list styling */
+
 .dropdown {
   position: absolute;
-  width: 100%; /* Set to a percentage of the search input width */
-  max-width: 300px; /* Adjust to your desired maximum width */
+  width: 100%; 
+  max-width: 300px; 
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -46,7 +46,7 @@
   max-height: 300px;
   overflow-y: auto;
   z-index: 1;
-  left: 0; /* Align with the left edge of the search input */
+  left: 0; 
 }
 
 .dropdown ul {
@@ -63,30 +63,30 @@
 }
 
 .dropdown li:hover {
-  background-color: #f1f1f1; /* Light grey background on hover */
+  background-color: #f1f1f1; 
 }
 
-/* Individual conversation styling */
+
 .conversation {
   display: flex;
   align-items: center;
   padding: 12px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background-color: #ffffff; /* White background for each conversation */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  background-color: #ffffff; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; 
   position: relative;
   cursor: pointer;
 }
 
-/* Hover effect for conversation items */
+
 .conversation:hover {
-  background-color: #e0e0e0; /* Light grey background on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover */
+  background-color: #e0e0e0; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Image styling within conversations */
+
 .conversation img {
   width: 50px;
   height: 50px;
@@ -95,15 +95,15 @@
   margin-right: 15px;
 }
 
-/* User name styling */
+
 .friendName {
   font-size: 16px;
   font-weight: 500;
-  color: #333; /* Dark grey text color */
-  margin-right: auto; /* Pushes the name to the left */
+  color: #333; 
+  margin-right: auto; 
 }
 
-/* Online status indicator */
+
 .chatOnlineBadge {
   width: 12px;
   height: 12px;
@@ -114,12 +114,12 @@
   right: 10px;
 }
 
-/* Delete button styling */
+
 .deleteConvButton {
   background: none;
   border: none;
-  color: #ff0000; /* Red color for the delete icon */
-  font-size: 24px; /* Adjust size as needed */
+  color: #ff0000; 
+  font-size: 24px; 
   cursor: pointer;
   position: absolute;
   right: 10px;
@@ -127,12 +127,12 @@
   transform: translateY(-50%);
 }
 
-/* Delete button hover effect */
+
 .deleteConvButton:hover {
-  color: #cc0000; /* Darker red on hover */
+  color: #cc0000; 
 }
 
-/* Chat box styling */
+
 .chatBox {
   flex: 8;
   display: flex;
@@ -150,13 +150,13 @@
   border-left: 1px solid #e0e0e0;
 }
 
-/* Chat messages container */
+
 .chatBoxTop {
   flex: 1;
-  overflow-y: auto; /* Enable scrolling within chat box */
+  overflow-y: auto; 
 }
 
-/* Chat messages styling */
+
 .message {
   display: flex;
   flex-direction: column;
@@ -205,7 +205,7 @@
   color: #888;
 }
 
-/* Input area styling */
+
 .chatBoxBottom {
   margin-top: 5px;
   display: flex;
@@ -234,12 +234,12 @@
   transition: background-color 0.3s ease;
 }
 
-/* Send button hover effect */
+
 .sendButton:hover {
-  background-color: #0056b3; /* Darker shade of blue on hover */
+  background-color: #0056b3; 
 }
 
-/* No chat text styling */
+
 .noChatText {
   text-align: center;
   font-size: 18px;

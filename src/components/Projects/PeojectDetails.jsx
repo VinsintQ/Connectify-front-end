@@ -3,24 +3,24 @@ import { useParams, Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import projectService from "../../services/projectService";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./projectDetails.css"; // Import the CSS file
+import "./projectDetails.css"; 
 
 const ProjectDetails = ({ user }) => {
   const { proId } = useParams();
   const [project, setProject] = useState();
   const [showModal, setShowModal] = useState(false);
 
-  // Handle opening the modal
+ 
   const deletePro = () => {
     setShowModal(true);
   };
 
-  // Handle closing the modal
+ 
   const handleClose = () => {
     setShowModal(false);
   };
 
-  // Handle confirming the deletion
+
   const handleConfirmDelete = async () => {
     await projectService.deleter(proId, user._id);
     window.location.replace("/profile");

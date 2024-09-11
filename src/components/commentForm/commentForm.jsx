@@ -11,16 +11,16 @@ const CommentForm = ({postId , user,onCommentAdded}) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
 
-    setIsSubmitting(true); // Disable submit button while submitting
+    setIsSubmitting(true); 
 
     try {
-      // Wait for the comment to be created
+      
       await postService.createComment(user._id, postId, formData);
 
-      // Clear the form
+      
       setFormData({ message: '' });
 
-      // Trigger the parent callback to refresh the comments
+     
       onCommentAdded();
     } catch (error) {
       console.error('Error creating comment:', error);

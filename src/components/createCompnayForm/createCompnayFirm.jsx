@@ -6,7 +6,7 @@ import companyService from "../../services/companyService";
 
 const createCompany = (props) => {
   const navigate = useNavigate();
-  // const [message, setMessage] = useState([""]);
+  
   const [formData, setFormData] = useState({
     name: "",
     industry: "",
@@ -43,9 +43,7 @@ const createCompany = (props) => {
   const { name, industry,} =
     formData;
 
-  // const isFormInvalid = () => {
-  //   return !(username && password && password === passwordConf);
-  // };
+
 
   return (
     <main>
