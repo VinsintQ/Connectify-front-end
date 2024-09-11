@@ -13,3 +13,21 @@
 .conversation:hover {
   background-color: rgb(222, 221, 221);
 }
+
+/* Delete button styling */
+.deleteConvButton {
+  background: none;
+  border: none;
+  color: #ff0000; /* Red color for the delete icon */
+  font-size: 24px; /* Adjust size as needed */
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Delete button hover effect */
+.deleteConvButton:hover {
+  color: #cc0000 !important; /* Darker red on hover */
+}
