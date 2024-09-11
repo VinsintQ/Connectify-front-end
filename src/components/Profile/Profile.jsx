@@ -5,7 +5,7 @@ import experienceService from "../../services/experienceService";
 import educationService from "../../services/educationService";
 import projectService from "../../services/projectService";
 import { useParams } from "react-router-dom";
-
+import "./Profile.css";
 const Profile = ({ user }) => {
   const [projects, setProjects] = useState([]);
   const [experiences, setExperiences] = useState([]);
@@ -51,90 +51,87 @@ const Profile = ({ user }) => {
     fetchpro();
   }, [user]);
   return (
-    <div>
+    <div className="profile-container">
       <h1>Profile</h1>
       {profile && (
-        <div>
+        <div className="profile-header">
           <img src={profile?.image} alt="Profile image" />
-          <p>Name : {profile.name}</p>
-          <p>Email : {profile.email}</p>
-          <p>Username : {profile.username}</p>
-          <p>PhoneNum : {profile.phone}</p>
-          <p>Occupation : {profile.occupation}</p>
-          <p>Followers : {profile.Followers?.length}</p>
+          <div>
+            <p>Name: {profile.name}</p>
+            <p>Email: {profile.email}</p>
+            <p>Username: {profile.username}</p>
+            <p>PhoneNum: {profile.phone}</p>
+            <p>Occupation: {profile.occupation}</p>
+            <p>Followers: {profile.Followers?.length}</p>
+          </div>
         </div>
       )}
-      <div>
-        <h3>Experiences</h3>
-        <button>
-          <Link to="/addExp">Add</Link>
-        </button>
 
-        {experiencesToShow.map((exp, index) => (
-          <div key={exp._id}>
-            <br />
-            <div>
+      <div className="sections-container">
+        <div className="section">
+          <h3>Experiences</h3>
+          <button>
+            <Link to="/addExp">
+              <span className="the-lord">Add</span>
+            </Link>
+          </button>
+          {experiencesToShow.map((exp) => (
+            <div key={exp._id}>
               <Link to={`/experience/${exp._id}`}>
                 <p>
                   Position: {exp.position} Company: {exp.company}
                 </p>
               </Link>
             </div>
-          </div>
-        ))}
+          ))}
+          {experiences.length > 2 && (
+            <button onClick={() => setShowAll(!showAll)}>
+              {showAll ? "Show Less" : "Show More"}
+            </button>
+          )}
+        </div>
 
-        {experiences.length > 2 && (
-          <button onClick={() => setShowAll(!showAll)}>
-            {showAll ? "Show Less" : "Show More"}
+        <div className="section">
+          <h3>Education</h3>
+          <button>
+            <Link to="/addEducation">
+              <span className="the-lord">Add</span>
+            </Link>
           </button>
-        )}
-      </div>
-
-      <div>
-        <h3>Education</h3>
-        <button>
-          <Link to="/addEducation">Add</Link>
-        </button>
-
-        {educationsToShow.map((edu) => (
-          <div key={edu._id}>
-            <br />
-            <div>
+          {educationsToShow.map((edu) => (
+            <div key={edu._id}>
               <Link to={`/education/${edu._id}`}>
-                <p>School : {edu?.School}</p>
+                <p>School: {edu.School}</p>
               </Link>
             </div>
-          </div>
-        ))}
+          ))}
+          {educations.length > 2 && (
+            <button onClick={() => setShowAllEdu(!showAllEdu)}>
+              {showAllEdu ? "Show Less" : "Show More"}
+            </button>
+          )}
+        </div>
 
-        {educations.length > 2 && (
-          <button onClick={() => setShowAllEdu(!showAllEdu)}>
-            {showAllEdu ? "Show Less" : "Show More"}
+        <div className="section">
+          <h3>Projects</h3>
+          <button>
+            <Link to="/addproject">
+              <span className="the-lord">Add</span>
+            </Link>
           </button>
-        )}
-      </div>
-      <div>
-        <h3>Projects</h3>
-        <button>
-          <Link to="/addproject">Add</Link>
-        </button>
-
-        {projectsToShow?.map((pro) => (
-          <div key={pro._id}>
-            <br />
-            <div>
+          {projectsToShow.map((pro) => (
+            <div key={pro._id}>
               <Link to={`/project/${pro._id}`}>
-                <p>Project Name: {pro?.name}</p>
+                <p>Project Name: {pro.name}</p>
               </Link>
             </div>
-          </div>
-        ))}
-
-        {projects.length > 2 && (
-          <button onClick={() => setShowAllProjects(!showAllProjects)}>
-            {showAllProjects ? "Show Less" : "Show More"}
-          </button>
-        )}
+          ))}
+          {projects.length > 2 && (
+            <button onClick={() => setShowAllProjects(!showAllProjects)}>
+              {showAllProjects ? "Show Less" : "Show More"}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

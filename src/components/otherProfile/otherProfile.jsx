@@ -6,6 +6,7 @@ import educationService from "../../services/educationService";
 import projectService from "../../services/projectService";
 import userServices from "../../services/userServices";
 import { useParams } from "react-router-dom";
+import "./OtherProfile.css"; // Import the CSS file here
 
 const Profile = ({ user }) => {
   const { userId } = useParams();
@@ -18,10 +19,10 @@ const Profile = ({ user }) => {
   const [educations, setEducations] = useState([]);
 
   const educationsToShow = showAllEdu ? educations : educations.slice(0, 2);
-
   const projectsToShow = showAllProjects ? projects : projects.slice(0, 2);
   const experiencesToShow = showAll ? experiences : experiences.slice(0, 2);
-  //get user profile
+
+  // get user profile
   useEffect(() => {
     const fetchProfile = async () => {
       const profile = await userServices.show(userId);
@@ -30,7 +31,7 @@ const Profile = ({ user }) => {
     fetchProfile();
   }, [userId]);
 
-  //get user experiences
+  // get user experiences
   useEffect(() => {
     const fetchexp = async () => {
       const exp = await experienceService.indexc(userId);
@@ -38,7 +39,8 @@ const Profile = ({ user }) => {
     };
     fetchexp();
   }, [userId]);
-  //get user education
+
+  // get user education
   useEffect(() => {
     const fetchedu = async () => {
       const edu = await educationService.indexc(userId);
@@ -47,6 +49,7 @@ const Profile = ({ user }) => {
     fetchedu();
   }, [userId]);
 
+  // get user projects
   useEffect(() => {
     const fetchpro = async () => {
       const pro = await projectService.indexc(userId);
@@ -54,82 +57,83 @@ const Profile = ({ user }) => {
     };
     fetchpro();
   }, [userId]);
+
   return (
-    <div>
+    <div className="profile-container">
       <h1>Profile</h1>
       {profile && (
-        <div>
+        <div className="profile-header">
           <img src={profile?.image} alt="profile image" />
-          <p>Name : {profile.name}</p>
-          <p>Email : {profile.email}</p>
-          <p>Username : {profile.username}</p>
-          <p>PhoneNum : {profile.phone}</p>
-          <p>Occupation : {profile.occupation}</p>
-          <p>Followers : {profile.Followers?.length}</p>
+          <div>
+            <p>Name : {profile.name}</p>
+            <p>Email : {profile.email}</p>
+            <p>Username : {profile.username}</p>
+            <p>PhoneNum : {profile.phone}</p>
+            <p>Occupation : {profile.occupation}</p>
+            <p>Followers : {profile.Followers?.length}</p>
+          </div>
         </div>
       )}
-      <div>
-        <h3>Experiences</h3>
 
-        {experiencesToShow.map((exp, index) => (
-          <div key={exp._id}>
-            <br />
-            <div>
-              <Link to={`/experience/${exp._id}`}>
-                <p>
-                  Position: {exp.position} Company: {exp.company}
-                </p>
-              </Link>
+      <div className="sections-container">
+        <div className="section">
+          <h3>Experiences</h3>
+          {experiencesToShow.map((exp, index) => (
+            <div key={exp._id}>
+              <br />
+              <div>
+                <Link to={`/experience/${exp._id}`}>
+                  <p>
+                    Position: {exp.position} Company: {exp.company}
+                  </p>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+          {experiences.length > 2 && (
+            <button onClick={() => setShowAll(!showAll)}>
+              {showAll ? "Show Less" : "Show More"}
+            </button>
+          )}
+        </div>
 
-        {experiences.length > 2 && (
-          <button onClick={() => setShowAll(!showAll)}>
-            {showAll ? "Show Less" : "Show More"}
-          </button>
-        )}
-      </div>
-
-      <div>
-        <h3>Education</h3>
-
-        {educationsToShow.map((edu) => (
-          <div key={edu._id}>
-            <br />
-            <div>
-              <Link to={`/education/${edu._id}`}>
-                <p>School : {edu?.School}</p>
-              </Link>
+        <div className="section">
+          <h3>Education</h3>
+          {educationsToShow.map((edu) => (
+            <div key={edu._id}>
+              <br />
+              <div>
+                <Link to={`/education/${edu._id}`}>
+                  <p>School : {edu?.School}</p>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+          {educations.length > 2 && (
+            <button onClick={() => setShowAllEdu(!showAllEdu)}>
+              {showAllEdu ? "Show Less" : "Show More"}
+            </button>
+          )}
+        </div>
 
-        {educations.length > 2 && (
-          <button onClick={() => setShowAllEdu(!showAllEdu)}>
-            {showAllEdu ? "Show Less" : "Show More"}
-          </button>
-        )}
-      </div>
-      <div>
-        <h3>Projects</h3>
-
-        {projectsToShow?.map((pro) => (
-          <div key={pro._id}>
-            <br />
-            <div>
-              <Link to={`/project/${pro._id}`}>
-                <p>Project Name: {pro?.name}</p>
-              </Link>
+        <div className="section">
+          <h3>Projects</h3>
+          {projectsToShow?.map((pro) => (
+            <div key={pro._id}>
+              <br />
+              <div>
+                <Link to={`/project/${pro._id}`}>
+                  <p>Project Name: {pro?.name}</p>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
-
-        {projects.length > 2 && (
-          <button onClick={() => setShowAllProjects(!showAllProjects)}>
-            {showAllProjects ? "Show Less" : "Show More"}
-          </button>
-        )}
+          ))}
+          {projects.length > 2 && (
+            <button onClick={() => setShowAllProjects(!showAllProjects)}>
+              {showAllProjects ? "Show Less" : "Show More"}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
