@@ -42,7 +42,7 @@ const NavBar = ({ user, handleSignout }) => {
                 <span className="icon">
                   <img
                     className="logo"
-                    src="./NavbarLogo.png"
+                    src="NavbarLogo.png"
                     alt="Nav bar logo"
                   />
                 </span>
