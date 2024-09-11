@@ -1,10 +1,10 @@
-//restaurant form
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EducationService from "../../services/educationService";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import "./PostForm.css";
 //Services
 import postService from "../../services/postService";
 const PostForm = ({ user, handleUpdatePost }) => {
@@ -102,39 +102,39 @@ const PostForm = ({ user, handleUpdatePost }) => {
   };
 
   return (
-    <main className="">
-      <h1>{postId ? <>Update post</> : <>Add post</>}</h1>
+    <main className="postForm">
+  <h1>{postId ? <>Update post</> : <>Add post</>}</h1>
+  <form onSubmit={handleSubmit}>
+    <div>
+      <label htmlFor="content">Message: </label>
+      <input
+        type="text"
+        id="content"
+        value={PostData.content}
+        name="content"
+        onChange={handleChange}
+      />
+    </div>
+    <div>
+      <label htmlFor="image">Post Image:</label>
+      <input type="file" id="image" name="image" onChange={uploadImage} />
+    </div>
+    <div>
+      {postId ? (
+        loading === false ? (
+          <button type="submit">Update</button>
+        ) : (
+          <p>Loading</p>
+        )
+      ) : loading === false ? (
+        <button type="submit">Create post</button>
+      ) : (
+        <p>Loading</p>
+      )}
+    </div>
+  </form>
+</main>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="content">Message : </label>
-          <input
-            type="content"
-            id="content"
-            value={PostData.content}
-            name="content"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="confirm">Post Image:</label>
-          <input type="file" id="image" name="image" onChange={uploadImage} />
-        </div>
-        <div>
-          {postId ? (
-            loading === false ? (
-              <button type="submit"> Update </button>
-            ) : (
-              <p>Loading</p>
-            )
-          ) : loading === false ? (
-            <button type="submit">Create post </button>
-          ) : (
-            <p>Loading</p>
-          )}
-        </div>
-      </form>
-    </main>
   );
 };
 
