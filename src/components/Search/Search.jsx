@@ -100,7 +100,7 @@ const Search = ({ randomNumArr, users, user, sameOccupation }) => {
                     <span className="username">{user.username}</span>
                   </Link>
 
-                  <span> :{user.occupation}</span>
+                  <span> {user.occupation}</span>
                 </div>
               </li>
             ))
@@ -134,11 +134,11 @@ const Search = ({ randomNumArr, users, user, sameOccupation }) => {
                         </button>
                       )}
                       <span className="username">
-                        <Link to={`/profile/${occupationFromArr._id}`}>
+                        <Link to={`/profile/${occupationFromArr._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                           {occupationFromArr.username}
                         </Link>
                       </span>
-                      <span> :{occupationFromArr.occupation}</span>
+                      <span> {occupationFromArr.occupation}</span>
                     </div>
                   </li>
                 );
