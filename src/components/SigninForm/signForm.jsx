@@ -5,6 +5,8 @@ import axios from "axios";
 import "./signform.css";
 
 const SignForm = (props) => {
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
@@ -73,7 +75,7 @@ const SignForm = (props) => {
     setLoading(true);
 
     axios
-      .post("http://localhost:3000/upload", { image: base64 })
+      .post(`${BASE_URL}/upload`, { image: base64 })
       .then((res) => {
         setUrl(res.data.url);
         setFormData({ ...formData, image: res.data.url });
