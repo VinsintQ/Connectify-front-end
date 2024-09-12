@@ -55,3 +55,8 @@ feature to add :
 - vercel
 - bootstrap
 - socket.io
+
+## credits 
+
+- cloudinary for upload images
+  
