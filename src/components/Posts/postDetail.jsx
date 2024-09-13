@@ -86,7 +86,7 @@ const PostDetails = ({ user }) => {
 
       {post.userId._id === user._id && (
         <>
-          <button>
+          <button id="editButton">
             <Link to={`/post/${postId}/update`}>Edit</Link>
           </button>
           <button onClick={deletePost}>Delete</button>
