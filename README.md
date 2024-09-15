@@ -13,7 +13,7 @@
 A website where you can chat with others and add education , project, experience to your profile and see others profile , adding posts and comment on a posts
 feature to add :
 
-- [x] user able to apply on a jobs .
+- [ ] user able to apply on a jobs .
 
 - [ ] company able to post a jobs .
 
