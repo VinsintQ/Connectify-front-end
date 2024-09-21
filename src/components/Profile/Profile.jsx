@@ -53,6 +53,9 @@ const Profile = ({ user }) => {
   return (
     <div className="profile-container">
       <h1>Profile</h1>
+      <Link to={`/profile/update/${user._id}`}>
+              <span className="the-lord">edit profile details</span>
+            </Link>
       {profile && (
         <div className="profile-header">
           <img src={profile?.image} alt="Profile image" />

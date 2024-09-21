@@ -7,7 +7,7 @@ import ChatPage from "./components/ChatPage/ChatPage";
 import NavBar from "./components/NavBar/NavBar";
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
-
+import UpdateProfileForm from "./components/updateProfile/updateProfile";
 import Search from "./components/Search/Search";
 import Profile from "./components/Profile/Profile";
 import MyCompanies from "./components/myCompanies/myCompanies";
@@ -150,6 +150,7 @@ function App() {
               />
               <Route path="/" element={<Dashboard user={user} />} />
               <Route path="/profile" element={<Profile user={user} />} />
+              <Route path="/profile/update/:userId" element={<UpdateProfileForm user={user} />} />
 
               <Route
                 path="/profile/:userId"
