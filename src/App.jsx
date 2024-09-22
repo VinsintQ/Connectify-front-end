@@ -150,7 +150,16 @@ function App() {
               />
               <Route path="/" element={<Dashboard user={user} />} />
               <Route path="/profile" element={<Profile user={user} />} />
-              <Route path="/profile/update/:userId" element={<UpdateProfileForm user={user} />} />
+              <Route
+                path="/profile/update/:userId"
+                element={
+                  <UpdateProfileForm
+                    user={user}
+                    userData={userData}
+                    setuserData={setuserData}
+                  />
+                }
+              />
 
               <Route
                 path="/profile/:userId"

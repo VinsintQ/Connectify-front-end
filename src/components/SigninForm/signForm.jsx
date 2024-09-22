@@ -136,6 +136,14 @@ const SignForm = (props) => {
               onChange={handleChange}
             />
             <input
+              className="spaced-out"
+              type="text"
+              placeholder="Occupation"
+              name="occupation"
+              value={formData.occupation}
+              onChange={handleChange}
+            />
+            <input
               type="password"
               placeholder="Password"
               name="password"
