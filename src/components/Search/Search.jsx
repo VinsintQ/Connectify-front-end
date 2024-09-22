@@ -2,10 +2,15 @@ import "./Search.css";
 import { useState, useEffect } from "react";
 import userServices from "../../services/userServices";
 import { Link } from "react-router-dom";
-
 import followersServices from "../../services/followers";
 
-const Search = ({ randomNumArr, users, user, sameOccupation }) => {
+const Search = ({
+  randomNumArr,
+  users,
+  user,
+  sameOccupation,
+  setRandomNumArr,
+}) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [followers, setFollowers] = useState([]);
 
@@ -70,14 +75,51 @@ const Search = ({ randomNumArr, users, user, sameOccupation }) => {
       <h2>People with Same Occupation</h2>
 
       <ul className="user-list">
-        {filteredUsers.length > 0
-          ? filteredUsers.map((user) => (
-              <li key={user._id} className="user-item">
+        {filteredUsers.length > 0 ? (
+          filteredUsers.map((user) => (
+            <li key={user._id} className="user-item">
+              <div className="user-info">
+                {followers.includes(user._id) ? (
+                  <button
+                    className="follow-button"
+                    onClick={() => handleUnfollow(user._id)}
+                  >
+                    Unfollow
+                  </button>
+                ) : (
+                  <button
+                    className="follow-button"
+                    onClick={() => {
+                      handleAddUser(user.username);
+                      setFollowers((prevFollowers) => [
+                        ...prevFollowers,
+                        user._id,
+                      ]);
+                    }}
+                  >
+                    Follow
+                  </button>
+                )}
+
+                <Link to={`/profile/${user._id}`}>
+                  <span className="username">{user.username}</span>
+                </Link>
+
+                <span> {user.occupation}</span>
+              </div>
+            </li>
+          ))
+        ) : sameOccupation && sameOccupation.length < 5 ? (
+          sameOccupation.map((occupationUser) => {
+            if (occupationUser._id === user._id) return null;
+
+            return (
+              <li key={occupationUser._id} className="user-item">
                 <div className="user-info">
-                  {followers.includes(user._id) ? (
+                  {followers.includes(occupationUser._id) ? (
                     <button
                       className="follow-button"
-                      onClick={() => handleUnfollow(user._id)}
+                      onClick={() => handleUnfollow(occupationUser._id)}
                     >
                       Unfollow
                     </button>
@@ -85,67 +127,78 @@ const Search = ({ randomNumArr, users, user, sameOccupation }) => {
                     <button
                       className="follow-button"
                       onClick={() => {
-                        handleAddUser(user.username);
+                        handleAddUser(occupationUser.username);
                         setFollowers((prevFollowers) => [
                           ...prevFollowers,
-                          user._id,
+                          occupationUser._id,
                         ]);
                       }}
                     >
                       Follow
                     </button>
                   )}
-
-                  <Link to={`/profile/${user._id}`}>
-                    <span className="username">{user.username}</span>
-                  </Link>
-
-                  <span> {user.occupation}</span>
+                  <span className="username">
+                    <Link
+                      to={`/profile/${occupationUser._id}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {occupationUser.username}
+                    </Link>
+                  </span>
+                  <span> {occupationUser.occupation}</span>
                 </div>
               </li>
-            ))
-          : randomNumArr.map((num) => {
-              const userFromArr = users[num];
-              const occupationFromArr = sameOccupation[num];
-
-              if (userFromArr && occupationFromArr) {
-                return (
-                  <li key={occupationFromArr._id} className="user-item">
-                    <div className="user-info">
-                      {followers.includes(occupationFromArr._id) ? (
-                        <button
-                          className="follow-button"
-                          onClick={() => handleUnfollow(occupationFromArr._id)}
-                        >
-                          Unfollow
-                        </button>
-                      ) : (
-                        <button
-                          className="follow-button"
-                          onClick={() => {
-                            handleAddUser(occupationFromArr.username);
-                            setFollowers((prevFollowers) => [
-                              ...prevFollowers,
-                              occupationFromArr._id,
-                            ]);
-                          }}
-                        >
-                          Follow
-                        </button>
-                      )}
-                      <span className="username">
-                        <Link to={`/profile/${occupationFromArr._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                          {occupationFromArr.username}
-                        </Link>
-                      </span>
-                      <span> {occupationFromArr.occupation}</span>
-                    </div>
-                  </li>
-                );
-              }
-
+            );
+          })
+        ) : randomNumArr && sameOccupation ? (
+          randomNumArr.map((num) => {
+            const userWithSameOccupation = sameOccupation[num];
+            if (
+              !userWithSameOccupation ||
+              userWithSameOccupation._id === user._id
+            )
               return null;
-            })}
+
+            return (
+              <li key={userWithSameOccupation._id} className="user-item">
+                <div className="user-info">
+                  {followers.includes(userWithSameOccupation._id) ? (
+                    <button
+                      className="follow-button"
+                      onClick={() => handleUnfollow(userWithSameOccupation._id)}
+                    >
+                      Unfollow
+                    </button>
+                  ) : (
+                    <button
+                      className="follow-button"
+                      onClick={() => {
+                        handleAddUser(userWithSameOccupation.username);
+                        setFollowers((prevFollowers) => [
+                          ...prevFollowers,
+                          userWithSameOccupation._id,
+                        ]);
+                      }}
+                    >
+                      Follow
+                    </button>
+                  )}
+                  <span className="username">
+                    <Link
+                      to={`/profile/${userWithSameOccupation._id}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {userWithSameOccupation.username}
+                    </Link>
+                  </span>
+                  <span> {userWithSameOccupation.occupation}</span>
+                </div>
+              </li>
+            );
+          })
+        ) : (
+          <li>No users found</li>
+        )}
       </ul>
     </div>
   );
