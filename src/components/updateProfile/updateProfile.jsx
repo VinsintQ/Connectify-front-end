@@ -1,14 +1,14 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import authService from "../../services/authService";
 import userServices from "../../services/userServices";
 import axios from "axios";
 
-const updateProfileForm = ({user}) => {
+const updateProfileForm = ({ user, setuserData, userData }) => {
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
   // const userId = user._id;
-  const  userId  = user._id;
+  const userId = user._id;
 
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
@@ -48,8 +48,9 @@ const updateProfileForm = ({user}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    userServices.update(userId, formData);
-   navigate("/profile");
+      await userServices.update(userId, formData);
+      navigate("/profile");
+      setuserData(formData);
     } catch (err) {
       updateMessage(err.message);
     }
@@ -90,48 +91,57 @@ const updateProfileForm = ({user}) => {
     });
   };
 
-  return(
-
+  return (
     <form onSubmit={handleSubmit} className="updateProfileForm">
-    <p>{error}</p>
-    <input className="spaced-out"
-      type="text"
-      placeholder="Name"
-      name="name"
-      value={formData.name}
-      onChange={handleChange}
-    />
-    <input className="spaced-out"
-      type="text"
-      placeholder="Username"
-      name="username"
-      value={formData.username}
-      onChange={handleChange}
-    />
-    <input className="spaced-out"
-      type="email"
-      placeholder="Email"
-      name="email"
-      value={formData.email}
-      onChange={handleChange}
-    />
-    <input className="spaced-out"
-      type="text"
-      placeholder="Phone"
-      name="phone"
-      value={formData.phone}
-      onChange={handleChange}
-    />
-      {/* <input className="spaced-out"
-      type="text"
-      placeholder="Occupation"
-      name="occupation"
-      value={formData.occupation}
-      onChange={handleChange}
-    /> */}
-    <input className="spaced-out" type="file" name="image" onChange={uploadImage} />
-    <button type="submit">update</button>
-  </form>
+      <p>{error}</p>
+      <input
+        className="spaced-out"
+        type="text"
+        placeholder="Name"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+      />
+      <input
+        className="spaced-out"
+        type="text"
+        placeholder="Username"
+        name="username"
+        value={formData.username}
+        onChange={handleChange}
+      />
+      <input
+        className="spaced-out"
+        type="email"
+        placeholder="Email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+      />
+      <input
+        className="spaced-out"
+        type="text"
+        placeholder="Phone"
+        name="phone"
+        value={formData.phone}
+        onChange={handleChange}
+      />
+      <input
+        className="spaced-out"
+        type="text"
+        placeholder="Occupation"
+        name="occupation"
+        value={formData.occupation}
+        onChange={handleChange}
+      />
+      <input
+        className="spaced-out"
+        type="file"
+        name="image"
+        onChange={uploadImage}
+      />
+      <button type="submit">update</button>
+    </form>
   );
 };
 
