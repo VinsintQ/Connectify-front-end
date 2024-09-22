@@ -4,15 +4,36 @@ import userServices from "../../services/userServices";
 import { Link } from "react-router-dom";
 import followersServices from "../../services/followers";
 
-const Search = ({
-  randomNumArr,
-  users,
-  user,
-  sameOccupation,
-  setRandomNumArr,
-}) => {
+const Search = ({ users, user, userData }) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [followers, setFollowers] = useState([]);
+  const [randomNumArr, setRandomNumArr] = useState([]);
+  const [sameOccupation, setSameOccupation] = useState([]);
+
+  useEffect(() => {
+    if (userData && users.length > 0 && userData.occupation) {
+      const filterd = users.filter((u) => u._id !== user._id);
+      const same = filterd.filter(
+        (u) => u.occupation.toLowerCase() === userData.occupation.toLowerCase()
+      );
+
+      setSameOccupation(same);
+    }
+  }, [userData, users]);
+
+  useEffect(() => {
+    if (sameOccupation.length > 0) {
+      const newRandomNumArr = [];
+      while (newRandomNumArr.length < Math.min(sameOccupation.length, 5)) {
+        const randomNum = Math.floor(Math.random() * sameOccupation.length);
+        if (!newRandomNumArr.includes(randomNum)) {
+          newRandomNumArr.push(randomNum);
+        }
+      }
+
+      setRandomNumArr(newRandomNumArr);
+    }
+  }, [sameOccupation]);
 
   useEffect(() => {
     const fetchFollowers = async () => {
@@ -24,7 +45,7 @@ const Search = ({
       }
     };
     fetchFollowers();
-  }, [user._id]);
+  }, [user]);
 
   const handleAddUser = async (username) => {
     try {

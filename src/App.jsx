@@ -37,9 +37,8 @@ function App() {
   const navigate = useNavigate();
 
   const [user, setUser] = useState(authService.getUser());
-  const [randomNumArr, setRandomNumArr] = useState([]);
+
   const [users, setUsers] = useState([]);
-  const [sameOccupation, setSameOccupation] = useState([]);
   const [userData, setuserData] = useState(null);
 
   useEffect(() => {
@@ -63,32 +62,6 @@ function App() {
     };
     fetchData();
   }, []);
-
-  useEffect(() => {
-    if (userData && users.length > 0) {
-      const filterd = users.filter((u) => u._id !== user._id);
-      const same = filterd.filter(
-        (u) =>
-          u?.occupation.toLowerCase() === userData?.occupation.toLowerCase()
-      );
-
-      setSameOccupation(same);
-    }
-  }, [userData, users]);
-
-  useEffect(() => {
-    if (sameOccupation.length > 0) {
-      const newRandomNumArr = [];
-      while (newRandomNumArr.length < Math.min(sameOccupation.length, 5)) {
-        const randomNum = Math.floor(Math.random() * sameOccupation.length);
-        if (!newRandomNumArr.includes(randomNum)) {
-          newRandomNumArr.push(randomNum);
-        }
-      }
-
-      setRandomNumArr(newRandomNumArr);
-    }
-  }, [sameOccupation]);
 
   const handleSignout = () => {
     authService.signout();
@@ -261,13 +234,7 @@ function App() {
               <Route
                 path="/search"
                 element={
-                  <Search
-                    randomNumArr={randomNumArr}
-                    users={users}
-                    user={user}
-                    sameOccupation={sameOccupation}
-                    userData={userData}
-                  />
+                  <Search users={users} user={user} userData={userData} />
                 }
               />
             </>
