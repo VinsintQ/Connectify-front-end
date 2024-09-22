@@ -28,7 +28,7 @@ const Search = ({
 
   const handleAddUser = async (username) => {
     try {
-      await followersServices.AddFollower(username, user._id);
+      await followersServices.AddFollower(username, user._id, user.image);
       setFollowers((prevFollowers) => [...prevFollowers, username]);
     } catch (error) {
       console.error("Failed to add user:", error);

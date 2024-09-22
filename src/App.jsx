@@ -28,6 +28,8 @@ import PostDetails from "./components/Posts/postDetail";
 import CompanyDetails from "./components/myCompanies/CompnayDetails";
 import AddCompanyForm from "./components/myCompanies/AddCompanyForm";
 import postService from "./services/postService";
+import Followers from "./components/Followers/Followers";
+import OtherFollowers from "./components/otherFollowers/otherFollowers";
 
 import SignForm from "./components/SigninForm/signForm";
 
@@ -168,6 +170,14 @@ function App() {
               <Route
                 path="/profile/:userId"
                 element={<OtherProfile user={user} />}
+              />
+              <Route
+                path="/profile/followers"
+                element={<Followers user={user} />}
+              />
+              <Route
+                path="/profile/followers/:profileId"
+                element={<OtherFollowers user={user} />}
               />
 
               {/*view project details  */}
