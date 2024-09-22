@@ -68,7 +68,8 @@ function App() {
     if (userData && users.length > 0) {
       const filterd = users.filter((u) => u._id !== user._id);
       const same = filterd.filter(
-        (u) => u.occupation.toLowerCase() === userData.occupation.toLowerCase()
+        (u) =>
+          u?.occupation.toLowerCase() === userData?.occupation.toLowerCase()
       );
 
       setSameOccupation(same);
