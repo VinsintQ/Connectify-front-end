@@ -64,7 +64,10 @@ function App() {
 
   useEffect(() => {
     if (userData && users.length > 0) {
-      const same = users.filter((u) => u.occupation === userData.occupation);
+      const filterd = users.filter((u) => u._id !== user._id);
+      const same = filterd.filter(
+        (u) => u.occupation.toLowerCase() === userData.occupation.toLowerCase()
+      );
 
       setSameOccupation(same);
     }
@@ -73,12 +76,13 @@ function App() {
   useEffect(() => {
     if (sameOccupation.length > 0) {
       const newRandomNumArr = [];
-      while (newRandomNumArr.length < 5) {
+      while (newRandomNumArr.length < Math.min(sameOccupation.length, 5)) {
         const randomNum = Math.floor(Math.random() * sameOccupation.length);
         if (!newRandomNumArr.includes(randomNum)) {
           newRandomNumArr.push(randomNum);
         }
       }
+
       setRandomNumArr(newRandomNumArr);
     }
   }, [sameOccupation]);
@@ -257,7 +261,10 @@ function App() {
               />
             </>
           ) : (
-            <Route path="/" element={<SignForm setUser={setUser} />} />
+            <Route
+              path="/"
+              element={<SignForm setUser={setUser} setuserData={setuserData} />}
+            />
           )}
         </Routes>
       </div>
