@@ -54,8 +54,8 @@ const Profile = ({ user }) => {
     <div className="profile-container">
       <h1>Profile</h1>
       <Link to={`/profile/update/${user._id}`}>
-              <span className="the-lord">edit profile details</span>
-            </Link>
+        <span className="the-lord">edit profile details</span>
+      </Link>
       {profile && (
         <div className="profile-header">
           <img src={profile?.image} alt="Profile image" />
@@ -65,7 +65,9 @@ const Profile = ({ user }) => {
             <p>Username: {profile.username}</p>
             <p>PhoneNum: {profile.phone}</p>
             <p>Occupation: {profile.occupation}</p>
-            <p>Followers: {profile.Followers?.length}</p>
+            <Link to={`/profile/followers`}>
+              <span>Followers: {profile.Followers?.length}</span>
+            </Link>
           </div>
         </div>
       )}

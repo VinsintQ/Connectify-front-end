@@ -6,7 +6,7 @@ import educationService from "../../services/educationService";
 import projectService from "../../services/projectService";
 import userServices from "../../services/userServices";
 import { useParams } from "react-router-dom";
-import "./otherProfile.css"; 
+import "./otherProfile.css";
 
 const Profile = ({ user }) => {
   const { userId } = useParams();
@@ -22,7 +22,6 @@ const Profile = ({ user }) => {
   const projectsToShow = showAllProjects ? projects : projects.slice(0, 2);
   const experiencesToShow = showAll ? experiences : experiences.slice(0, 2);
 
- 
   useEffect(() => {
     const fetchProfile = async () => {
       const profile = await userServices.show(userId);
@@ -31,7 +30,6 @@ const Profile = ({ user }) => {
     fetchProfile();
   }, [userId]);
 
- 
   useEffect(() => {
     const fetchexp = async () => {
       const exp = await experienceService.indexc(userId);
@@ -40,7 +38,6 @@ const Profile = ({ user }) => {
     fetchexp();
   }, [userId]);
 
- 
   useEffect(() => {
     const fetchedu = async () => {
       const edu = await educationService.indexc(userId);
@@ -49,7 +46,6 @@ const Profile = ({ user }) => {
     fetchedu();
   }, [userId]);
 
- 
   useEffect(() => {
     const fetchpro = async () => {
       const pro = await projectService.indexc(userId);
@@ -70,7 +66,9 @@ const Profile = ({ user }) => {
             <p>Username : {profile.username}</p>
             <p>PhoneNum : {profile.phone}</p>
             <p>Occupation : {profile.occupation}</p>
-            <p>Followers : {profile.Followers?.length}</p>
+            <Link to={`/profile/followers/${profile._id}`}>
+              <span>Followers: {profile.Followers?.length}</span>
+            </Link>
           </div>
         </div>
       )}

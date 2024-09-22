@@ -11,14 +11,30 @@ const index = async (userId) => {
   }
 };
 
-const AddFollower = async (username, userId) => {
+const show = async (userId) => {
+  try {
+    const userId = getUserIdFromToken();
+    if (!userId) {
+      throw new Error("User ID not found in token");
+    }
+    const res = await fetch(`${BASE_URL}/${userId}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const AddFollower = async (username, userId, image) => {
   const options = {
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ username, userId }),
+    body: JSON.stringify({ username, userId, image }),
   };
   const res = await fetch(`${BASE_URL}/add-follower`, options);
 
@@ -39,18 +55,6 @@ const DeleteFollower = async (userId, followerId) => {
   );
 
   return res.json();
-};
-
-const show = async (userId) => {
-  try {
-    const res = await fetch(`${BASE_URL}/${userId}`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    });
-
-    return res.json();
-  } catch (error) {
-    console.error(error);
-  }
 };
 
 export default {
