@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import authService from "../../services/authService";
 import userServices from "../../services/userServices";
 import axios from "axios";
-
+import "./updateProfile.css";
 const updateProfileForm = ({ user, setuserData, userData }) => {
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -22,6 +22,7 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
     email: "",
     phone: "",
     occupation: "",
+    isPrivate: "",
     image: "",
 
     // "https://res.cloudinary.com/dqqmgoftf/image/upload/v1725897781/u06hkxs8jf4waa1jn5t0.jpg",
@@ -42,6 +43,13 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
   };
 
   const handleChange = (e) => {
+    if (e.target.name === "isPrivate") {
+      if (e.target.value == "false") {
+        e.target.value = true;
+      } else {
+        e.target.value = false;
+      }
+    }
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -134,6 +142,16 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
         value={formData.occupation}
         onChange={handleChange}
       />
+      <div className="private">
+        <label htmlFor="isPrivate">Private Account:</label>
+        <input
+          type="checkbox"
+          name="isPrivate"
+          id="isPrivate"
+          value={formData.isPrivate}
+          onChange={handleChange}
+        />
+      </div>
       <input
         className="spaced-out"
         type="file"

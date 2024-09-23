@@ -66,9 +66,13 @@ const Profile = ({ user }) => {
             <p>Username : {profile.username}</p>
             <p>PhoneNum : {profile.phone}</p>
             <p>Occupation : {profile.occupation}</p>
-            <Link to={`/profile/followers/${profile._id}`}>
-              <span>Followers: {profile.Followers?.length}</span>
-            </Link>
+            {profile.isPrivate === "false" ? (
+              <Link to={`/profile/followers/${profile._id}`}>
+                <span>Followers: {profile.Followers?.length}</span>
+              </Link>
+            ) : (
+              <p>Followers : {profile.Followers?.length}</p>
+            )}
           </div>
         </div>
       )}
