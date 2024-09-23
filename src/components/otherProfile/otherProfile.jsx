@@ -18,9 +18,9 @@ const Profile = ({ user }) => {
   const [profile, setProfile] = useState();
   const [educations, setEducations] = useState([]);
 
-  const educationsToShow = showAllEdu ? educations : educations.slice(0, 2);
-  const projectsToShow = showAllProjects ? projects : projects.slice(0, 2);
-  const experiencesToShow = showAll ? experiences : experiences.slice(0, 2);
+  const educationsToShow = showAllEdu ? educations : educations?.slice(0, 2);
+  const projectsToShow = showAllProjects ? projects : projects?.slice(0, 2);
+  const experiencesToShow = showAll ? experiences : experiences?.slice(0, 2);
 
   useEffect(() => {
     const fetchProfile = async () => {
