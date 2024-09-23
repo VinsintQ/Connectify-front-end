@@ -68,10 +68,10 @@ const Search = ({ users, user, userData }) => {
   };
 
   const handleChange = (event) => {
-    const search = event.target.value.toLowerCase();
+    const search = event.target.value.toUpperCase();
     if (search) {
       const filtered = users.filter((user) =>
-        user.username?.toLowerCase().includes(search)
+        user.username?.toUpperCase().includes(search)
       );
       setFilteredUsers(filtered);
     } else {
