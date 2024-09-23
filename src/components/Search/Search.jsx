@@ -127,7 +127,7 @@ const Search = ({ users, user, userData }) => {
                     <span className="username">{user.username}</span>
                   </Link>
                 </span>
-                <span> {user.occupation.toUpperCase()}</span>
+                <span> {user.occupation?.toUpperCase()}</span>
               </div>
             </li>
           ))
@@ -167,7 +167,7 @@ const Search = ({ users, user, userData }) => {
                       {occupationUser.username}
                     </Link>
                   </span>
-                  <span> {occupationUser.occupation.toUpperCase()}</span>
+                  <span> {occupationUser?.occupation?.toUpperCase()}</span>
                 </div>
               </li>
             );
@@ -215,7 +215,7 @@ const Search = ({ users, user, userData }) => {
                   </span>
                   <span>
                     {" "}
-                    {userWithSameOccupation.occupation.toUpperCase()}
+                    {userWithSameOccupation?.occupation?.toUpperCase()}
                   </span>
                 </div>
               </li>
