@@ -127,7 +127,7 @@ const Search = ({ users, user, userData }) => {
                     <span className="username">{user.username}</span>
                   </Link>
                 </span>
-                <span> {user.occupation}</span>
+                <span> {user.occupation.toUpperCase()}</span>
               </div>
             </li>
           ))
