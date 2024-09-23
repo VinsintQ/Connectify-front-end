@@ -64,7 +64,7 @@ const Profile = ({ user }) => {
             <p>Email: {profile.email}</p>
             <p>Username: {profile.username}</p>
             <p>PhoneNum: {profile.phone}</p>
-            <p>Occupation: {profile.occupation.toUpperCase()}</p>
+            <p>Occupation: {profile.occupation}</p>
             <Link to={`/profile/followers`}>
               <span>Followers: {profile.Followers?.length}</span>
             </Link>
