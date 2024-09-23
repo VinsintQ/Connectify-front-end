@@ -142,16 +142,18 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
         value={formData.occupation.toUpperCase()}
         onChange={handleChange}
       />
+
       <div className="private">
         <label htmlFor="isPrivate">Private Account:</label>
         <input
           type="checkbox"
           name="isPrivate"
           id="isPrivate"
-          value={formData.isPrivate}
+          checked={formData.isPrivate === "true" || formData.isPrivate === true}
           onChange={handleChange}
         />
       </div>
+
       <input
         className="spaced-out"
         type="file"
