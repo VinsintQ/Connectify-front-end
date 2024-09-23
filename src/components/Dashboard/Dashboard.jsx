@@ -30,7 +30,7 @@ const Dashboard = ({ user }) => {
             <>
               <div>
                 <div className="userInfo">
-                  <Link to={`/profile/${post?.userId._id}`}>
+                  <Link to={`/profile/${post.userId._id}`}>
                     <img
                       className="profile-image"
                       src={post.userId.image}
