@@ -140,7 +140,7 @@ const SignForm = (props) => {
               type="text"
               placeholder="Occupation"
               name="occupation"
-              value={formData.occupation.toUpperCase()}
+              value={formData.occupation}
               onChange={handleChange}
             />
             <input
