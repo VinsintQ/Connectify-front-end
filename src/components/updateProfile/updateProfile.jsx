@@ -139,7 +139,7 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
         type="text"
         placeholder="Occupation"
         name="occupation"
-        value={formData.occupation}
+        value={formData.occupation.toUpperCase()}
         onChange={handleChange}
       />
       <div className="private">

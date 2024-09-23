@@ -11,11 +11,9 @@ const Search = ({ users, user, userData }) => {
   const [sameOccupation, setSameOccupation] = useState([]);
 
   useEffect(() => {
-    if (userData && users.length > 0 && userData.occupation) {
+    if (userData && users.length > 0) {
       const filterd = users.filter((u) => u._id !== user._id);
-      const same = filterd.filter(
-        (u) => u.occupation.toLowerCase() === userData.occupation.toLowerCase()
-      );
+      const same = filterd.filter((u) => u.occupation === userData.occupation);
 
       setSameOccupation(same);
     }
@@ -121,12 +119,15 @@ const Search = ({ users, user, userData }) => {
                     Follow
                   </button>
                 )}
-
-                <Link to={`/profile/${user._id}`}>
-                  <span className="username">{user.username}</span>
-                </Link>
-
-                <span> {user.occupation}</span>
+                <span className="username">
+                  <Link
+                    to={`/profile/${user._id}`}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <span className="username">{user.username}</span>
+                  </Link>
+                </span>
+                <span> {user.occupation.toUpperCase()}</span>
               </div>
             </li>
           ))
@@ -166,7 +167,7 @@ const Search = ({ users, user, userData }) => {
                       {occupationUser.username}
                     </Link>
                   </span>
-                  <span> {occupationUser.occupation}</span>
+                  <span> {occupationUser.occupation.toUpperCase()}</span>
                 </div>
               </li>
             );
@@ -212,7 +213,10 @@ const Search = ({ users, user, userData }) => {
                       {userWithSameOccupation.username}
                     </Link>
                   </span>
-                  <span> {userWithSameOccupation.occupation}</span>
+                  <span>
+                    {" "}
+                    {userWithSameOccupation.occupation.toUpperCase()}
+                  </span>
                 </div>
               </li>
             );
