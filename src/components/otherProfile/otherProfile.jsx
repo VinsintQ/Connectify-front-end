@@ -80,7 +80,7 @@ const Profile = ({ user }) => {
       <div className="sections-container">
         <div className="section">
           <h3>Experiences</h3>
-          {experiencesToShow.map((exp, index) => (
+          {experiencesToShow?.map((exp, index) => (
             <div key={exp._id}>
               <br />
               <div>
@@ -101,7 +101,7 @@ const Profile = ({ user }) => {
 
         <div className="section">
           <h3>Education</h3>
-          {educationsToShow.map((edu) => (
+          {educationsToShow?.map((edu) => (
             <div key={edu._id}>
               <br />
               <div>
