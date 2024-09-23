@@ -41,8 +41,6 @@ function App() {
   const [users, setUsers] = useState([]);
   const [userData, setuserData] = useState(null);
 
-  console.log(users);
-
   useEffect(() => {
     if (user && user._id) {
       const fetchUser = async () => {
