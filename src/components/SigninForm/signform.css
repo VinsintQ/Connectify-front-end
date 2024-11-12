@@ -78,9 +78,17 @@
   overflow: hidden;
   width: 1000px;
   max-width: 100%;
-  min-height: 500px;
+  min-height: 620px;
   padding: 0 !important;
 }
+
+p.error-message {
+  color: red;
+  font-size: 5px;
+  margin: 0 !important;
+  padding: 0px;
+}
+
 
 .container p {
   font-size: 14px;
