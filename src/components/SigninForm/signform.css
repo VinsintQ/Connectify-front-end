@@ -264,3 +264,42 @@
 .container.active .toggle-right {
   transform: translateX(200%);
 }
+
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .container form {
+    padding: 0 20px;
+  }
+
+  .container button {
+    padding: 10px 20px;
+  }
+
+  .toggle-container {
+    left: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .toggle {
+    left: 0;
+    width: 100%;
+  }
+
+  .toggle-panel {
+    width: 100%;
+  }
+
+  .toggle-left {
+    transform: translateX(0);
+  }
+
+  .toggle-right {
+    transform: translateX(0);
+  }
+}

@@ -2,7 +2,7 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import companyService from "../../services/companyService";
-
+import "./company.css";
 const myCompanies = ({ user }) => {
  const [allCompanies,setallCompanies] =  useState([])
  const [userId,setUserId] =  useState(user._id)
@@ -25,15 +25,24 @@ const myCompanies = ({ user }) => {
     return (
       
       <main>
-        <h1>these companies are owned by you,{user.username}</h1>
-        <button><Link to="/AddCompany">Add new company</Link></button>
-        {allCompanies.map((company) => (
-         <div key={company._id}>
+  {allCompanies.length > 0 ? (
+    <>
+      <h1>These companies are owned by you, {user.username}</h1>
+      <button><Link to="/AddCompany">Add new company</Link></button>
+      {allCompanies.map((company) => (
+        <div key={company._id}>
           <Link to={`company/${company._id}`}><h2>{company.name}</h2></Link>  
-          </div>
-        ))}
-       
-      </main>
+        </div>
+      ))}
+    </>
+  ) : (
+    <>
+      <h1>You don't own any companies yet, {user.username}</h1>
+      <button><Link to="/AddCompany">Add your first company</Link></button>
+    </>
+  )}
+</main>
+
     );
   };
   

@@ -75,11 +75,11 @@ const Profile = ({ user }) => {
       <div className="sections-container">
         <div className="section">
           <h3>Experiences</h3>
-          <button>
+          {/* <button> */}
             <Link to="/addExp">
-              <span className="the-lord">Add</span>
+            <span className="a">Add</span>
             </Link>
-          </button>
+          {/* </button> */}
           {experiencesToShow.map((exp) => (
             <div key={exp._id}>
               <Link to={`/experience/${exp._id}`}>
@@ -98,11 +98,11 @@ const Profile = ({ user }) => {
 
         <div className="section">
           <h3>Education</h3>
-          <button>
-            <Link to="/addEducation">
-              <span className="the-lord">Add</span>
+          {/* <button> */}
+            <Link to="/addEducation" className="a">
+              <span className="a">Add</span>
             </Link>
-          </button>
+          {/* </button> */}
           {educationsToShow.map((edu) => (
             <div key={edu._id}>
               <Link to={`/education/${edu._id}`}>
@@ -119,11 +119,11 @@ const Profile = ({ user }) => {
 
         <div className="section">
           <h3>Projects</h3>
-          <button>
+          {/* <button> */}
             <Link to="/addproject">
-              <span className="the-lord">Add</span>
+            <span className="a">Add</span>
             </Link>
-          </button>
+          {/* </button> */}
           {projectsToShow.map((pro) => (
             <div key={pro._id}>
               <Link to={`/project/${pro._id}`}>
