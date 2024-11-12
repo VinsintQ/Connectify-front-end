@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import authService from "../../services/authService";
 import axios from "axios";
 import "./signform.css";
@@ -12,7 +12,6 @@ const SignForm = (props) => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [phoneError, setPhoneError] = useState("");  // Track phone validation error
   const [url, setUrl] = useState("");
   const [formData, setFormData] = useState({
     username: "",
@@ -30,24 +29,7 @@ const SignForm = (props) => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    // Validate phone number (only 8 digits)
-    if (name === "phone") {
-      if (value.length > 8) {
-        setPhoneError("Phone number cannot be more than 8 digits.");
-      } else if (value.length < 8 && value.length > 0) {
-        setPhoneError("Phone number must be exactly 8 digits.");
-      } else {
-        setPhoneError("");  // Clear error if phone is valid
-      }
-
-      if (value.length <= 8 && /^[0-9]*$/.test(value)) {
-        setFormData({ ...formData, [name]: value });
-      }
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmitSignIn = async (e) => {
@@ -153,7 +135,6 @@ const SignForm = (props) => {
               value={formData.phone}
               onChange={handleChange}
             />
-            {phoneError && <p className="error-message">{phoneError}</p>}
             <input
               className="spaced-out"
               type="text"
@@ -180,7 +161,7 @@ const SignForm = (props) => {
             {loading === false ? (
               <button type="submit">Sign Up</button>
             ) : (
-              <p>Loading...</p>
+              <p>Loding</p>
             )}
           </form>
         </div>
