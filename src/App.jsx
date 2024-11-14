@@ -22,7 +22,7 @@ import ExperienceDetails from "./components/Experience/ExperienceDetails";
 import ProjectDetails from "./components/Projects/PeojectDetails";
 import EducationDetails from "./components/Education/educationDetails";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-
+import AddJobForm from "./components/myCompanies/AddJobForm";
 import PostForm from "./components/Posts/PostForm";
 import PostDetails from "./components/Posts/postDetail";
 import CompanyDetails from "./components/myCompanies/CompnayDetails";
@@ -30,7 +30,7 @@ import AddCompanyForm from "./components/myCompanies/AddCompanyForm";
 import postService from "./services/postService";
 import Followers from "./components/Followers/Followers";
 import OtherFollowers from "./components/otherFollowers/otherFollowers";
-
+import ViewJobs from "./components/myCompanies/viewJobs";
 import SignForm from "./components/SigninForm/signForm";
 
 function App() {
@@ -124,6 +124,8 @@ function App() {
                 element={<CompanyDetails user={user} />}
               />
               <Route path="/Mycompany" element={<MyCompanies user={user} />} />
+              <Route path="/MyCompany/company/:compId/addJob" element={<AddJobForm/>} />
+              <Route path="/MyCompany/company/:compId/jobs" element={<ViewJobs/>}  user={user}/>
               <Route
                 path="/AddCompany"
                 element={<AddCompanyForm user={user} />}

@@ -51,9 +51,36 @@ const show = async (companyId) => {
   }
 };
 
+const addJob = async (companyId, formData) => {
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  };
+  const res = await fetch(`${BASE_URL}/${companyId}/jobs`, options);
+
+  return res.json();
+};
+
+const ViewJobs = async (companyId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${companyId}/jobs`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
 export default {
   index,
   create,
   show,
   owned,
+  addJob,
+  ViewJobs,
 };

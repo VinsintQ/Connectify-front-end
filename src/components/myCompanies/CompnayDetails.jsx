@@ -5,9 +5,10 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import companyService from "../../services/companyService";
 
 const CompanyDetails = ({ user }) => {
-  const navigate = useNavigate();
+  
   const { compId } = useParams();
- const [company, setCompany] = useState();
+  const [company, setCompany] = useState(compId);
+
 
   
 
@@ -43,6 +44,10 @@ const CompanyDetails = ({ user }) => {
       <p>Indusrty : {company.industry}</p>
       
 
+      <div>
+      <Link to={`/Mycompany/company/${company._id}/addJob`}><h2>Post a new job</h2></Link> 
+      <Link to={`/Mycompany/company/${company._id}/jobs`}><h2>View all jobs</h2></Link>
+      </div>
       
     </div>
   );
