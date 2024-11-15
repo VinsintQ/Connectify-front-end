@@ -88,6 +88,20 @@ const NavBar = ({ user, handleSignout }) => {
                 <span className="text">Company</span>
               </Link>
             </li>
+
+
+            <li className={`list ${activeLink === "/Jobs" ? "active" : ""}`}>
+              <Link to="/Jobs" onClick={() => handleLinkClick("/Mycompany")}>
+                <span className="icon">
+                <ion-icon name="briefcase-outline"></ion-icon>
+                </span>
+                <span className="text">Jobs</span>
+              </Link>
+            </li>
+
+
+
+            
           </>
         ) : (
           <></>
