@@ -1,8 +1,8 @@
-const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/company`;
+const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}`;
 
 const index = async () => {
   try {
-    const res = await fetch(`${BASE_URL}/Jobs`, {
+    const res = await fetch(`${BASE_URL}/company/Jobs`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
     return res.json();
@@ -11,15 +11,32 @@ const index = async () => {
   }
 };
 
-const apply = async (jobId) => {
+// const apply = async (jobId) => {
+//   try {
+//     const res = await fetch(`${BASE_URL}/company/Jobs/${jobId}/app`, {
+//       method: "POST",
+//       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+//     });
+//     return res.json();
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+const apply = async (jobId, formData) => {
   try {
-    const res = await fetch(`${BASE_URL}/Jobs/${jobId}/apply`, {
+    const res = await fetch(`${BASE_URL}/company/jobs/${jobId}/app`, {
       method: "POST",
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(formData),
     });
     return res.json();
   } catch (error) {
     console.error(error);
   }
 };
-export default { index };
+
+export default { index, apply };

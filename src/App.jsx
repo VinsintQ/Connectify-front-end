@@ -33,7 +33,7 @@ import OtherFollowers from "./components/otherFollowers/otherFollowers";
 import ViewJobs from "./components/myCompanies/viewJobs";
 import SignForm from "./components/SigninForm/signForm";
 import AvailableJobs from "./components/Jobs/AvailableJobs";
-
+import AppplyForm from "./components/Jobs/ApplyForm";
 
 function App() {
   const navigate = useNavigate();
@@ -128,6 +128,7 @@ function App() {
               <Route path="/Mycompany" element={<MyCompanies user={user} />} />
               <Route path="/MyCompany/company/:compId/addJob" element={<AddJobForm/>} />
               <Route path="/jobs" element={<AvailableJobs/>} />
+              <Route path="/company/:compId/apply/:jobId" element={<AppplyForm/>} />
               <Route path="/MyCompany/company/:compId/jobs" element={<ViewJobs/>}  user={user}/>
               <Route
                 path="/AddCompany"
