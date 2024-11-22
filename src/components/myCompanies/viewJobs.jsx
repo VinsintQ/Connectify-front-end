@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import companyService from "../../services/companyService"
 import { useState } from "react"
 import { useEffect } from "react"
+import { Link } from "react-router-dom"
 const ViewJobs = () => {
     const { compId } = useParams();
     const [jobs, setJobs] = useState([])
@@ -33,6 +34,7 @@ const ViewJobs = () => {
                         <th>overview</th>
                         <th>workplace</th>
                         <th>jobtype</th>
+                        <th>applications</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +45,7 @@ const ViewJobs = () => {
                             <td>{job.overview}</td>
                             <td>{job.workplace}</td>
                             <td>{job.jobtype}</td>
+                            <td> <Link to={`/Mycompany/${compId}/viewapplications/${job._id}`}>view</Link>    </td>
                         </tr>
                     ))}
                 </tbody>

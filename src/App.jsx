@@ -34,6 +34,8 @@ import ViewJobs from "./components/myCompanies/viewJobs";
 import SignForm from "./components/SigninForm/signForm";
 import AvailableJobs from "./components/Jobs/AvailableJobs";
 import AppplyForm from "./components/Jobs/ApplyForm";
+import Freelancing from "./components/freelancingPage/Freelancing";
+import Viewapplications from "./components/myCompanies/Viewapplications";
 
 function App() {
   const navigate = useNavigate();
@@ -130,6 +132,8 @@ function App() {
               <Route path="/jobs" element={<AvailableJobs/>} />
               <Route path="/company/:compId/apply/:jobId" element={<AppplyForm/>} />
               <Route path="/MyCompany/company/:compId/jobs" element={<ViewJobs/>}  user={user}/>
+              <Route path="/freelancing" element={<Freelancing/>} user={user}/>
+              <Route path="/Mycompany/:compId/viewapplications/:jobId" element={<Viewapplications/>} user={user}/>
               <Route
                 path="/AddCompany"
                 element={<AddCompanyForm user={user} />}
