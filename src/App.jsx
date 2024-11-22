@@ -37,6 +37,7 @@ import AppplyForm from "./components/Jobs/ApplyForm";
 import Freelancing from "./components/freelancingPage/Freelancing";
 import Viewapplications from "./components/myCompanies/Viewapplications";
 import Addservice from "./components/freelancingPage/Addservice";
+import MyServices from "./components/freelancingPage/Myservices";
 function App() {
   const navigate = useNavigate();
 
@@ -127,6 +128,7 @@ function App() {
                 path="Mycompany/company/:compId"
                 element={<CompanyDetails user={user} />}
               />
+              <Route path="/MyServices" element={<MyServices user={user} />} />
               <Route path="/Mycompany" element={<MyCompanies user={user} />} />
               <Route path="/MyCompany/company/:compId/addJob" element={<AddJobForm/>} />
               <Route path="/MyCompany/company/:compId/jobs/:jobId/updateJob" element={<AddJobForm user={user} />} />

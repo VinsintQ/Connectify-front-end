@@ -11,19 +11,30 @@ const getAllServices = async (userid) => {
   }
 };
 
-const addService = async (userId, serviceData) => {
+const addService = async ({ userId, formData }) => {
   try {
-    const res = await fetch(`${BASE_URL}/users/${userId}/services`, {
+    const res = await fetch(`${BASE_URL}/${userId}/service`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      body: JSON.stringify(serviceData),
+      body: JSON.stringify(formData),
     });
     return res.json();
   } catch (error) {
     console.error(error);
   }
 };
-export default { getAllServices, addService };
+
+const getmyServices = async (userId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}/Myservice`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+export default { getAllServices, addService, getmyServices };

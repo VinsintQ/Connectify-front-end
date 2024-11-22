@@ -22,6 +22,7 @@ const Freelancing = (user) => {
         <div>
         <h1>Freelancing</h1>
           
+          <Link to={"/MyServices"}>My Services</Link>
         <h3>become a freelancer by start adding service </h3>
        <Link to={"/addService"}>add Services</Link>
          
