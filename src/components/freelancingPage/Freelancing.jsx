@@ -1,5 +1,5 @@
 import freelancnigService from "../../services/freelancnigService";
-
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 const Freelancing = (user) => {
 
@@ -21,6 +21,10 @@ const Freelancing = (user) => {
     return (
         <div>
         <h1>Freelancing</h1>
+          
+        <h3>become a freelancer by start adding service </h3>
+       <Link to={"/addService"}>add Services</Link>
+         
         <div className="freelancing-container">
           {services.map((service) => (
             <div key={service._id} className="service">

@@ -42,7 +42,7 @@ const CompanyDetails = ({ user }) => {
       <h3>Company Details</h3>
       <p>Name : {company.name}</p>
       <p>Indusrty : {company.industry}</p>
-      
+      <p>About : {company.about}</p>
 
       <div>
       <Link to={`/Mycompany/company/${company._id}/addJob`}><h2>Post a new job</h2></Link> 

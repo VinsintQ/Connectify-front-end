@@ -1,14 +1,14 @@
 
 
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import companyService from "../../services/companyService";
+import jobService from "../../services/jobService";
 
-
-const AddJobForm = ({ user,companyId }) => {
+const AddJobForm = ({}) => {
     const navigate = useNavigate();
     const { compId } = useParams();
-
+    const { jobId } = useParams();
 
     const [jobData, setJobData] = useState({
         jobtitle: "",
@@ -19,9 +19,18 @@ const AddJobForm = ({ user,companyId }) => {
         
     });
     
+    useEffect(() => {
+        const fetchJob = async () => {
+            const jobData = await jobService.show(compId, jobId);
+            setJobData(jobData);
+        };
+      
+        if (jobId) fetchJob();
+    }, [jobId]);
+
     const handleAddJob = async (jobData) => {
         const newJob = await companyService.addJob(compId, jobData);
-        navigate(`/Mycompany/company/${compId}`);
+        navigate(`/Mycompany/company/${compId}/jobs`);
     };
 
     const handleChange = (e) => {
@@ -30,7 +39,15 @@ const AddJobForm = ({ user,companyId }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+
+        if (jobId) {
+            await jobService.update(compId, jobId, jobData);
+            navigate(`/Mycompany/company/${compId}/jobs`);
+            return;
+        }else{
         handleAddJob(jobData);
+        }
     }
 
     const isFormValid =
@@ -96,8 +113,8 @@ const AddJobForm = ({ user,companyId }) => {
         onChange={handleChange}
     >
         <option value="">Select Job Type</option>
-        <option value="fulltime">Full-time</option>
-        <option value="parttime">Part-time</option>
+        <option value="full-time">Full-time</option>
+        <option value="part-time">Part-time</option>
         <option value="internship">Internship</option>
         <option value="temporary">Temporary</option>
     </select>
@@ -114,7 +131,7 @@ const AddJobForm = ({ user,companyId }) => {
                     />
                 </div>
 
-                <button type="submit" disabled={!isFormValid}>Add Job</button>
+                <button type="submit" disabled={!isFormValid}>{jobId ? <>update</>:<>Add Job</>}</button>
             </form>
         </main>
     );

@@ -11,6 +11,7 @@ const AddCompanyForm = ({ user }) => {
     name: "",
     industry: "",
     companySize: "",
+    about : "",
   });
 
   const handleAddCompany = async (compData) => {
@@ -32,7 +33,7 @@ const AddCompanyForm = ({ user }) => {
     compData.name.trim() !== "" &&
     compData.industry.trim() !== "" &&
     compData.companySize.trim() !== "";
-
+    compData.about.trim() !== "";
   return (
     <main>
       <h1>New Company</h1>
@@ -60,6 +61,20 @@ const AddCompanyForm = ({ user }) => {
         </div>
 
         <div>
+         <label htmlFor="about">About : </label>
+          <input
+            type="text"
+            id="about"
+            value={compData.about}
+            name="about"
+            onChange={handleChange}
+          />
+          
+          
+          </div> 
+
+
+        <div>
           <label htmlFor="companySize">Company Size: </label>
           <select
             id="companySize"
@@ -74,6 +89,8 @@ const AddCompanyForm = ({ user }) => {
             <option value="500+">500+</option>
           </select>
         </div>
+
+         
 
         <div>
           <button type="submit" disabled={!isFormValid}>

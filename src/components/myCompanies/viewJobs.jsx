@@ -35,6 +35,7 @@ const ViewJobs = () => {
                         <th>workplace</th>
                         <th>jobtype</th>
                         <th>applications</th>
+                        <th>update</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +47,7 @@ const ViewJobs = () => {
                             <td>{job.workplace}</td>
                             <td>{job.jobtype}</td>
                             <td> <Link to={`/Mycompany/${compId}/viewapplications/${job._id}`}>view</Link>    </td>
+                            <td><Link to={`/MyCompany/company/${compId}/jobs/${job._id}/updateJob`}>update</Link></td>
                         </tr>
                     ))}
                 </tbody>

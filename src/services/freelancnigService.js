@@ -11,4 +11,19 @@ const getAllServices = async (userid) => {
   }
 };
 
-export default { getAllServices };
+const addService = async (userId, serviceData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/users/${userId}/services`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(serviceData),
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+export default { getAllServices, addService };

@@ -27,6 +27,17 @@ const apply = async (jobId, formData) => {
   }
 };
 
+const show = async (compId, jobId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/company/${compId}/jobs/${jobId}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const viewapp = async (jobId, compId) => {
   try {
     const res = await fetch(`${BASE_URL}/company/${compId}/jobs/${jobId}/app`, {
@@ -38,4 +49,20 @@ const viewapp = async (jobId, compId) => {
   }
 };
 
-export default { index, apply, viewapp };
+const update = async (compId, jobId, jobData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/company/${compId}/jobs/${jobId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(jobData),
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export default { index, apply, viewapp, update, show };
