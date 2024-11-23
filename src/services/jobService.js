@@ -38,6 +38,17 @@ const show = async (compId, jobId) => {
   }
 };
 
+const deleteJob = async (compId, jobId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/company/${compId}/jobs/${jobId}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
 const viewapp = async (jobId, compId) => {
   try {
     const res = await fetch(`${BASE_URL}/company/${compId}/jobs/${jobId}/app`, {
@@ -65,4 +76,4 @@ const update = async (compId, jobId, jobData) => {
   }
 };
 
-export default { index, apply, viewapp, update, show };
+export default { index, apply, viewapp, update, show, deleteJob };

@@ -1,13 +1,14 @@
 
-import { useParams } from "react-router-dom"
+import { Navigate, useNavigate, useParams } from "react-router-dom"
 import companyService from "../../services/companyService"
+import jobService from "../../services/jobService"
 import { useState } from "react"
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
 const ViewJobs = () => {
     const { compId } = useParams();
     const [jobs, setJobs] = useState([])
-    
+    const navigate = useNavigate();
    useEffect(() => {    
     const fetchJobs = async (compId) => {
       try {
@@ -22,6 +23,15 @@ const ViewJobs = () => {
     }
     , [compId]);
 
+    
+    const deleteJob = async ({jobId}) => {
+        try {
+             await jobService.deleteJob(compId, jobId);
+             window.location.reload();
+        } catch (error) {
+            console.error("Failed to delete job:", error);
+        }
+    }
 
     return (
         <div>
@@ -36,6 +46,7 @@ const ViewJobs = () => {
                         <th>jobtype</th>
                         <th>applications</th>
                         <th>update</th>
+                        <th>delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +59,9 @@ const ViewJobs = () => {
                             <td>{job.jobtype}</td>
                             <td> <Link to={`/Mycompany/${compId}/viewapplications/${job._id}`}>view</Link>    </td>
                             <td><Link to={`/MyCompany/company/${compId}/jobs/${job._id}/updateJob`}>update</Link></td>
+                            <td> <button onClick={() => deleteJob({jobId:job._id})}>
+            Delete Job
+        </button></td>
                         </tr>
                     ))}
                 </tbody>

@@ -10,8 +10,8 @@ const Viewapplications = () => {
     useEffect(() => {    
         const fetchApp = async (jobId,compId) => {
           try {
-            const Apps = await jobService.viewapp(jobId,compId);
-            setApp(Apps);
+            const job = await jobService.show(compId,jobId);
+            setApp(job.application);
             
           } catch (error) {
             console.error("Failed to jobs:", error);
@@ -23,20 +23,17 @@ const Viewapplications = () => {
 
 
     return (
-        <div>
-            <h1>View Applications</h1>
-           
-           {Apps.map((app) => (
-            <div key={app._id}>
-              {/* <h4>{app.cv}</h4> */}
-              <p>{app.email}</p>
-              <p>{app.phoneNumber}</p>
-              
-              
-            </div>
-          ))}
+      <div>
+        <h1>Applications</h1>
+        {Apps.map((app) => (
+          <div key={app._id}>
             
-        </div>
+            <p> Email :{app.email}</p>
+            <p>PhoneNumber :{app.phoneNumber}</p>
+            {/* <p> Cv : {app.cv}</p> */}
+          </div>
+        ))}
+      </div>
     )
 }
 export default Viewapplications
