@@ -1,12 +1,9 @@
-
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import EducationService from "../../services/educationService";
-import { useNavigate } from "react-router-dom";
 
-//Services
 
-const educationForm = ({ user ,handleUpdateEducation}) => {
+const EducationForm = ({ user, handleUpdateEducation }) => {
   const userId = user._id;
   const { eduId } = useParams();
   const navigate = useNavigate();
@@ -17,19 +14,21 @@ const educationForm = ({ user ,handleUpdateEducation}) => {
     StartDate: "",
     EndDate: "",
   });
- 
-useEffect(() => {
+
+  const [error, setError] = useState(""); // State to handle validation error messages
+
+  useEffect(() => {
     const fetchEducation = async () => {
       const educationData = await EducationService.show({ eduId, user });
       if (educationData) {
         if (educationData.StartDate) {
           const startDate = new Date(educationData.StartDate);
-          educationData.StartDate = startDate.toISOString().split('T')[0];
+          educationData.StartDate = startDate.toISOString().split("T")[0];
         }
 
         if (educationData.EndDate) {
           const endDate = new Date(educationData.EndDate);
-          educationData.EndDate = endDate.toISOString().split('T')[0];
+          educationData.EndDate = endDate.toISOString().split("T")[0];
         }
       }
 
@@ -37,29 +36,73 @@ useEffect(() => {
     };
 
     if (eduId) fetchEducation();
-  }, [eduId]);
-        
+  }, [eduId, user]);
 
   const handleChange = (e) => {
-    setEducationData({ ...educationData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    // Validate StartDate and EndDate
+    if (name === "StartDate" || name === "EndDate") {
+      const newStartDate = name === "StartDate" ? value : educationData.StartDate;
+      const newEndDate = name === "EndDate" ? value : educationData.EndDate;
+
+      if (newStartDate && newEndDate && newStartDate > newEndDate) {
+        setError("Start Date cannot be after End Date.");
+        return;
+      }
+
+      // Check if StartDate is equal to EndDate
+      if (newStartDate && newEndDate && newStartDate === newEndDate) {
+        setError("Start Date cannot be the same as End Date.");
+        return;
+      } else {
+        setError(""); // Clear error if validation passes
+      }
+    }
+
+    setEducationData({ ...educationData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
-     if (eduId) {
-      handleUpdateEducation({ eduId,educationData});
+
+    // Ensure all fields are filled
+    if (
+      educationData.School.trim() === "" ||
+      educationData.Degree.trim() === "" ||
+      educationData.StartDate.trim() === "" ||
+      educationData.EndDate.trim() === ""
+    ) {
+      setError("All fields are required.");
+      return;
+    }
+
+    // Ensure Start Date is not after End Date
+    if (educationData.StartDate > educationData.EndDate) {
+      setError("Start Date cannot be after End Date.");
+      return;
+    }
+
+    // Ensure Start Date is not the same as End Date
+    if (educationData.StartDate === educationData.EndDate) {
+      setError("Start Date cannot be the same as End Date.");
+      return;
+    }
+
+    // Handle Add or Update
+    if (eduId) {
+      handleUpdateEducation({ eduId, educationData });
       navigate("/profile");
-    }else {
-    if (educationData.School.trim() !== "" && educationData.Degree.trim() !== "") {
-      EducationService.create({ formData: educationData, userId });
+    } else {
+      await EducationService.create({ formData: educationData, userId });
       navigate("/profile");
-    }}
+    }
   };
 
   return (
     <main className="eduForm">
-      <h1>{eduId ? <>Update EDucation</> : <>Add education</>}</h1>
+      <h1>{eduId ? "Update Education" : "Add Education"}</h1>
+      {error && <p style={{ color: "red", fontSize: "15px", marginBottom: "10px" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="School">School:</label>
@@ -81,9 +124,8 @@ useEffect(() => {
             onChange={handleChange}
           />
         </div>
-
         <div>
-          <label htmlFor="StartDate">StartDate:</label>
+          <label htmlFor="StartDate">Start Date:</label>
           <input
             type="date"
             id="StartDate"
@@ -93,7 +135,7 @@ useEffect(() => {
           />
         </div>
         <div>
-          <label htmlFor="EndDate">EndDate : </label>
+          <label htmlFor="EndDate">End Date:</label>
           <input
             type="date"
             id="EndDate"
@@ -102,10 +144,9 @@ useEffect(() => {
             onChange={handleChange}
           />
         </div>
-
         <div>
           <button type="submit">
-            {eduId ? <>Update</> : <>Add education</>}
+            {eduId ? "Update" : "Add Education"}
           </button>
         </div>
       </form>
@@ -113,4 +154,4 @@ useEffect(() => {
   );
 };
 
-export default educationForm;
+export default EducationForm;

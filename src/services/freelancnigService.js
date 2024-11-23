@@ -11,6 +11,33 @@ const getAllServices = async (userid) => {
   }
 };
 
+const show = async (userId, serviceId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}/service/${serviceId}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const updateService = async ({ userId, serviceId, formData }) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}/services/${serviceId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(formData),
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const addService = async ({ userId, formData }) => {
   try {
     const res = await fetch(`${BASE_URL}/${userId}/service`, {
@@ -27,6 +54,16 @@ const addService = async ({ userId, formData }) => {
   }
 };
 
+const getMyservices = async (userId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}/services`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
 const getmyServices = async (userId) => {
   try {
     const res = await fetch(`${BASE_URL}/${userId}/Myservice`, {
@@ -37,4 +74,24 @@ const getmyServices = async (userId) => {
     console.error(error);
   }
 };
-export default { getAllServices, addService, getmyServices };
+
+const deleteService = async ({ userId, serviceId }) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}/services/${serviceId}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+export default {
+  getAllServices,
+  addService,
+  getmyServices,
+  show,
+  getMyservices,
+  updateService,
+  deleteService,
+};

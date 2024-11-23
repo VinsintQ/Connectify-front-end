@@ -23,8 +23,7 @@ const Freelancing = (user) => {
         <h1>Freelancing</h1>
           
           <Link to={"/MyServices"}>My Services</Link>
-        <h3>become a freelancer by start adding service </h3>
-       <Link to={"/addService"}>add Services</Link>
+        
          
         <div className="freelancing-container">
           {services.map((service) => (
@@ -33,6 +32,7 @@ const Freelancing = (user) => {
               <h2>{service.serviceTitle}</h2>
               <p>{service.description}</p>
               <p>From :{service.startingPrice} usd </p>
+             
             </div>
           ))}
         </div>

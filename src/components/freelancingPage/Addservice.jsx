@@ -3,27 +3,53 @@ import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
 import freelancnigService from "../../services/freelancnigService";
 import { useNavigate } from "react-router-dom";
+
 const Addservice = ({user}) => {
     
     const [userId] = useState(user._id);
     const navigate = useNavigate();
+    const { serviceId } = useParams();
+
+    useEffect(() => {
+      if (serviceId) {
+        const fetchService = async () => {
+          try {
+            const data = await freelancnigService.show(userId, serviceId);
+            setServiceDate(data);
+          } catch (error) {
+            console.error("Error fetching service:", error);
+          }
+        };
+    
+        fetchService();
+      }
+    }, [serviceId]);
+    
+
+
     const [serviceData, setServiceDate] = useState({
         serviceTitle: "",
         description: "",
         category: "",
         startingPrice: "",
       });
-
+      
       const handleChange = (e) => {
         setServiceDate({ ...serviceData, [e.target.name]: e.target.value });
       }
       const handleSubmit = async (e) => {
-
+          
         e.preventDefault();
-        
+         
+        if (serviceId) {
+            await freelancnigService.updateService({ userId, serviceId, formData: serviceData });
+            navigate("/MyServices");
+          }else {
+
+
           freelancnigService.addService({userId,formData: serviceData });
-          navigate("/freelancing");
-        
+          navigate("/MyServices");
+        }
       };
 
       return (

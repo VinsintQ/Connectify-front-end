@@ -128,6 +128,7 @@ function App() {
                 path="Mycompany/company/:compId"
                 element={<CompanyDetails user={user} />}
               />
+
               <Route path="/MyServices" element={<MyServices user={user} />} />
               <Route path="/Mycompany" element={<MyCompanies user={user} />} />
               <Route path="/MyCompany/company/:compId/addJob" element={<AddJobForm/>} />
@@ -142,6 +143,7 @@ function App() {
                 element={<AddCompanyForm user={user} />}
               />
               <Route path="/addService" element={<Addservice user={user} />} />
+              <Route path="/:serviceId/updateService" element={<Addservice user={user} />} />
               <Route path="/" element={<Dashboard user={user} />} />
               <Route path="/profile" element={<Profile user={user} />} />
               <Route
