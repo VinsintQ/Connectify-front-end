@@ -77,16 +77,7 @@ const Addservice = ({user}) => {
               />
             </div>
     
-            <div>
-              <label htmlFor="category">category :</label>
-              <input
-                type="text"
-                id="category"
-                value={serviceData.category}
-                name="category"
-                onChange={handleChange}
-              />
-            </div>
+           
             <div>
               <label htmlFor="startingPrice">startingPrice : </label>
               <input
@@ -95,12 +86,12 @@ const Addservice = ({user}) => {
                 value={serviceData.startingPrice}
                 name="startingPrice"
                 onChange={handleChange}
-              />
+              />USD
             </div>
     
             <div>
               <button type="submit">
-               Post Service
+               {serviceId ? <>Update Service</> : <>Post Service</>}
               </button>
             </div>
           </form>

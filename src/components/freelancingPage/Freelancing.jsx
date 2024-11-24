@@ -1,6 +1,7 @@
 import freelancnigService from "../../services/freelancnigService";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import "./Freelancing.css";
 const Freelancing = (user) => {
 
     const [services, setServices] = useState([]);
@@ -20,18 +21,29 @@ const Freelancing = (user) => {
 
     return (
         <div>
-        <h1>Freelancing</h1>
-          
-          <Link to={"/MyServices"}>My Services</Link>
         
+          <button>
+          <Link to={"/MyServices"}>My Services</Link>
+        </button>
          
         <div className="freelancing-container">
           {services.map((service) => (
             <div key={service._id} className="service">
-            <p>{service.userId.username}</p>    
+
+                <Link to={`/profile/${service.userId._id}`}>
+                     <img
+                       className="profile-image"
+                       src={service.userId.image}
+                       alt="Post"
+                     />
+                    {service.userId.username}
+                  </Link>
+
+
+                
               <h2>{service.serviceTitle}</h2>
-              <p>{service.description}</p>
-              <p>From :{service.startingPrice} usd </p>
+              <p><strong>Description:</strong> {service.description}</p>
+              <p><strong>From :</strong> {service.startingPrice} usd </p>
              
             </div>
           ))}

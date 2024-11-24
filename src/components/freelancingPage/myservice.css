@@ -1,0 +1,23 @@
+
+.card {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.btn {
+  margin-left:5px ;
+}
+.d-flex {
+  display: flex;
+  justify-content: center; 
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
