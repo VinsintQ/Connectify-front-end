@@ -1,7 +1,7 @@
 /* Container for all services */
 
 /* Wrapper for centering the button */
-button {
+button.freebtn {
     display: block; /* Ensures the button behaves as a block-level element */
     margin: 50px auto; /* Centers the button horizontally */
     padding: 10px 20px;
@@ -15,12 +15,12 @@ button {
   }
   
   /* Button hover effect */
-  button:hover {
+  button.freebtn:hover {
     background-color: #0056b3;
   }
   
   /* Center the link inside the button */
-  button a {
+  button.freebtn a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;

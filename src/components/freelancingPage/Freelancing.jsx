@@ -22,7 +22,7 @@ const Freelancing = (user) => {
     return (
         <div>
         
-          <button>
+          <button className="freebtn">
           <Link to={"/MyServices"}>My Services</Link>
         </button>
          
