@@ -13,6 +13,7 @@ const SignForm = (props) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
+  
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -58,6 +59,7 @@ const SignForm = (props) => {
       }
     } catch (err) {
       updateMessage(err.message);
+      
     }
   };
 
@@ -84,7 +86,7 @@ const SignForm = (props) => {
       })
       .catch((err) => {
         setLoading(false);
-        if (err.response && err.response.status === 413) {
+        if (err.response && err.resposnse.status === 413) {
           setError("The image is too large. Please upload a smaller file.");
         } else {
           setError("An error occurred during the upload. Please try again.");
@@ -158,6 +160,8 @@ const SignForm = (props) => {
               onChange={handleChange}
             />
             <input type="file" name="image" onChange={uploadImage} />
+            <p className="error-message">{message}</p>
+
             {loading === false ? (
               <button type="submit">Sign Up</button>
             ) : (
