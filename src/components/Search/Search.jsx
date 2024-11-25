@@ -4,6 +4,7 @@ import userServices from "../../services/userServices";
 import { Link } from "react-router-dom";
 import followersServices from "../../services/followers";
 
+
 const Search = ({ users, user, userData }) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [followers, setFollowers] = useState([]);
@@ -32,6 +33,9 @@ const Search = ({ users, user, userData }) => {
       setRandomNumArr(newRandomNumArr);
     }
   }, [sameOccupation]);
+
+
+
 
   useEffect(() => {
     const fetchFollowers = async () => {
