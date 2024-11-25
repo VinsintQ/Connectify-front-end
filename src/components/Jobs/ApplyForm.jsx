@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import jobService from "../../services/jobService"; 
-
+import "./ApplyForm.css";
 
 const ApplyForm = () => {
   const navigate = useNavigate();

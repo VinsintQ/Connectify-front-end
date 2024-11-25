@@ -2,7 +2,7 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import companyService from "../../services/companyService";
-import "./company.css";
+import "./mycompany.css";
 const myCompanies = ({ user }) => {
  const [allCompanies,setallCompanies] =  useState([])
  const [userId,setUserId] =  useState(user._id)

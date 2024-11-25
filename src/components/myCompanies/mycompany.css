@@ -1,0 +1,61 @@
+/* company.css */
+main {
+    max-width: 800px;
+    margin: 20px auto; /* Center with some top margin */
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+main h1 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+button {
+    display: block;
+    margin: 20px auto; /* Center the button */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button a {
+    text-decoration: none;
+    color: white;
+}
+
+div {
+    margin: 15px 0;
+    text-align: center;
+}
+
+div h2 {
+    font-size: 20px;
+    color: #0056b3;
+}
+
+div a {
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+div a:hover {
+    color: #003d80;
+}
