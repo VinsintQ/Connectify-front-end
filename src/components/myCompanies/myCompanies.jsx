@@ -24,13 +24,13 @@ const myCompanies = ({ user }) => {
 
     return (
       
-      <main>
+      <main className="mycompany-main">
   {allCompanies.length > 0 ? (
     <>
       <h1>These companies are owned by you, {user.username}</h1>
       <button><Link to="/AddCompany">Add new company</Link></button>
       {allCompanies.map((company) => (
-        <div key={company._id}>
+        <div key={company._id} className="company">
           <Link to={`company/${company._id}`}><h2>{company.name}</h2></Link>  
         </div>
       ))}
