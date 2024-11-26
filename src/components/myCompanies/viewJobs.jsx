@@ -5,6 +5,7 @@ import jobService from "../../services/jobService"
 import { useState } from "react"
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
+import "./viewJobs.css"
 const ViewJobs = () => {
     const { compId } = useParams();
     const [jobs, setJobs] = useState([])
@@ -34,42 +35,59 @@ const ViewJobs = () => {
     }
 
     return (
-        <div>
-            <h1>View Jobs</h1>
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Job Title</th>
-                        <th>location</th>
-                        <th>overview</th>
-                        <th>workplace</th>
-                        <th>jobtype</th>
-                        <th>applications</th>
-                        <th>update</th>
-                        <th>delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {jobs.map((job) => (
-                        <tr key={job.id}>
-                            <td>{job.jobtitle}</td>
-                            <td>{job.location}</td>
-                            <td>{job.overview}</td>
-                            <td>{job.workplace}</td>
-                            <td>{job.jobtype}</td>
-                            <td> <Link to={`/Mycompany/${compId}/viewapplications/${job._id}`}>view</Link>    </td>
-                            <td><Link to={`/MyCompany/company/${compId}/jobs/${job._id}/updateJob`}>update</Link></td>
-                            <td> <button onClick={() => deleteJob({jobId:job._id})}>
-            Delete Job
-        </button></td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div className="view-jobs-container">
+  <h1 className="view-jobs-title">View Jobs</h1>
+  <table className="jobs-table">
+    <thead>
+      <tr>
+        <th>Job Title</th>
+        <th>Location</th>
+        <th>Overview</th>
+        <th>Workplace</th>
+        <th>Job Type</th>
+        <th>Applications</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {jobs.map((job) => (
+        <tr key={job.id}>
+          <td>{job.jobtitle}</td>
+          <td>{job.location}</td>
+          <td>{job.overview}</td>
+          <td>{job.workplace}</td>
+          <td>{job.jobtype}</td>
+          <td>
+            <Link
+              to={`/Mycompany/${compId}/viewapplications/${job._id}`}
+              className="view-link"
+            >
+              View
+            </Link>
+          </td>
+          <td>
+            <Link
+              to={`/MyCompany/company/${compId}/jobs/${job._id}/updateJob`}
+              className="update-link"
+            >
+              Update
+            </Link>
+          </td>
+          <td>
+            <button
+              className="delete-button"
+              onClick={() => deleteJob({ jobId: job._id })}
+            >
+              Delete Job
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
-
-
-        </div>
     )
 }
 

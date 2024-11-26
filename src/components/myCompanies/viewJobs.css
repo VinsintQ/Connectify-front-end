@@ -1,0 +1,72 @@
+.view-jobs-container {
+    max-width: 900px;
+    margin: 30px auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .view-jobs-title {
+    text-align: center;
+    color: #34495e;
+    margin-bottom: 20px;
+  }
+  
+  .jobs-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  .jobs-table th, .jobs-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .jobs-table th {
+    
+    
+    font-weight: bold;
+  }
+  
+  .jobs-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .jobs-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .view-link,
+  .update-link {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .view-link:hover,
+  .update-link:hover {
+    text-decoration: underline;
+  }
+  
+  .delete-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .delete-button:hover {
+    background-color: #c0392b;
+  }
+  
+  .delete-button:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(231, 76, 60, 0.5);
+  }
+  

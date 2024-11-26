@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState,useEffect } from "react";
 import companyService from "../../services/companyService";
 import jobService from "../../services/jobService";
-
+import "./AddJobForm.css";
 const AddJobForm = ({}) => {
     const navigate = useNavigate();
     const { compId } = useParams();
@@ -59,81 +59,87 @@ const AddJobForm = ({}) => {
 
     return (
 
-        <main>
-
-
-            <h1>New Job</h1>
-
-            <form onSubmit={handleSubmit}>
-
-                <div>
-                    <label htmlFor="jobtitle">Job Title:</label>
-                    <input
-                        type="text"
-                        id="jobtitle"
-                        value={jobData.jobtitle}
-                        name="jobtitle"
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor="location">Location:</label>
-                    <input
-                        type="text"
-                        id="location"
-                        value={jobData.location}
-                        name="location"
-                        onChange={handleChange}
-                    />
-                </div>
-
-
-                <div>
-    <label htmlFor="workplace">Workplace:</label>
-    <select
-        id="workplace"
-        value={jobData.workplace}
-        name="workplace"
-        onChange={handleChange}
-    >
-        <option value="">Select Workplace</option>
-        <option value="onsite">Onsite</option>
-        <option value="hybrid">Hybrid</option>
-        <option value="remote">Remote</option>
-    </select>
-</div>
-
-<div>
-    <label htmlFor="jobtype">Job Type:</label>
-    <select
-        id="jobtype"
-        value={jobData.jobtype}
-        name="jobtype"
-        onChange={handleChange}
-    >
-        <option value="">Select Job Type</option>
-        <option value="full-time">Full-time</option>
-        <option value="part-time">Part-time</option>
-        <option value="internship">Internship</option>
-        <option value="temporary">Temporary</option>
-    </select>
-</div>
-
-
-                <div>
-                    <label htmlFor="overview">Overview:</label>
-                    <textarea
-                        id="overview"
-                        value={jobData.overview}
-                        name="overview"
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <button type="submit" disabled={!isFormValid}>{jobId ? <>update</>:<>Add Job</>}</button>
-            </form>
-        </main>
+        <main className="add-job-container">
+        <h1 className="form-title">{jobId ? "Update Job" : "New Job"}</h1>
+        <form className="add-job-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label className="form-label" htmlFor="jobtitle">Job Title:</label>
+            <input
+              type="text"
+              id="jobtitle"
+              className="form-input"
+              value={jobData.jobtitle}
+              name="jobtitle"
+              onChange={handleChange}
+            />
+          </div>
+      
+          <div className="form-group">
+            <label className="form-label" htmlFor="location">Location:</label>
+            <input
+              type="text"
+              id="location"
+              className="form-input"
+              value={jobData.location}
+              name="location"
+              onChange={handleChange}
+            />
+          </div>
+      
+          <div className="form-group">
+            <label className="form-label" htmlFor="workplace">Workplace:</label>
+            <select
+              id="workplace"
+              className="form-select"
+              value={jobData.workplace}
+              name="workplace"
+              onChange={handleChange}
+            >
+              <option value="">Select Workplace</option>
+              <option value="onsite">Onsite</option>
+              <option value="hybrid">Hybrid</option>
+              <option value="remote">Remote</option>
+            </select>
+          </div>
+      
+          <div className="form-group">
+            <label className="form-label" htmlFor="jobtype">Job Type:</label>
+            <select
+              id="jobtype"
+              className="form-select"
+              value={jobData.jobtype}
+              name="jobtype"
+              onChange={handleChange}
+            >
+              <option value="">Select Job Type</option>
+              <option value="full-time">Full-time</option>
+              <option value="part-time">Part-time</option>
+              <option value="internship">Internship</option>
+              <option value="temporary">Temporary</option>
+            </select>
+          </div>
+      
+          <div className="form-group">
+            <label className="form-label" htmlFor="overview">Overview:</label>
+            <textarea
+              id="overview"
+              className="form-input"
+              value={jobData.overview}
+              name="overview"
+              onChange={handleChange}
+            />
+          </div>
+      
+          <button
+            type="submit"
+            className="form-button"
+            disabled={!isFormValid}
+          >
+            {jobId ? "Update Job" : "Add Job"}
+          </button>
+        </form>
+      </main>
+      
     );
 }
 
