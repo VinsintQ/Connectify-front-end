@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import jobService from "../../services/jobService";
 import { useParams } from "react-router-dom";
 import "./viewapp.css";
+import AppDetails from "./viewappDetails";
 
 const Viewapplications = () => {
   const [Apps, setApp] = useState([]);
+  const [selectedCV, setSelectedCV] = useState(null); // For modal
   const { compId, jobId } = useParams();
 
   useEffect(() => {
@@ -19,6 +21,14 @@ const Viewapplications = () => {
     fetchApp(jobId, compId);
   }, [jobId, compId]);
 
+  const openModal = (cv) => {
+    setSelectedCV(cv);
+  };
+
+  const closeModal = () => {
+    setSelectedCV(null);
+  };
+
   return (
     <div className="applications-container">
       <h1>Applications</h1>
@@ -32,13 +42,25 @@ const Viewapplications = () => {
             {app.cv && (
               <div>
                 <strong>CV:</strong>
-                <a href={app.cv} target="_blank" rel="noopener noreferrer" className="cv-button">
+                <button
+                  onClick={() => openModal(app.cv)}
+                  className="cv-button"
+                >
                   View CV
-                </a>
+                </button>
               </div>
             )}
           </div>
         ))
+      )}
+      {/* Modal */}
+      {selectedCV && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span className="close-button" onClick={closeModal}>&times;</span>
+            <img src={selectedCV} alt="CV" className="cv-image" />
+          </div>
+        </div>
       )}
     </div>
   );
