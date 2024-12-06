@@ -3,6 +3,7 @@ import userServices from "../../services/userServices";
 import followersServices from "../../services/followers";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./otherfollower.css";
 
 const otherFollowers = ({ user }) => {
   const { profileId } = useParams();
@@ -35,12 +36,12 @@ const otherFollowers = ({ user }) => {
   };
 
   return (
-    <div>
+    <div className="otherfollwer">
       {otherUserfollower?.map((follower) => (
-        <div className="userInfo" key={follower._id}>
+        <div className="userinformation" key={follower._id}>
           <Link to={`/profile/${follower._id}`}>
             <img
-              className="profile-image"
+              className="prof-image"
               src={follower.image}
               alt={`${follower.username}'s profile`}
             />

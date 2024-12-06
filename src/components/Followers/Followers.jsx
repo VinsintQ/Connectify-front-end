@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import profileService from "../../services/profileService";
 import followersServices from "../../services/followers";
 import { Link } from "react-router-dom";
-
+import "./Followers.css";
 const Followers = ({ user }) => {
   const [userFollower, setUserfollower] = useState([]);
 
@@ -33,21 +33,21 @@ const Followers = ({ user }) => {
   };
 
   return (
-    <div>
+    <div className="followers-container">
       {userFollower?.map((follower) => (
-        <div className="userInfo" key={follower._id}>
+        <div className="followers-user-card" key={follower._id}>
           <Link to={`/profile/${follower._id}`}>
             <img
-              className="profile-image"
+              className="followers-profile-image"
               src={follower.image}
               alt={`${follower.username}'s profile`}
             />
-            <h3>{follower?.username}</h3>
+            <h3 className="followers-username">{follower?.username}</h3>
           </Link>
 
           {userFollower.some((f) => f._id === follower._id) ? (
             <button
-              className="follow-button"
+              className="followers-unfollow-button"
               onClick={() => handleUnfollow(follower._id)}
             >
               Unfollow
