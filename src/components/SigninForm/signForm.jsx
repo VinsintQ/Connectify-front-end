@@ -59,7 +59,7 @@ const SignForm = (props) => {
   const handleSubmitSignUp = async (e) => {
     e.preventDefault();
   
-    const phoneRegex = /^\d{8,15}$/;
+    const phoneRegex = /^\d{11}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
     if (!emailRegex.test(signUpData.email)) {
@@ -68,7 +68,7 @@ const SignForm = (props) => {
     }
   
     if (!phoneRegex.test(signUpData.phone)) {
-      updateMessage("Phone number must be 8-15 digits.");
+      updateMessage("Phone number must be 11 digits.");
       return;
     }
   

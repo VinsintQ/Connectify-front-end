@@ -7,7 +7,7 @@ import "./updateProfile.css";
 const updateProfileForm = ({ user, setuserData, userData }) => {
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
-  // const userId = user._id;
+  
   const userId = user._id;
 
   const [isActive, setIsActive] = useState(false);
@@ -55,6 +55,23 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Regular Expressions
+    const phoneRegex = /^\d{11}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    // Validate email
+    if (!emailRegex.test(formData.email)) {
+      updateMessage("Invalid email format.");
+      return;
+    }
+  
+    // Validate phone
+    if (!phoneRegex.test(formData.phone)) {
+      updateMessage("Phone number must be 11 digits.");
+      return;
+    }
+  
     try {
       await userServices.update(userId, formData);
       navigate("/profile");
@@ -63,6 +80,7 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
       updateMessage(err.message);
     }
   };
+  
 
   const uploadImage = async (event) => {
     const files = event.target.files[0];
@@ -101,7 +119,7 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
 
   return (
     <form onSubmit={handleSubmit} className="updateProfileForm">
-      <p>{error}</p>
+      <p>{message}</p>
       <input
         className="updateProfile"
         type="text"
