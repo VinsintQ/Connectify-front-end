@@ -103,7 +103,7 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
     <form onSubmit={handleSubmit} className="updateProfileForm">
       <p>{error}</p>
       <input
-        className="spaced-out"
+        className="updateProfile"
         type="text"
         placeholder="Name"
         name="name"
@@ -111,7 +111,7 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
         onChange={handleChange}
       />
       <input
-        className="spaced-out"
+        className="updateProfile"
         type="text"
         placeholder="Username"
         name="username"
@@ -119,15 +119,16 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
         onChange={handleChange}
       />
       <input
-        className="spaced-out"
+        className="updateProfile"
         type="email"
         placeholder="Email"
         name="email"
         value={formData.email}
         onChange={handleChange}
       />
+
       <input
-        className="spaced-out"
+        className="updateProfile"
         type="text"
         placeholder="Phone"
         name="phone"
@@ -135,7 +136,7 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
         onChange={handleChange}
       />
       <input
-        className="spaced-out"
+        className="updateProfile"
         type="text"
         placeholder="Occupation"
         name="occupation"
@@ -144,7 +145,7 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
       />
 
       <div className="private">
-        <label htmlFor="isPrivate">Private Account:</label>
+        <label htmlFor="isPrivate">  Private Account:</label>
         <input
           type="checkbox"
           name="isPrivate"
@@ -155,7 +156,7 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
       </div>
 
       <input
-        className="spaced-out"
+        className="updateProfile"
         type="file"
         name="image"
         onChange={uploadImage}
