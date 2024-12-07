@@ -50,7 +50,7 @@ const Conversation = ({
 
       {isOnline && <span className="chatOnlineBadge"></span>}
 
-      <Link to={`/profile/${ConvUser?._id}`}>
+      <Link className="no-underline" to={`/profile/${ConvUser?._id}`}>
         <span className="friendName">{ConvUser?.username}</span>
       </Link>
 

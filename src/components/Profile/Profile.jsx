@@ -52,7 +52,7 @@ const Profile = ({ user }) => {
   }, [user]);
   return (
     <div className="profile-container">
-      <h1>Profile</h1>
+      <h1 className="profilehead">Profile</h1>
       <Link to={`/profile/update/${user._id}`}>
         <span className="the-lord">edit profile details</span>
       </Link>
@@ -63,9 +63,9 @@ const Profile = ({ user }) => {
             <p>Name: {profile.name}</p>
             <p>Email: {profile.email}</p>
             <p>Username: {profile.username}</p>
-            <p>PhoneNum: {profile.phone}</p>
+            <p>PhoneNum: + {profile.phone}</p>
             <p>Occupation: {profile.occupation}</p>
-            <Link to={`/profile/followers`}>
+            <Link className="follwers" to={`/profile/followers`}>
               <span>Followers: {profile.Followers?.length}</span>
             </Link>
           </div>
@@ -75,14 +75,14 @@ const Profile = ({ user }) => {
       <div className="sections-container">
         <div className="section">
           <h3>Experiences</h3>
-          {/* <button> */}
+          
             <Link to="/addExp">
             <span className="a">Add</span>
             </Link>
-          {/* </button> */}
+          
           {experiencesToShow.map((exp) => (
             <div key={exp._id}>
-              <Link to={`/experience/${exp._id}`}>
+              <Link  to={`/experience/${exp._id}`}>
                 <p>
                   Position: {exp.position} Company: {exp.company}
                 </p>
@@ -98,11 +98,11 @@ const Profile = ({ user }) => {
 
         <div className="section">
           <h3>Education</h3>
-          {/* <button> */}
+          
             <Link to="/addEducation" className="a">
               <span className="a">Add</span>
             </Link>
-          {/* </button> */}
+          
           {educationsToShow.map((edu) => (
             <div key={edu._id}>
               <Link to={`/education/${edu._id}`}>
@@ -119,11 +119,11 @@ const Profile = ({ user }) => {
 
         <div className="section">
           <h3>Projects</h3>
-          {/* <button> */}
+          
             <Link to="/addproject">
             <span className="a">Add</span>
             </Link>
-          {/* </button> */}
+          
           {projectsToShow.map((pro) => (
             <div key={pro._id}>
               <Link to={`/project/${pro._id}`}>

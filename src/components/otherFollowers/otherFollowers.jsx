@@ -23,23 +23,13 @@ const otherFollowers = ({ user }) => {
     fetchProfile();
   }, [profileId]);
 
-  const handleUnfollow = async (followerId) => {
-    try {
-      await followersServices.DeleteFollower(profileId, followerId);
-      setOtheruserFollowers((prevFollowers) =>
-        prevFollowers.filter((follower) => follower._id !== followerId)
-      );
-    } catch (error) {
-      console.error("Failed to unfollow user:", error);
-      alert("An error occurred while unfollowing the user.");
-    }
-  };
+ 
 
   return (
     <div className="otherfollwer">
       {otherUserfollower?.map((follower) => (
         <div className="userinformation" key={follower._id}>
-          <Link to={`/profile/${follower._id}`}>
+          <Link className="no-underline" to={`/profile/${follower._id}`}>
             <img
               className="prof-image"
               src={follower.image}

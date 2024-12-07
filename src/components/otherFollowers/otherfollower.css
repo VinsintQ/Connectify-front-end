@@ -1,53 +1,57 @@
-/* Container styling */
+
 .otherfollwer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1.5rem;
     padding: 20px;
-    background-color: #f9f9f9; /* Light gray background */
+    background-color: #f9f9f9; 
   }
   
-  /* Individual user info container */
+  .otherfollwer .no-underline{
+    text-decoration: none !important;
+  }
+
+
   .userinformation {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 150px;
     padding: 10px;
-    background-color: #fff; /* White background */
-    border: 1px solid #ddd; /* Light border */
+    background-color: #fff; 
+    border: 1px solid #ddd; 
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     transition: transform 0.2s, box-shadow 0.2s;
   }
   
-  /* Hover effect on user cards */
+
   .userinformation:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
   }
   
-  /* Profile image styling */
+
   .prof-image {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px;
-    border: 2px solid #4caf50; /* Green border */
+    border: 2px solid #4caf50; 
   }
   
-  /* Username styling */
+  
   .userinformation h3 {
     font-size: 1rem;
-    color: #333; /* Dark gray text */
+    color: #333; 
     text-align: center;
     margin: 0;
     word-break: break-word;
   }
   
-  /* Link styling */
+ 
   .userinformation a {
     text-decoration: none;
     color: inherit;

@@ -64,10 +64,10 @@ const Profile = ({ user }) => {
             <p>Name : {profile.name}</p>
             <p>Email : {profile.email}</p>
             <p>Username : {profile.username}</p>
-            <p>PhoneNum : {profile.phone}</p>
+            <p>PhoneNum : +{profile.phone}</p>
             <p>Occupation : {profile.occupation}</p>
             {profile.isPrivate === "false" ? (
-              <Link to={`/profile/followers/${profile._id}`}>
+              <Link className="no-underline" to={`/profile/followers/${profile._id}`}>
                 <span>Followers: {profile.Followers?.length}</span>
               </Link>
             ) : (

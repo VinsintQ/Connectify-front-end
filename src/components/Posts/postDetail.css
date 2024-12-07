@@ -6,7 +6,17 @@
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
+ .flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.post-details-container button.red {
+  background-color: rgb(228, 23, 23);
+}
+.post-details-container button.red:hover {
+  background-color: rgb(167, 14, 14);
+}
 .post-details-container img {
   width: 100%;
   max-width: 100%;

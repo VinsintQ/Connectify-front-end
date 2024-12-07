@@ -54,9 +54,6 @@ button.freebtn {
   text-align: center; /* Center the content inside the card */
 }
 
-.job-card a:hover {
-  background-color: #218838; /* Darker green on hover */
-}
 
 
   /* Each service card */
@@ -108,9 +105,7 @@ button.freebtn {
     font-weight: bold;
   }
   
-  .service a:hover {
-    text-decoration: underline;
-  }
+
   
   /* My Services link */
   h1 + a {

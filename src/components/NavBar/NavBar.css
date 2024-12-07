@@ -99,6 +99,8 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
+
+
 .logo {
   width: 40px;
   height: 30px;
@@ -106,47 +108,51 @@ body {
 }
 
 
-@media screen and (max-width: 768px) {
-  .nav {
-    flex-direction: column;
-    height: auto; 
-  }
+@media screen and (max-width: 968px) {
+ 
 
-  .nav-left {
-    margin-right: 0; 
+  .hide {
+    display: none; 
   }
-
-  .nav-right {
-    margin-top: 10px;
-  }
-
-  .nav ul {
-    flex-direction: column; 
-  }
-
-  .nav ul li {
-    margin-right: 0; 
-    margin-bottom: 10px; 
-  }
-
   .nav ul li a {
-    padding: 10px; 
+    padding: 1px 1px;
   }
 
-  .nav-right .signout {
-    margin-left: 0;
-    margin-top: 10px; 
+
+  .nav ul li  {
+ margin-right: 9px;   
   }
+  
+   
+  
+
+ 
 }
 
 
 @media screen and (max-width: 480px) {
-  .nav ul li a {
-    font-size: 0.9em; 
+  
+
+  .hide {
+    display: none; 
   }
 
-  .logo {
-    width: 30px; 
-    height: 20px;
+  .nav ul li a {
+    padding: 1px 1px;
   }
+  
+  .nav ul li  {
+    margin-right: 5px;   
+     }
+     
+     .nav-right .signout a {
+      display: flex;
+      align-items: center;
+      padding: 0px 0px; 
+      text-decoration: none;
+      color: #dc3545;
+      transition: color 0.3s ease, transform 0.3s ease; 
+    }
+     
+      
 }

@@ -53,7 +53,7 @@ const NavBar = ({ user, handleSignout }) => {
                 <span className="icon">
                   <ion-icon name="home-outline"></ion-icon>
                 </span>
-                <span className="text">Home</span>
+                <span className="text hide">Home</span>
               </Link>
             </li>
             <li className={`list ${activeLink === "/profile" ? "active" : ""}`}>
@@ -61,7 +61,7 @@ const NavBar = ({ user, handleSignout }) => {
                 <span className="icon">
                   <ion-icon name="person-outline"></ion-icon>
                 </span>
-                <span className="text">Profile</span>
+                <span className="text hide">Profile</span>
               </Link>
             </li>
             <li className={`list ${activeLink === "/chat" ? "active" : ""}`}>
@@ -69,7 +69,7 @@ const NavBar = ({ user, handleSignout }) => {
                 <span className="icon">
                   <ion-icon name="chatbox-ellipses-outline"></ion-icon>
                 </span>
-                <span className="text">Chat</span>
+                <span className="text hide">Chat</span>
               </Link>
             </li>
             <li className={`list ${activeLink === "/search" ? "active" : ""}`}>
@@ -77,7 +77,7 @@ const NavBar = ({ user, handleSignout }) => {
                 <span className="icon">
                   <ion-icon name="search-outline"></ion-icon>
                 </span>
-                <span className="text">Search</span>
+                <span className="text hide">Search</span>
               </Link>
             </li>
             <li className={`list ${activeLink === "/Mycompany" ? "active" : ""}`}>
@@ -85,7 +85,7 @@ const NavBar = ({ user, handleSignout }) => {
                 <span className="icon">
                 <ion-icon name="business-outline"></ion-icon>
                 </span>
-                <span className="text">Company</span>
+                <span className="text hide">Company</span>
               </Link>
             </li>
 
@@ -95,7 +95,7 @@ const NavBar = ({ user, handleSignout }) => {
                 <span className="icon">
                 <ion-icon name="briefcase-outline"></ion-icon>
                 </span>
-                <span className="text">Jobs</span>
+                <span className="text hide">Jobs</span>
               </Link>
             </li>
             
@@ -104,7 +104,7 @@ const NavBar = ({ user, handleSignout }) => {
                 <span className="icon">
                   <ion-icon name="briefcase-outline"></ion-icon>
                 </span>
-                <span className="text">Freelancing</span>
+                <span className="text hide" >Freelancing</span>
               </Link>
             </li>
 
@@ -122,7 +122,7 @@ const NavBar = ({ user, handleSignout }) => {
               <span className="icon">
                 <ion-icon name="log-out-outline"></ion-icon>
               </span>
-              <span className="text">Sign Out</span>
+              <span className="text hide">Sign Out</span>
             </Link>
           </li>
         </ul>

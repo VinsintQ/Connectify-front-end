@@ -27,13 +27,18 @@ const PostDetails = ({ user }) => {
 
   const handleConfirmDeletePost = async () => {
     await postService.deleter(userId, postId);
-    window.location.replace("/");
+    
   };
 
   
   const deleteComment = (commentId) => {
     setCommentToDelete(commentId); 
     setShowCommentModal(true);
+    async function getPost() {
+      const postData = await postService.indexc(userId, postId);
+      setPost(postData);
+    }
+    getPost();
   };
 
 
@@ -62,6 +67,11 @@ const PostDetails = ({ user }) => {
 
   const handleCommentAdded = () => {
     setRefresh((prev) => !prev);
+    async function getPost() {
+      const postData = await postService.indexc(userId, postId);
+      setPost(postData);
+    }
+    getPost();
   };
 
   if (!post) {
@@ -85,12 +95,12 @@ const PostDetails = ({ user }) => {
       <p className="post-content">Content: {post?.content}</p>
 
       {post.userId._id === user._id && (
-        <>
+        <div className="flex">
           <button id="editButton">
             <Link to={`/post/${postId}/update`}>Edit</Link>
           </button>
-          <button onClick={deletePost}>Delete</button>
-        </>
+          <button className="red" onClick={deletePost}>Delete</button>
+        </div>
       )}
 
       <Modal show={showPostModal} onHide={handlePostModalClose} centered>
@@ -152,7 +162,7 @@ const PostDetails = ({ user }) => {
           <Button variant="secondary" onClick={handleCommentModalClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleConfirmDeleteComment}>
+          <Button type="submit" variant="primary" onClick={handleConfirmDeleteComment}>
             Confirm
           </Button>
         </Modal.Footer>

@@ -30,7 +30,7 @@ const Dashboard = ({ user }) => {
             <>
               <div>
                 <div className="userInfo">
-                  <Link to={`/profile/${post.userId._id}`}>
+                  <Link className="no-underline" to={`/profile/${post.userId._id}`}>
                     <img
                       className="profile-image"
                       src={post.userId.image}
@@ -39,7 +39,7 @@ const Dashboard = ({ user }) => {
                     {post.userId.username}
                   </Link>
                 </div>
-                <Link to={`/post/${post._id}`}>
+                <Link className="no-underline" to={`/post/${post._id}`}>
                   <div key={post._id} className="post-card">
                     <img className="post-image" src={post?.image} alt="Post" />
                     <div className="post-content">
