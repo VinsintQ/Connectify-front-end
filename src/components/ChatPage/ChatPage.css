@@ -253,13 +253,8 @@
     flex-direction: column;
     height: 900px;
   }
-.chatList {
-    flex: 2;
-  
-  }
-  .chatBox {
-    flex: 5;
-  }
+
+ 
 
   
 }
