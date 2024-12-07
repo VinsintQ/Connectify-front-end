@@ -254,10 +254,10 @@
   }
 
   .chatBox {
-    flex: 2;
+    flex: 5;
   }
 
   .chatList {
-    flex: 1;
+    flex: 2;
   }
 }
