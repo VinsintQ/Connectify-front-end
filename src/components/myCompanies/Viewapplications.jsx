@@ -41,7 +41,7 @@ const Viewapplications = () => {
             <p><strong>Phone Number:</strong> {app.phoneNumber}</p>
             {app.cv && (
               <div>
-                <strong>CV:</strong>
+                
                 <button
                   onClick={() => openModal(app.cv)}
                   className="cv-button"

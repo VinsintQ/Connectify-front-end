@@ -59,3 +59,17 @@ button a {
 .company a:hover {
     color: #003d80;
 }
+
+@media screen and (max-width: 480px) {
+    
+    .mycompany-main {
+        padding: 10px;
+        width: 88%;
+    }
+     .mid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+     }
+    
+}

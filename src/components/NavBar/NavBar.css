@@ -140,9 +140,13 @@ body {
   .nav ul li a {
     padding: 1px 1px;
   }
-  
+  .logo {
+    width: 35px;
+    height: 27px;
+    margin-bottom: 7px;
+  }
   .nav ul li  {
-    margin-right: 5px;   
+    margin-right: 1px;   
      }
      
      .nav-right .signout a {

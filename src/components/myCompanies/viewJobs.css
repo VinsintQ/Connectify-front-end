@@ -70,3 +70,20 @@
     box-shadow: 0 0 4px rgba(231, 76, 60, 0.5);
   }
   
+
+  @media screen and (max-width: 480px) {
+    
+    .application-card {
+
+      width: 88%;
+      
+    }
+    .applications-container{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .cv-button {
+      font-size: 10px;
+    }
+}

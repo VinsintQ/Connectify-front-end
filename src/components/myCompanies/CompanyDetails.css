@@ -42,4 +42,14 @@
     font-weight: bold;
 }
 
+@media screen and (max-width: 480px) {
+    
+    .company-details-container {
+        padding: 10px;
+        width: 88%;
+    }
+     .bt {
+        font-size: 12px;
+     }
+}
 

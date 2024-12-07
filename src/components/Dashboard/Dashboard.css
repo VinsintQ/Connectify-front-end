@@ -169,11 +169,12 @@ h2 {
   }
    
   .post-card {
-    max-width: 88%;
+    max-width: 80%;
   }
 
   .post-image {
     height: 150px;
+    
   }
   
 }
