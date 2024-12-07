@@ -251,7 +251,7 @@
 @media screen and (max-width: 480px) {
   .chat {
     flex-direction: column;
-    height: 100vh;
+    height: 900px;
   }
 .chatList {
     flex: 2;
