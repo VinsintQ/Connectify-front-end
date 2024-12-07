@@ -102,7 +102,7 @@ const NavBar = ({ user, handleSignout }) => {
             <li className={`list ${activeLink === "/freelancing" ? "active" : ""}`}>
               <Link to="/freelancing" onClick={() => handleLinkClick("/freelancing")}>
                 <span className="icon">
-                  <ion-icon name="briefcase-outline"></ion-icon>
+                <ion-icon name="layers-sharp"></ion-icon>
                 </span>
                 <span className="text hide" >Freelancing</span>
               </Link>
