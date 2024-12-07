@@ -246,3 +246,18 @@
   color: #888;
   margin-top: 20px;
 }
+
+
+@media screen and (max-width: 480px) {
+  .chat {
+    flex-direction: column;
+  }
+
+  .chatBox {
+    flex: 2;
+  }
+
+  .chatList {
+    flex: 1;
+  }
+}
