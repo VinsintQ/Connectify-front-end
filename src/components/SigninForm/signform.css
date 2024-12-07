@@ -274,40 +274,60 @@ p.error-message {
 }
 
 
-@media (max-width: 768px) {
-  .container {
-    width: 100%;
-    border-radius: 0;
+@media (max-width: 450px) {
+  body {
+    overflow: hidden;
+  }
+  .big {
+    height: 100%;
+    padding: 0px;
+    flex-direction: column;
   }
 
-  .container form {
-    padding: 0 20px;
+  .container {
+    width: 70%;
+    height: 100;
+    padding: 10px;
+    border-radius: 15px;
+  }
+
+  .form-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    transition: none;
+  }
+
+  .sign-in, .sign-up {
+    width: 100%;
+    left: 0;
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    z-index: 5;
+  }
+
+  .container.active .sign-in {
+    display: none; /* Hide the Sign In when active */
+  }
+
+  .toggle-container, 
+  .toggle-panel, 
+  .toggle {
+    display: none; /* Hide toggle for mobile */
+  }
+
+  .container p, 
+  .container input, 
+  .container button, 
+  .social-icons a {
+    font-size: 12px;
+  }
+
+  .container input {
+    padding: 5px 5px;
   }
 
   .container button {
-    padding: 10px 20px;
-  }
-
-  .toggle-container {
-    left: 0;
-    width: 100%;
-    border-radius: 0;
-  }
-
-  .toggle {
-    left: 0;
-    width: 100%;
-  }
-
-  .toggle-panel {
-    width: 100%;
-  }
-
-  .toggle-left {
-    transform: translateX(0);
-  }
-
-  .toggle-right {
-    transform: translateX(0);
+    padding: 8px 20px;
   }
 }

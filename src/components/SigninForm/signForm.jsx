@@ -218,7 +218,7 @@ const SignForm = (props) => {
               value={signInData.password}
               onChange={handleSignInChange}
             />
-            <button type="submit">Sign In</button>
+            <button className="sing-in" type="submit">Sign In</button>
           </form>
         </div>
         <div className="toggle-container">
