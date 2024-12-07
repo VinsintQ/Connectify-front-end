@@ -160,10 +160,14 @@ h2 {
 }
 
 @media screen and (max-width: 480px) {
+
+  
+  
   .post-grid {
     grid-template-columns: 1fr;
+    
   }
-
+   
   .post-card {
     max-width: 88%;
   }
