@@ -1,6 +1,7 @@
 import freelancnigService from "../../services/freelancnigService";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import conversationServices from "../../services/conversationServices";
 import "./Freelancing.css";
 
@@ -8,7 +9,8 @@ const Freelancing = ({user}) => {
   const [services, setServices] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [conversation, setConversation] = useState([]);
-
+  
+  const navigate = useNavigate();
   useEffect(() => {
     const getConv = async () => {
       try {
@@ -34,7 +36,7 @@ const Freelancing = ({user}) => {
           user._id,
           serviceProvider._id
         );
-
+        navigate(`/chat`);
         
       } catch (error) {
         console.error("Failed to create conversation:", error);
@@ -89,7 +91,7 @@ const Freelancing = ({user}) => {
 
 
              
-             <Link to={`/chat`} onClick={()=>{handleAddConv(service.userId,user._id)}}>
+             <Link to={`/freelancing`} onClick={()=>{handleAddConv(service.userId,user._id)}}>
               <img
                 className="profile-image"
                 src={service.userId.image}
