@@ -7,15 +7,31 @@ import "./Freelancing.css";
 const Freelancing = ({user}) => {
   const [services, setServices] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
- const [id, setId] = useState(user._id);
- 
+  const [conversation, setConversation] = useState([]);
+
+  useEffect(() => {
+    const getConv = async () => {
+      try {
+        const data = await conversationServices.index(user._id);
+        setConversation(data);
+      } catch (error) {
+        console.error("Failed to get conversations:", error);
+      }
+    };
+    getConv();
+  }, [user._id]);
+
 
   const handleAddConv = async (serviceProvider) => {
-   
+     const existingConversation = conversation.find((conv) =>
+       conv.members.includes(serviceProvider._id)
+     );
+     if (!user._id===serviceProvider._id) {
+     if (!existingConversation) {
    
       try {
         const Conversation = await conversationServices.create(
-          id,
+          user._id,
           serviceProvider._id
         );
 
@@ -23,8 +39,8 @@ const Freelancing = ({user}) => {
       } catch (error) {
         console.error("Failed to create conversation:", error);
       }
-    
-
+    }
+  }
    
   };
 
