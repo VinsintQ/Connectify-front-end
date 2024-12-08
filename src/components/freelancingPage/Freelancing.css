@@ -54,7 +54,10 @@ button.freebtn {
 }
 
 
-
+.hover:hover {
+ 
+  cursor: pointer;
+}
 
   .service {
     background-color: #fff;

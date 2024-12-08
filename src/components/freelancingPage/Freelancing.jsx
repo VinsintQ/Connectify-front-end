@@ -98,7 +98,7 @@ const Freelancing = ({user}) => {
 
 
              
-             <div  onClick={()=>{handleAddConv(service.userId._id,user._id)}}>
+             <div className="hover" onClick={()=>{handleAddConv(service.userId._id,user._id)}}>
               <img
                 className="profile-image"
                 src={service.userId.image}
