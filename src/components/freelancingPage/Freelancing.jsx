@@ -30,7 +30,9 @@ const Freelancing = ({user}) => {
        conv.members.includes(serviceProvider)
      );
 
-     
+     if (user._id === serviceProvider) {
+        return;
+     }
      if (!existingConversation) {
    
       try {
@@ -39,11 +41,13 @@ const Freelancing = ({user}) => {
           serviceProvider
         );
        
-        
+        navigate("/chat");
       } catch (error) {
         console.error("Failed to create conversation:", error);
       }
 
+    }else {
+      navigate("/chat");
     }
   
    
@@ -94,14 +98,14 @@ const Freelancing = ({user}) => {
 
 
              
-             <Link to={`/chat`} onClick={()=>{handleAddConv(service.userId._id,user._id)}}>
+             <div  onClick={()=>{handleAddConv(service.userId._id,user._id)}}>
               <img
                 className="profile-image"
                 src={service.userId.image}
                 alt="Post"
               />
               {service.userId.username}
-            </Link> 
+            </div> 
 
             <h2>{service.serviceTitle}</h2>
             <p><strong>Description:</strong> {service.description}</p>
