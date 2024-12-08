@@ -61,7 +61,7 @@ const ChatPage = ({ user, userData, setuserData }) => {
       }
     };
     getConv();
-  }, [user._id]);
+  }, []);
 
   useEffect(() => {
     const fetchFollowers = async () => {
