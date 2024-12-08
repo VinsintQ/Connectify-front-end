@@ -50,25 +50,41 @@ const ApplyForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!formData.phoneNumber || !formData.email || !formData.cv) {
-      setError("All fields are required.");
+  
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    // Phone number validation (must be exactly 11 characters)
+    const phoneRegex = /^\d{11}$/;
+  
+    if (!formData.phoneNumber || !phoneRegex.test(formData.phoneNumber)) {
+      setError("Phone number must be exactly 11 digits.");
       return;
     }
-
+  
+    if (!formData.email || !emailRegex.test(formData.email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+  
+    if (!formData.cv) {
+      setError("CV is required.");
+      return;
+    }
+  
     setError("");
     setLoading(true);
-
+  
     try {
-      
-      await jobService.apply( jobId , formData);
+      await jobService.apply(jobId, formData);
       setLoading(false);
-      navigate("/Jobs"); 
+      navigate("/Jobs");
     } catch (err) {
       setLoading(false);
       setError("Failed to submit the application. Please try again.");
     }
   };
+  
 
   return (
     <main className="applyForm">
