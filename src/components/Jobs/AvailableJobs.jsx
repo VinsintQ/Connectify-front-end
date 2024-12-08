@@ -14,24 +14,31 @@ const AvailableJobs = ({ user }) => {
     const fetchJobs = async () => {
       try {
         const jobs = await jobService.index();
-        setJobs(jobs);
+  
+        // Filter out jobs the user has already applied for
+        const filteredJobs = jobs.filter(
+          (job) => !job.applications.some((app) => app.userId === user._id)
+        );
+  
+        setJobs(filteredJobs);
       } catch (error) {
         console.error("Failed to fetch jobs:", error);
       }
     };
+  
     fetchJobs();
   }, []);
 
   const handleApply = (companyId, jobId, owner) => {
     if (owner === user._id) {
-      setShowModal(true); // Show modal if applying for own job
+      setShowModal(true); 
     } else {
       navigate(`/company/${companyId}/apply/${jobId}`);
     }
   };
 
   const handleClose = () => {
-    setShowModal(false); // Close modal
+    setShowModal(false); 
   };
 
   return (
