@@ -11,6 +11,7 @@ const Freelancing = ({user}) => {
   const [conversation, setConversation] = useState([]);
   
   const navigate = useNavigate();
+  
   useEffect(() => {
     const getConv = async () => {
       try {
@@ -28,6 +29,7 @@ const Freelancing = ({user}) => {
      const existingConversation = conversation.find((conv) =>
        conv.members.includes(serviceProvider._id)
      );
+
      if (user._id!==serviceProvider._id) {
      if (!existingConversation) {
    
