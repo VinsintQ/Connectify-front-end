@@ -136,7 +136,7 @@ function App() {
               <Route path="/jobs" element={<AvailableJobs/>} />
               <Route path="/company/:compId/apply/:jobId" element={<AppplyForm/>} />
               <Route path="/MyCompany/company/:compId/jobs" element={<ViewJobs/>}  user={user}/>
-              <Route path="/freelancing" element={<Freelancing/>} user={user}/>
+              <Route path="/freelancing" element={<Freelancing user={user}/>} />
               <Route path="/Mycompany/:compId/viewapplications/:jobId" element={<Viewapplications/>} user={user}/>
               <Route
                 path="/AddCompany"

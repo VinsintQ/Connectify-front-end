@@ -1,11 +1,34 @@
 import freelancnigService from "../../services/freelancnigService";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import conversationServices from "../../services/conversationServices";
 import "./Freelancing.css";
 
-const Freelancing = (user) => {
+const Freelancing = ({user}) => {
   const [services, setServices] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+ const [id, setId] = useState(user._id);
+ 
+
+  const handleAddConv = async (serviceProvider) => {
+   
+   
+      try {
+        const Conversation = await conversationServices.create(
+          id,
+          serviceProvider._id
+        );
+
+        
+      } catch (error) {
+        console.error("Failed to create conversation:", error);
+      }
+    
+
+   
+  };
+
+
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -15,7 +38,7 @@ const Freelancing = (user) => {
     fetchServices();
   }, [user._id]);
 
-  // Filter services based on search query
+ 
   const filteredServices = services.filter((service) =>
     service.serviceTitle.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -44,14 +67,20 @@ const Freelancing = (user) => {
       <div className="freelancing-container">
         {filteredServices.map((service) => (
           <div key={service._id} className="service">
-            <Link to={`/profile/${service.userId._id}`}>
+
+
+
+
+
+             
+             <Link to={`/chat`} onClick={()=>{handleAddConv(service.userId,user._id)}}>
               <img
                 className="profile-image"
                 src={service.userId.image}
                 alt="Post"
               />
               {service.userId.username}
-            </Link>
+            </Link> 
 
             <h2>{service.serviceTitle}</h2>
             <p><strong>Description:</strong> {service.description}</p>
