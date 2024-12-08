@@ -17,7 +17,7 @@ const AvailableJobs = ({ user }) => {
   
         // Filter out jobs the user has already applied for
         const filteredJobs = jobs.filter(
-          (job) => !job.applications.some((app) => app.userId === user._id)
+          (job) => !job.application.some((app) => app.userId === user._id)
         );
   
         setJobs(filteredJobs);
