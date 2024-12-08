@@ -41,6 +41,9 @@ const Freelancing = ({user}) => {
       } catch (error) {
         console.error("Failed to create conversation:", error);
       }
+
+    }else {
+      navigate(`/chat`);
     }
   }
    
