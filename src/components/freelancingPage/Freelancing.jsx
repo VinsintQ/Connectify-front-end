@@ -26,7 +26,7 @@ const Freelancing = ({user}) => {
      const existingConversation = conversation.find((conv) =>
        conv.members.includes(serviceProvider._id)
      );
-     if (!user._id===serviceProvider._id) {
+     if (user._id!==serviceProvider._id) {
      if (!existingConversation) {
    
       try {
