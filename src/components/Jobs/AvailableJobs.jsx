@@ -65,7 +65,7 @@ const AvailableJobs = ({ user }) => {
           ))}
         </div>
       ) : (
-        <h2 className="no-jobs">There are no available jobs</h2>
+        <h2 className="no-jobs">Loading</h2>
       )}
 
       <Modal show={showModal} onHide={handleClose} centered>
