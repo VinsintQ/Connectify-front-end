@@ -22,32 +22,30 @@ const Freelancing = ({user}) => {
       }
     };
     getConv();
-  }, [user._id]);
+  }, []);
 
 
   const handleAddConv = async (serviceProvider) => {
      const existingConversation = conversation.find((conv) =>
-       conv.members.includes(serviceProvider._id)
+       conv.members.includes(serviceProvider)
      );
 
-     if (user._id!==serviceProvider._id) {
+     
      if (!existingConversation) {
    
       try {
         const Conversation = await conversationServices.create(
           user._id,
-          serviceProvider._id
+          serviceProvider
         );
-        navigate(`/chat`);
+       
         
       } catch (error) {
         console.error("Failed to create conversation:", error);
       }
 
-    }else {
-      navigate(`/chat`);
     }
-  }
+  
    
   };
 
@@ -96,7 +94,7 @@ const Freelancing = ({user}) => {
 
 
              
-             <Link to={`/freelancing`} onClick={()=>{handleAddConv(service.userId,user._id)}}>
+             <Link to={`/chat`} onClick={()=>{handleAddConv(service.userId._id,user._id)}}>
               <img
                 className="profile-image"
                 src={service.userId.image}
