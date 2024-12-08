@@ -34,12 +34,11 @@ button.freebtn {
     justify-content: center;
     padding: 20px;
   }
-  /* AvailableJobs.css */
-/* AvailableJobs.css */
+  
 .job-card a {
   display: inline-block;
-  padding: 10px 20px;
-  background-color: #28a745; /* Green color */
+  
+  background-color: #28a745; 
   color: white;
   text-decoration: none;
   border-radius: 5px;
@@ -47,16 +46,16 @@ button.freebtn {
   font-weight: bold;
   text-align: center;
   transition: background-color 0.3s ease;
-  margin: 10px auto; /* Add auto for horizontal centering */
+  margin: 10px auto; 
 }
 
 .job-card {
-  text-align: center; /* Center the content inside the card */
+  text-align: center; 
 }
 
 
 
-  /* Each service card */
+
   .service {
     background-color: #fff;
     border: 1px solid #ddd;
