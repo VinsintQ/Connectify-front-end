@@ -46,13 +46,20 @@ const PostForm = ({ user, handleUpdatePost }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!PostData.content.trim()) {
+      setError("Content cannot be empty.");
+      return;
+    }
+  
     if (postId) {
       handleUpdatePost({ postId, PostData });
     } else {
-      if (PostData.content.trim() !== "") {
-        handleAddPost({ formData: PostData, userId });
-        navigate("/");
-      }
+      const formData = {
+        ...PostData,
+        image: PostData.image || "https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=",
+      };
+      await handleAddPost({ formData, userId });
+      navigate("/");
     }
   };
 
