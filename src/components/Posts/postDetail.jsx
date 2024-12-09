@@ -23,7 +23,7 @@ const PostDetails = ({ user }) => {
 
   const handleConfirmDeletePost = async () => {
     await postService.deleter(userId, postId);
-    navigate("/posts");
+    navigate("/post");
   };
 
   const deleteComment = (commentId) => {
