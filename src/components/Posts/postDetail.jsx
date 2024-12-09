@@ -46,24 +46,42 @@ const PostDetails = ({ user }) => {
 
   const handleLike = async () => {
     const liked = post?.like?.find((like) => like.userid === userId);
-  
+    const disliked = post?.disLike?.find((dislike) => dislike.userid === userId);
+
     if (liked) {
-      await postService.rmLike(userId, postId, liked._id); 
+      // Remove like if already liked
+      await postService.rmLike(userId, postId, liked._id);
     } else {
-      await postService.like(userId, postId); 
+      // Add like if not liked yet
+      await postService.like(userId, postId);
     }
-    setRefresh((prev) => !prev); 
+
+    // If post is disliked, remove the dislike
+    if (disliked) {
+      await postService.rmDislike(userId, postId, disliked._id);
+    }
+
+    setRefresh((prev) => !prev);
   };
-  
+
   const handleDislike = async () => {
     const disliked = post?.disLike?.find((dislike) => dislike.userid === userId);
-  
+    const liked = post?.like?.find((like) => like.userid === userId);
+
     if (disliked) {
-      await postService.rmDislike(userId, postId, disliked._id); 
+      // Remove dislike if already disliked
+      await postService.rmDislike(userId, postId, disliked._id);
     } else {
-      await postService.dislike(userId, postId); 
+      // Add dislike if not disliked yet
+      await postService.dislike(userId, postId);
     }
-    setRefresh((prev) => !prev); 
+
+    // If post is liked, remove the like
+    if (liked) {
+      await postService.rmLike(userId, postId, liked._id);
+    }
+
+    setRefresh((prev) => !prev);
   };
 
   useEffect(() => {
@@ -99,25 +117,24 @@ const PostDetails = ({ user }) => {
       <p className="post-content">Content: {post?.content}</p>
 
       <div className="reaction-buttons">
-  <button
-    className={
-      post?.like?.some((like) => like.userid === userId) ? "clicked" : "like-button"
-    }
-    onClick={handleLike}
-  >
-    <FaThumbsUp /> <span>{post?.like?.length || 0}</span>
-  </button>
+        <button
+          className={
+            post?.like?.some((like) => like.userid === userId) ? "clicked" : "like-button"
+          }
+          onClick={handleLike}
+        >
+          <FaThumbsUp /> <span>{post?.like?.length || 0}</span>
+        </button>
 
-  <button
-    className={
-      post?.disLike?.some((dislike) => dislike.userid === userId) ? "clicked" : "like-button"
-    }
-    onClick={handleDislike}
-  >
-    <FaThumbsDown /> <span>{post?.disLike?.length || 0}</span>
-  </button>
-</div>
-
+        <button
+          className={
+            post?.disLike?.some((dislike) => dislike.userid === userId) ? "clicked" : "like-button"
+          }
+          onClick={handleDislike}
+        >
+          <FaThumbsDown /> <span>{post?.disLike?.length || 0}</span>
+        </button>
+      </div>
 
       {post.userId._id === user._id && (
         <div className="flex">
