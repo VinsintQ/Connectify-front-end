@@ -4,6 +4,7 @@ import { Modal, Button } from "react-bootstrap";
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import postService from "../../services/postService";
 import CommentForm from "../commentForm/commentForm";
+import { useNavigate } from "react-router-dom";
 import "./postDetail.css";
 
 const PostDetails = ({ user }) => {
@@ -13,6 +14,7 @@ const PostDetails = ({ user }) => {
   const [showCommentModal, setShowCommentModal] = useState(false);
   const [commentToDelete, setCommentToDelete] = useState(null);
   const [refresh, setRefresh] = useState(false);
+  const navigate = useNavigate();
   const userId = user._id;
 
   const deletePost = () => setShowPostModal(true);
@@ -21,6 +23,7 @@ const PostDetails = ({ user }) => {
 
   const handleConfirmDeletePost = async () => {
     await postService.deleter(userId, postId);
+    navigate("/posts");
   };
 
   const deleteComment = (commentId) => {
