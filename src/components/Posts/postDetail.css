@@ -6,6 +6,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
  .flex {
   display: flex;
   justify-content: space-around;
@@ -16,6 +17,12 @@
 }
 .post-details-container button.red:hover {
   background-color: rgb(167, 14, 14);
+}
+.reaction-buttons{
+  display: flex;
+  
+  align-items: center;
+  margin-top: 20px;
 }
 .post-details-container img {
   width: 100%;
@@ -121,3 +128,24 @@ textarea:focus {
   outline: none;
 }
 
+.post-details-container button.like-button{
+  
+  
+ 
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+
+.post-details-container button.clicked{
+  
+  
+ color: black;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}

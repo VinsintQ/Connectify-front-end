@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
+import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import postService from "../../services/postService";
 import CommentForm from "../commentForm/commentForm";
 import "./postDetail.css";
@@ -14,49 +15,54 @@ const PostDetails = ({ user }) => {
   const [refresh, setRefresh] = useState(false);
   const userId = user._id;
 
-  
-  const deletePost = () => {
-    setShowPostModal(true);
-  };
+  const deletePost = () => setShowPostModal(true);
 
- 
-  const handlePostModalClose = () => {
-    setShowPostModal(false);
-  };
-
+  const handlePostModalClose = () => setShowPostModal(false);
 
   const handleConfirmDeletePost = async () => {
     await postService.deleter(userId, postId);
-    
   };
 
-  
   const deleteComment = (commentId) => {
-    setCommentToDelete(commentId); 
+    setCommentToDelete(commentId);
     setShowCommentModal(true);
-    async function getPost() {
-      const postData = await postService.indexc(userId, postId);
-      setPost(postData);
-    }
-    getPost();
   };
-
 
   const handleCommentModalClose = () => {
     setShowCommentModal(false);
-    setCommentToDelete(null); 
+    setCommentToDelete(null);
   };
 
-  
   const handleConfirmDeleteComment = async () => {
     if (commentToDelete) {
       await postService.deleteComment(userId, postId, commentToDelete);
-      setRefresh((prev) => !prev); 
-      handleCommentModalClose(); 
+      setRefresh((prev) => !prev);
+      handleCommentModalClose();
     }
   };
 
- 
+  const handleLike = async () => {
+    const liked = post?.like?.find((like) => like.userid === userId);
+  
+    if (liked) {
+      await postService.rmLike(userId, postId, liked._id); 
+    } else {
+      await postService.like(userId, postId); 
+    }
+    setRefresh((prev) => !prev); 
+  };
+  
+  const handleDislike = async () => {
+    const disliked = post?.disLike?.find((dislike) => dislike.userid === userId);
+  
+    if (disliked) {
+      await postService.rmDislike(userId, postId, disliked._id); 
+    } else {
+      await postService.dislike(userId, postId); 
+    }
+    setRefresh((prev) => !prev); 
+  };
+
   useEffect(() => {
     async function getPost() {
       const postData = await postService.indexc(userId, postId);
@@ -67,11 +73,6 @@ const PostDetails = ({ user }) => {
 
   const handleCommentAdded = () => {
     setRefresh((prev) => !prev);
-    async function getPost() {
-      const postData = await postService.indexc(userId, postId);
-      setPost(postData);
-    }
-    getPost();
   };
 
   if (!post) {
@@ -93,6 +94,27 @@ const PostDetails = ({ user }) => {
 
       <img src={post?.image} alt="post image" className="posty-image" />
       <p className="post-content">Content: {post?.content}</p>
+
+      <div className="reaction-buttons">
+  <button
+    className={
+      post?.like?.some((like) => like.userid === userId) ? "clicked" : "like-button"
+    }
+    onClick={handleLike}
+  >
+    <FaThumbsUp /> <span>{post?.like?.length || 0}</span>
+  </button>
+
+  <button
+    className={
+      post?.disLike?.some((dislike) => dislike.userid === userId) ? "clicked" : "like-button"
+    }
+    onClick={handleDislike}
+  >
+    <FaThumbsDown /> <span>{post?.disLike?.length || 0}</span>
+  </button>
+</div>
+
 
       {post.userId._id === user._id && (
         <div className="flex">
@@ -162,7 +184,11 @@ const PostDetails = ({ user }) => {
           <Button variant="secondary" onClick={handleCommentModalClose}>
             Cancel
           </Button>
-          <Button type="submit" variant="primary" onClick={handleConfirmDeleteComment}>
+          <Button
+            type="submit"
+            variant="primary"
+            onClick={handleConfirmDeleteComment}
+          >
             Confirm
           </Button>
         </Modal.Footer>

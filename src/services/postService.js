@@ -128,6 +128,83 @@ const deleteComment = async (userId, postId, commentId) => {
   }
 };
 
+const like = async (userId, postId) => {
+  try {
+    const data = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
+    const res = await fetch(`${BASE_URL}/${userId}/post/${postId}/like`, data);
+
+    return res.json();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const dislike = async (userId, postId) => {
+  try {
+    const data = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/${userId}/post/${postId}/dislike`,
+      data
+    );
+
+    return res.json();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const rmLike = async (userId, postId, likeId) => {
+  try {
+    const data = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/${userId}/post/${postId}/like/${likeId}`,
+      data
+    );
+
+    return res.json();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const rmDislike = async (userId, postId, dislikeId) => {
+  try {
+    const data = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/${userId}/post/${postId}/dislike/${dislikeId}`,
+      data
+    );
+
+    return res.json();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export default {
   allposts,
   add,
@@ -136,4 +213,8 @@ export default {
   deleter,
   createComment,
   deleteComment,
+  like,
+  dislike,
+  rmLike,
+  rmDislike,
 };
