@@ -128,14 +128,7 @@ const updateProfileForm = ({ user, setuserData, userData }) => {
         value={formData.name}
         onChange={handleChange}
       />
-      <input
-        className="updateProfile"
-        type="text"
-        placeholder="Username"
-        name="username"
-        value={formData.username}
-        onChange={handleChange}
-      />
+      
       <input
         className="updateProfile"
         type="email"
